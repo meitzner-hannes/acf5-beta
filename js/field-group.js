@@ -637,7 +637,7 @@
 		wipe_field : function( $el ){
 			
 			// vars
-			var old_id = this.get_field_meta( $el, 'ID'),
+			var old_id = $el.attr('data-id'), // use data attr for better compatibility with new fields
 				new_id = acf.get_uniqid('field_');
 			
 			

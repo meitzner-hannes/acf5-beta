@@ -34,6 +34,12 @@
 				
 		    });
 		    
+		    acf.add_action('delete_field', function( $el ){
+			    
+			    _this.delete_field( $el );
+				
+		    });
+		    
 		    
 		    // modules
 		    this.repeater.init();
@@ -140,6 +146,30 @@
 		    	
 	    	});
 	    	
+	    	
+    	},
+    	
+    	
+    	/*
+    	*  delete_field
+    	*
+    	*  This function is triggered when deleting a field
+    	*
+    	*  @type	function
+    	*  @date	8/04/2014
+    	*  @since	5.0.0
+    	*
+    	*  @param	$el
+    	*  @return	n/a
+    	*/
+    	
+    	delete_field : function( $el ){
+	    	
+	    	$el.find('.field').not('[data-key="acfcloneindex"]').each(function(){
+		    	
+		    	acf.field_group.delete_field( $(this), false );
+		    	
+	    	});
 	    	
     	}
 		

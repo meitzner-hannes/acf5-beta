@@ -24,7 +24,6 @@ class acf_field_post_object extends acf_field
 			'multiple'		=> 0,
 			'return_format'	=> 'object',
 			'ui'			=> 1,
-			'sortable'		=> 0
 		);
 		
 		
@@ -419,22 +418,6 @@ $choices = wp_parse_args(acf_get_taxonomy_terms(), array(
 		));
 		
 		
-		// sortable
-		acf_render_field_option( $this->name, array(
-			'label'			=> __('Allow values to be sortable','acf'),
-			'instructions'	=> '',
-			'type'			=> 'radio',
-			'name'			=> 'sortable',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['sortable'],
-			'choices'		=> array(
-				1				=> __("Yes",'acf'),
-				0				=> __("No",'acf'),
-			),
-			'layout'	=>	'horizontal',
-		));
-		
-		
 		// return_format
 		acf_render_field_option( $this->name, array(
 			'label'			=> __('Return Format','acf'),
@@ -449,25 +432,7 @@ $choices = wp_parse_args(acf_get_taxonomy_terms(), array(
 			),
 			'layout'	=>	'horizontal',
 		));
-		
-		
-		// ajax
-		/*
-acf_render_field_option( $this->name, array(
-			'label'			=> __('Use AJAX to lazy load choices?','acf'),
-			'instructions'	=> '',
-			'type'			=> 'radio',
-			'name'			=> 'ajax',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['ajax'],
-			'choices'		=> array(
-				1				=> __("Yes",'acf'),
-				0				=> __("No",'acf'),
-			),
-			'layout'	=>	'horizontal',
-		));
-*/
-		
+				
 	}
 	
 	

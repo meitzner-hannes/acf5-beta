@@ -181,7 +181,20 @@
 		
 		get_field_meta : function( $el, name ){
 		
-			return $el.find('> .acf-hidden > .input-' + name).val();
+			// vars
+	    	$input = $el.find('> .acf-hidden > .input-' + name);
+	    	
+	    	
+	    	// return
+			if( $input.exists() ) {
+			
+				return $input.val();
+				
+			}
+			
+			
+			// return
+			return false;
 			
 		},
 		
@@ -203,7 +216,57 @@
 		
 		update_field_meta : function( $el, name, value ){
 			
-			$el.find('> .acf-hidden > .input-' + name).val( value );
+			// vars
+	    	$input = $el.find('> .acf-hidden > .input-' + name);
+	    	
+	    	
+	    	// create hidden input if doesn't exist
+			if( !$input.exists() ) {
+				
+				var html = $el.find('> .acf-hidden > .input-ID').outerHTML().replace(/ID/g, name);
+				
+				
+				// update $input
+				$input = $(html);
+				
+				
+				// append
+				$el.find('> .acf-hidden').append( $input );
+			}
+			
+			
+			// update value
+			$input.val( value );
+			
+		},
+		
+		
+		/*
+		*  delete_field_meta
+		*
+		*  This function will return an input value for a field
+		*
+		*  @type	function
+		*  @date	8/04/2014
+		*  @since	5.0.0
+		*
+		*  @param	$el
+		*  @param	name
+		*  @return	(string)
+		*/
+		
+		delete_field_meta : function( $el, name ){
+		
+			// vars
+	    	$input = $el.find('> .acf-hidden > .input-' + name);
+	    	
+	    	
+	    	// return
+			if( $input.exists() ) {
+			
+				$input.remove();
+				
+			}
 			
 		},
 		
@@ -389,6 +452,10 @@
 				if( ! $fields.exists() ){
 					
 					$(this).children('.no-fields-message').show();
+					
+				} else {
+					
+					$(this).children('.no-fields-message').hide();
 					
 				}
 				

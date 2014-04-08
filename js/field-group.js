@@ -785,20 +785,29 @@
 		
 		move_field : function( $field ){
 			
-			// open popup
-			acf.open_popup({
-				title	: acf._e('move_field'),
-				loading	: true,
-				height	: 220
-			});
-			
-			
 			// AJAX data
 			var ajax_data = {
 				'action'	: 'acf/field_group/move_field',
 				'nonce'		: acf.get('nonce'),
 				'field_id'	: this.get_field_meta($field, 'ID')
 			};
+			
+			
+			// validate
+			if( !ajax_data.field_id ) {
+				
+				alert( acf._e('move_field_warning') );
+				return;
+				
+			}
+			
+			
+			// open popup
+			acf.open_popup({
+				title	: acf._e('move_field'),
+				loading	: true,
+				height	: 220
+			});
 			
 			
 			// get HTML

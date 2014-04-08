@@ -136,24 +136,25 @@ class acf_field_group {
 		
 		// vars
 		$l10n = array(
-			'move_to_trash'		=>	__("Move to trash. Are you sure?",'acf'),
-			'checked'			=>	__("checked",'acf'),
-			'no_fields'			=>	__("No toggle fields available",'acf'),
-			'title_is_required'	=>	__("Field group title is required",'acf'),
-			'copy'				=>	__("copy",'acf'),
-			'or'				=>	__("or",'acf'),
-			'fields'			=>	__("Fields",'acf'),
-			'parent_fields'		=>	__("Parent fields",'acf'),
-			'sibling_fields'	=>	__("Sibling fields",'acf'),
-			'hide_show_all'		=>	__("Hide / Show All",'acf'),
-			'move_field'		=>	__("Move Custom Field",'acf')
+			'move_to_trash'			=>	__("Move to trash. Are you sure?",'acf'),
+			'checked'				=>	__("checked",'acf'),
+			'no_fields'				=>	__("No toggle fields available",'acf'),
+			'title_is_required'		=>	__("Field group title is required",'acf'),
+			'copy'					=>	__("copy",'acf'),
+			'or'					=>	__("or",'acf'),
+			'fields'				=>	__("Fields",'acf'),
+			'parent_fields'			=>	__("Parent fields",'acf'),
+			'sibling_fields'		=>	__("Sibling fields",'acf'),
+			'hide_show_all'			=>	__("Hide / Show All",'acf'),
+			'move_field'			=>	__("Move Custom Field",'acf'),
+			'move_field_warning'	=>	__("This field cannot be moved before it has been saved",'acf')
 		);
 		
 		$o = array(
-			'post_id'			=>	$post->ID,
-			'nonce'				=>	wp_create_nonce( 'acf_nonce' ),
-			'admin_url'			=>	admin_url(),
-			'ajaxurl'			=>	admin_url( 'admin-ajax.php' )
+			'post_id'				=>	$post->ID,
+			'nonce'					=>	wp_create_nonce( 'acf_nonce' ),
+			'admin_url'				=>	admin_url(),
+			'ajaxurl'				=>	admin_url( 'admin-ajax.php' )
 		);
 		
 		?>

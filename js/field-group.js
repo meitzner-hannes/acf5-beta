@@ -1613,7 +1613,8 @@
 			$tr.after( $tr2 );
 					
 			
-			return false;
+			// save field
+			acf.field_group.save_field( $tr.closest('.field') );
 			
 		},
 		
@@ -1636,6 +1637,10 @@
 			// vars
 			var siblings = $tr.siblings('tr').length;
 
+			
+			// save field
+			acf.field_group.save_field( $tr.closest('.field') );
+			
 			
 			if( siblings == 0 )
 			{

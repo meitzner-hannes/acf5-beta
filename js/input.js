@@ -4346,7 +4346,7 @@ acf.add_action('ready append', function( $el ){
 			if( o.multiple )
 			{
 				// clear input value (allow nothing to be saved) - only for multiple
-				$input.val('');
+				//$input.val('');
 				
 				
 				// sortable

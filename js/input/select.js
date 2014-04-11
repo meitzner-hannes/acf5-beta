@@ -199,7 +199,7 @@
 			if( o.multiple )
 			{
 				// clear input value (allow nothing to be saved) - only for multiple
-				$input.val('');
+				//$input.val('');
 				
 				
 				// sortable

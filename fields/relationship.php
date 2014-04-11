@@ -853,10 +853,7 @@ class acf_field_relationship extends acf_field
 		
 		// save value as strings, so we can clearly search for them in SQL LIKE statements
 		$value = array_map('strval', $value);
-			echo '<pre>';
-			print_r( $value );
-		echo '</pre>';
-		die;
+		
 	
 		// return
 		return $value;

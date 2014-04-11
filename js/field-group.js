@@ -325,24 +325,34 @@
 			}
 			
 			
-			// remove field data
-			this.$el.find('.field').each(function(){
+			// close / delete fields
+			_this.$fields.find('.field').each(function(){
 				
 				// vars
 				var changed = _this.get_field_meta( $(this), 'changed'),
-					ID = _this.get_field_meta( $(this), 'ID');
+					ID = _this.get_field_meta( $(this), 'ID'),
+					open = $(this).hasClass('open');
+				
+				
+				// clone
+				if( ID == 'acfcloneindex' ) {
+					
+					$(this).remove();
+					return;
+					
+				}
 				
 				
 				// validate
 				if( changed == '1' ) {
 					
 					return;
+					
 				}
 				
 				
 				// remove settings
-				$(this).children('.field-options').find('[name^="acf_fields[' + ID + ']"]').attr('disabled', 'disabled');
-				
+				$(this).children('.field-options').remove();
 				
 			});
 			

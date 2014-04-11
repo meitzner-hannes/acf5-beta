@@ -485,9 +485,10 @@ function acf_render_fields( $post_id = 0, $fields, $el = 'div', $instruction = '
 		foreach( $fields as $field )
 		{
 			// load value
-			if( $post_id && $field['value'] === null )
-			{
+			if( $field['value'] === null ) {
+			
 				$field['value'] = acf_get_value( $post_id, $field, true );
+				
 			} 
 			
 			

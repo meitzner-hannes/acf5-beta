@@ -1227,7 +1227,9 @@ function acf_form( $args = array() ) {
 	
 	// display form
 	if( $args['form'] ): ?>
+	
 	<form <?php acf_esc_attr_e( $args['form_attributes']); ?>>
+	
 	<?php endif; 
 		
 		
@@ -1237,72 +1239,64 @@ function acf_form( $args = array() ) {
 		'nonce'		=> 'acf_form' 
 	));
 	
+	
 	?>
 	<div class="acf-hidden">
 		
 		<?php 
 		
-		acf_hidden_input(array( 'name' => '_acf_form', 'value' => base64_encode(json_encode($args)) )); ?>
+		acf_hidden_input(array( 'name' => '_acf_form', 'value' => base64_encode(json_encode($args)) ));
 		
-		<?php /*
-		<?php acf_hidden_input(array( 'name' => 'return', 'value' => $args['return'] )); ?>
-		<?php acf_hidden_input(array( 'name' => 'post_id', 'value' => $args['post_id'] )); ?>
-		
-		<?php if( !empty($args['new_post']) ): ?>
+		?>
 			
-			<?php foreach( $args['new_post'] as $k => $v ): ?>
-				
-				<?php acf_hidden_input(array( 'name' => "new_post[{$k}]", 'value' => $v )); ?>
-				
-			<?php endforeach; ?>
-			
-		<?php endif; ?>
-*/ ?>		
 	</div>
 	
 	<div class="acf-form-fields">
-	<?php
 	
-	// html before fields
-	echo $args['html_before_fields'];
-	
-	
-	// start table
-	if( $args['label_placement'] == 'left' )
-	{
-		$args['field_el'] = 'tr';
+		<?php
 		
-		?><table class="acf-table"><tbody><?php
-	}
-	
-	
-	acf_render_fields( $post_id, $fields, $args['field_el'], $args['instruction_placement'] );
-	
-	
-	// end table
-	if( $args['label_placement'] == 'left' )
-	{
-		?></tbody></table><?php
-	}
-	
-	
-	// html after fields
-	echo $args['html_after_fields'];
-	
-	?>
+		// html before fields
+		echo $args['html_before_fields'];
+		
+		
+		// start table
+		if( $args['label_placement'] == 'left' )
+		{
+			$args['field_el'] = 'tr';
+			
+			?><table class="acf-table"><tbody><?php
+		}
+		
+		
+		acf_render_fields( $post_id, $fields, $args['field_el'], $args['instruction_placement'] );
+		
+		
+		// end table
+		if( $args['label_placement'] == 'left' )
+		{
+			?></tbody></table><?php
+		}
+		
+		
+		// html after fields
+		echo $args['html_after_fields'];
+		
+		?>
 	
 	</div><!-- acf-form-fields -->
 	
 	<?php if( $args['form'] ): ?>
+	
 	<!-- Submit -->
 	<div class="acf-form-submit">
+	
 		<input type="submit" class="button button-primary button-large" value="<?php echo $args['submit_value']; ?>" />
+		
 	</div>
 	<!-- / Submit -->
-	<?php endif; ?>
 	
-	<?php if( $args['form'] ): ?>
 	</form>
+	
 	<?php endif;
 }
 

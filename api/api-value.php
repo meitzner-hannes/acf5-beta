@@ -34,8 +34,12 @@ function acf_get_value( $post_id, $field, $format = false, $format_template = fa
 			
 	
 	// load value depending on the $type
-	if( is_numeric($post_id) )
-	{
+	if( empty($post_id) ) {
+		
+		// do nothing
+	
+	} elseif( is_numeric($post_id) ) {
+		
 		$v = get_post_meta( $post_id, $field['name'], false );
 		
 		// value is an array
@@ -44,9 +48,8 @@ function acf_get_value( $post_id, $field, $format = false, $format_template = fa
 		 	$value = $v[0];
 	 	}
 
-	}
-	elseif( strpos($post_id, 'user_') !== false )
-	{
+	} elseif( strpos($post_id, 'user_') !== false ) {
+		
 		$user_id = str_replace('user_', '', $post_id);
 		$user_id = intval( $user_id );
 		
@@ -58,9 +61,8 @@ function acf_get_value( $post_id, $field, $format = false, $format_template = fa
 		 	$value = $v[0];
 	 	}
 	 	
-	}
-	elseif( strpos($post_id, 'comment_') !== false )
-	{
+	} elseif( strpos($post_id, 'comment_') !== false ) {
+		
 		$comment_id = str_replace('comment_', '', $post_id);
 		$comment_id = intval( $comment_id );
 		
@@ -72,9 +74,8 @@ function acf_get_value( $post_id, $field, $format = false, $format_template = fa
 		 	$value = $v[0];
 	 	}
 	 	
-	}
-	else
-	{
+	} else {
+		
 		$v = get_option( "{$post_id}_{$field['name']}", false );
 	
 		if( ! is_null($v) )

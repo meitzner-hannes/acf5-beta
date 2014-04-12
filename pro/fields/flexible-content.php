@@ -548,7 +548,6 @@ class acf_field_flexible_content extends acf_field
 		}
 		
 		
-		
 		// check sub fields
 		if( !empty($value) ) {
 			
@@ -566,6 +565,14 @@ class acf_field_flexible_content extends acf_field
 						
 						// get sub field key
 						$k = $sub_field['key'];
+						
+						
+						// exists?
+						if( ! isset($value[ $i ][ $k ]) ) {
+							
+							continue;
+							
+						}
 						
 						
 						// validate

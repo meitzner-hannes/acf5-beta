@@ -260,7 +260,6 @@ class acf_field_group {
 	
 	function save_post( $post_id ) {
 		
-		
 		// do not save if this is an auto save routine
 		if( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE )
 		{

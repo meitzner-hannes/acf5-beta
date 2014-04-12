@@ -1,7 +1,7 @@
 <?php 
 
 /*
-*  get_field_reference()
+*  acf_get_field_reference()
 *
 *  This function will find the $field_key that is related to the $field_name.
 *  This is know as the field value reference
@@ -15,7 +15,7 @@
 *  @return	$reference (string)	a string containing the field_key
 */
 
-function get_field_reference( $field_name, $post_id ) {
+function acf_get_field_reference( $field_name, $post_id ) {
 	
 	// vars
 	$reference = false;
@@ -294,7 +294,7 @@ function get_field_object( $selector, $post_id = false, $format_value = true, $l
 	if( !acf_is_field_key($selector) )
 	{
 		$override_name = $selector;
-		$selector = get_field_reference( $selector, $post_id );
+		$selector = acf_get_field_reference( $selector, $post_id );
 	}
 	
 	

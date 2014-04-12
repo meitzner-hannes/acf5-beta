@@ -343,16 +343,20 @@
 				}
 				
 				
-				// validate
-				if( changed == '1' ) {
+				// close
+				if( open ) {
 					
-					return;
+					_this.close_field( $(this) );
 					
 				}
 				
 				
-				// remove settings
-				$(this).children('.field-options').remove();
+				// remove unneccessay inputs
+				if( changed != '1' ) {
+					
+					$(this).children('.field-options').find('[name^="acf_fields[' + ID + ']"]').remove();
+					
+				}
 				
 			});
 			

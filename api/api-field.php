@@ -670,14 +670,27 @@ function acf_update_field( $field = false, $specific = false ) {
 	
 	
 	// clean up conditional logic keys
-	if( !empty($field['conditional_logic']) )
-	{
-		$field['conditional_logic'] = array_values( $field['conditional_logic'] );
+	if( !empty($field['conditional_logic']) ) {
 		
-		foreach( array_keys($field['conditional_logic']) as $key )
-		{
-			$field['conditional_logic'][ $key ] = array_values( $field['conditional_logic'][ $key ] );
+		// extract groups
+		$groups = acf_extract_var( $field, 'conditional_logic' );
+		
+		
+		// reset conditional logic
+		$field['conditional_logic'] = array();
+		
+		
+		// remove empty rules
+		foreach( $groups as $group ) {
+			
+			if( !empty($group) ) {
+				
+				$field['conditional_logic'][] = $group;
+				
+			}
+			
 		}
+		
 	}
 	
 	

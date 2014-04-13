@@ -42,10 +42,10 @@ New features in ACF5
 --------------------
 
 * Overhaul of HTML & CSS
-* Fields & Sub fields now save as separate post objects, not postmeta
+* Migrated field & sub field settings (not values) to post objects instead of postmeta
 * Added Select2 JS for AJAX and search functionality on select lists
 * Added AJAX search functionality for Post Object, taxonomy, user and select fields
-* Added JSON read/write functionality to save field groups to files (saves DB query time)
+* Added JSON read/write functionality to automaticaly save field groups to files (saves DB query time)
 * Added JSON import/export functionality to replace old XML style
 * New location rules allow field groups on comments
 * New location rules allow field groups on user (including registration and bbPress)
@@ -57,14 +57,11 @@ New features in ACF5
 * New PHP + AJAX validation replaces old JS style
 * New Relationship field setting for 'Filters' (Search, Post Type, Taxonomy)
 * New field group functionality allows you to move a field between groups
-* New field group functionality allows you to move a field between parents (repeater)
+* New field group functionality allows you to drag a field between parents (repeater)
 * New Add-ons page uses an external JSON file to read in data (easy to add 3rd party fields)
 * Huge improvements to core functionality resulting in faster load times!
 * New archives group in page_link field selection
-* New functions for options page allow for both parent and child menu pages
-
-Missing features in ACF5
-------------------------
+* New functions for options page allow creation of both parent and child menu pages
 
 Thank you
 ---------

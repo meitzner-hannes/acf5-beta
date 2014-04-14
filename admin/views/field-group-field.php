@@ -46,7 +46,7 @@ $atts = array(
 		<li class="li-field_name"><?php echo $field['name']; ?></li>
 		<li class="li-field_type">
 			<?php if( acf_field_type_exists($field['type']) ): ?>
-				<?php echo $field['type']; ?>
+				<?php echo acf_get_field_type_label($field['type']); ?>
 			<?php else: ?>
 				<b><?php _e('Error', 'acf'); ?></b> <?php _e('Field type does not exist', 'acf'); ?>
 			<?php endif; ?>

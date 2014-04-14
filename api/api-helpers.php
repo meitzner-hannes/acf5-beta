@@ -581,9 +581,47 @@ function acf_render_field_option( $type, $field )
 *  @return	(array)
 */
 
-function acf_get_field_types()
-{
+function acf_get_field_types() {
+
 	return apply_filters('acf/get_field_types', array());
+	
+}
+
+
+/*
+*  acf_get_field_type_label
+*
+*  This function will return the label of a field type
+*
+*  @type	function
+*  @date	1/10/13
+*  @since	5.0.0
+*
+*  @param	n/a
+*  @return	(array)
+*/
+
+function acf_get_field_type_label( $field_type ) {
+
+	// vars
+	$field_types = acf_get_field_types();
+	
+	
+	// loop through categories
+	foreach( $field_types as $category ) {
+		
+		if( isset( $category[ $field_type ] ) ) {
+		
+			return $category[ $field_type ];
+			
+		}
+		
+	}
+	
+	
+	// return
+	return false;
+	
 }
 
 
@@ -600,21 +638,19 @@ function acf_get_field_types()
 *  @return	(boolean)
 */
 
-function acf_field_type_exists( $field_type )
-{
+function acf_field_type_exists( $field_type ) {
+
 	// vars
-	$field_types = acf_get_field_types();
+	$label = acf_get_field_type_label( $field_type );
 	
 	
-	// loop through categories
-	foreach( $field_types as $category )
-	{
-		if( isset( $category[ $field_type ] ) )
-		{
-			return true;
-		}
+	// return true if label exists
+	if( !empty( $label ) ) {
+		
+		return true;
+		
 	}
-	
+		
 	
 	// return
 	return false;

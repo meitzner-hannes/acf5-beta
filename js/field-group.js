@@ -496,7 +496,7 @@
 			// vars
 			var label = $el.find('tr[data-name="label"]:first input').val(),
 				name = $el.find('tr[data-name="name"]:first input').val(),
-				type = $el.attr('data-type');
+				type = $el.find('tr[data-name="type"]:first select option:selected').text();
 			
 			
 			// update label

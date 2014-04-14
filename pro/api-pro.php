@@ -387,9 +387,14 @@ function acf_add_options_sub_page( $page = '' ) {
 	
 	
 	// parent
-	if( empty($page['parent_slug']) )
-	{
-		$page['parent_slug'] = 'acf-options';
+	if( empty($page['parent_slug']) ) {
+		
+		// get parent
+		$parent = acf_get_setting('options_page');
+		
+		
+		// set parent slug
+		$page['parent_slug'] = $parent['menu_slug'];
 	}
 	
 	
@@ -398,6 +403,62 @@ function acf_add_options_sub_page( $page = '' ) {
 	
 }
 
+
+/*
+*  acf_set_options_page_title
+*
+*  This function is used to customize the options page admin menu title
+*
+*  @type	function
+*  @date	13/07/13
+*  @since	4.0.0
+*
+*  @param	$title (string)
+*  @return	n/a
+*/
+
+function acf_set_options_page_title( $title = 'Options' ) {
+	
+	acf()->settings['options_page']['page_title'] = $title;
+}
+
+
+/*
+*  acf_set_options_page_menu
+*
+*  This function is used to customize the options page admin menu name
+*
+*  @type	function
+*  @date	13/07/13
+*  @since	4.0.0
+*
+*  @param	$title (string)
+*  @return	n/a
+*/
+
+function acf_set_options_page_menu( $title = 'Options' ) {
+	
+	acf()->settings['options_page']['menu_title'] = $title;
+}
+
+
+/*
+*  acf_set_options_page_capability
+*
+*  This function is used to customize the options page capability. Defaults to 'edit_posts'
+*
+*  @type	function
+*  @date	13/07/13
+*  @since	4.0.0
+*
+*  @param	$title (string)
+*  @return	n/a
+*/
+
+function acf_set_options_page_capability( $capability = 'edit_posts' ) {
+	
+	acf()->settings['options_page']['capability'] = $capability;
+}
 
 
 ?>

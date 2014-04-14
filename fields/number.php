@@ -219,6 +219,14 @@ class acf_field_number extends acf_field
 	
 	function update_value( $value, $post_id, $field )
 	{
+		// no formatting needed for empty value
+		if( empty($value) ) {
+			
+			return $value;
+			
+		}
+		
+		
 		// remove ','
 		$value = str_replace(',', '', $value);
 		

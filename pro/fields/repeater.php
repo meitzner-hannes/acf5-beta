@@ -312,7 +312,7 @@ class acf_field_repeater extends acf_field
 		
 		
 		?>
-		<tr class="acf-field" data-option="repeater" data-name="sub_fields">
+		<tr class="acf-field" data-setting="repeater" data-name="sub_fields">
 			<td class="acf-label">
 				<label><?php _e("Sub Fields",'acf'); ?></label>
 				<p class="description"></p>		

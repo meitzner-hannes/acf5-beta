@@ -53,7 +53,7 @@ $atts = array(
 		</li>	
 	</ul>
 	
-	<div class="field-options">			
+	<div class="field-settings">			
 		<table class="acf-table">
 			<tbody>
 				<?php 

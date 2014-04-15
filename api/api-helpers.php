@@ -559,7 +559,7 @@ function acf_render_field_option( $type, $field )
 {
 	// vars
 	$atts = array( 
-		'data-option' => $type
+		'data-setting' => $type
 	);
 	
 	
@@ -590,14 +590,19 @@ function acf_render_field_setting( $field, $setting ) {
 	);
 	
 	
-	// copy across prefix
-	$setting['prefix'] = $field['prefix'];
-	
-	
-	// copy across valu
-	if( isset($field[ $setting['name'] ]) ) {
+	// tab field contains no name / prefix
+	if( !empty($setting['name']) ) {
 		
-		$setting['value'] = $field[ $setting['name'] ];
+		// copy across prefix
+		$setting['prefix'] = $field['prefix'];
+		
+		
+		// copy across value
+		if( isset($field[ $setting['name'] ]) ) {
+			
+			$setting['value'] = $field[ $setting['name'] ];
+			
+		}
 		
 	}
 	

@@ -354,7 +354,7 @@
 				// remove unneccessay inputs
 				if( changed != '1' ) {
 					
-					$(this).children('.field-options').find('[name^="acf_fields[' + ID + ']"]').remove();
+					$(this).children('.field-settings').find('[name^="acf_fields[' + ID + ']"]').remove();
 					
 				}
 				
@@ -593,7 +593,7 @@
 			
 			
 			// animate toggle
-			$el.children('.field-options').animate({ 'height' : 'toggle' }, 250 );
+			$el.children('.field-settings').animate({ 'height' : 'toggle' }, 250 );
 			
 		},
 		
@@ -630,7 +630,7 @@
 			
 			
 			// animate toggle
-			$el.children('.field-options').animate({ 'height' : 'toggle' }, 250 );
+			$el.children('.field-settings').animate({ 'height' : 'toggle' }, 250 );
 			
 		},
 		
@@ -1035,7 +1035,7 @@
 			
 			
 			// clear name
-			$el.find('.field-options input[type="text"]').val('');
+			$el.find('.field-settings input[type="text"]').val('');
 			
 			
 			// focus after form has dropped down
@@ -1424,7 +1424,7 @@
 			var choices		= [],
 				key			= $field.attr('data-key'),
 				$ancestors	= $field.parents('.acf-field-list'),
-				$tr			= $field.find('> .field-options > table > tbody > tr[data-name="conditional_logic"]');
+				$tr			= $field.find('> .field-settings > table > tbody > tr[data-name="conditional_logic"]');
 				
 			
 			$.each( $ancestors, function( i ){
@@ -1438,7 +1438,7 @@
 					var $this_field	= $(this),
 						this_key	= $this_field.attr('data-key'),
 						this_type	= $this_field.attr('data-type'),
-						this_label	= $this_field.find('> .field-options > table > tbody > tr[data-name="label"] input').val();
+						this_label	= $this_field.find('> .field-settings > table > tbody > tr[data-name="label"] input').val();
 					
 					
 					// validate

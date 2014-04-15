@@ -613,7 +613,7 @@
 			
 			
 			// vars
-			var $tbody = $el.find('> .field-options > table > tbody');
+			var $tbody = $el.find('> .field-settings > table > tbody');
 			
 			
 			// validate

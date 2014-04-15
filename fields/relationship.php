@@ -215,6 +215,7 @@ class acf_field_relationship extends acf_field
 		foreach( $post_types as $post_type )
 		{
 			// vars
+			$post_type_object = get_post_type_object( $post_type );
 			$this_posts = array();
 			$this_json = array();
 			$this_search_weight = array();
@@ -298,8 +299,6 @@ class acf_field_relationship extends acf_field
 			}
 			else
 			{
-				$post_type_object = get_post_type_object( $post_type );
-					
 				$r[] = array(
 					'text'		=> $post_type_object->labels->singular_name,
 					'children'	=> $this_json

@@ -569,6 +569,46 @@ function acf_render_field_option( $type, $field )
 
 
 /*
+*  acf_render_field_setting
+*
+*  This function will render a tr element containing a label and field cell, but also setting the tr data attribute for AJAX 
+*
+*  @type	function
+*  @date	28/09/13
+*  @since	5.0.0
+*
+*  @param	$type (string) the origional field_type (not $field['type'])
+*  @param	$field (array)
+*  @return	N/A
+*/
+
+function acf_render_field_setting( $field, $setting ) {
+	
+	// vars
+	$atts = array( 
+		'data-setting' => $field['type']
+	);
+	
+	
+	// copy across prefix
+	$setting['prefix'] = $field['prefix'];
+	
+	
+	// copy across valu
+	if( isset($field[ $setting['name'] ]) ) {
+		
+		$setting['value'] = $field[ $setting['name'] ];
+		
+	}
+	
+	
+	// render
+	acf_render_field_wrap( $setting, 'tr', 'label', $atts );
+	
+}
+
+
+/*
 *  acf_get_field_types
 *
 *  This function will return all available field types

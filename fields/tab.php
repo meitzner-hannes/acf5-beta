@@ -77,7 +77,7 @@ class acf_field_tab extends acf_field
 		
 		
 		// default_value
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Instructions','acf'),
 			'instructions'	=> '',
 			'type'			=> 'message',

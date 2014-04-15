@@ -151,12 +151,9 @@
 }
 
 .acf-flexible-content .layout > .acf-input-table > thead > tr > th {
-	background: none repeat scroll 0 0 #F9F9F9;
-    border-bottom: 1px solid #E1E1E1;
-    /* border-right: 1px solid #E1E1E1; */
-    
-    font-size: 12px;
-	font-family: sans-serif;
+	background: #F9F9F9;
+	color: #444;
+    font-size: 13px;
 	font-weight: bold;
 }
 

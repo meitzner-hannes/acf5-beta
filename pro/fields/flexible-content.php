@@ -346,7 +346,8 @@ class acf_field_flexible_content extends acf_field
 					// vars
 					$args = array(
 						'fields'	=> $layout['sub_fields'],
-						'layout'	=> $layout['display']
+						'layout'	=> $layout['display'],
+						'parent'	=> $field['ID']
 					);
 					
 					acf_get_view('field-group-fields', $args);
@@ -895,9 +896,10 @@ function acf_render_flexible_content_layout( $field, $layout, $i, $value ) {
 							
 							
 							// Add custom width
-							if( count($layout['sub_fields']) > 1 && !empty($sub_field['width']) )
-							{
-								$atts['width'] = "{$sub_field['width']}%";
+							if( count($layout['sub_fields']) > 1 && !empty($sub_field['column_width']) ) {
+							
+								$atts['width'] = "{$sub_field['column_width']}%";
+								
 							}
 								
 							?>

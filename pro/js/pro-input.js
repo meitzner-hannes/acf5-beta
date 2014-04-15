@@ -48,8 +48,8 @@
 			
 			
 			// sortable
-			if( this.o.max != 1 )
-			{
+			if( this.o.max != 1 ) {
+				
 				this.$el.find('> table > tbody').unbind('sortable').sortable({
 				
 					items					: '> tr',
@@ -77,6 +77,10 @@
 			}
 			
 			
+			// set column widths
+			this.render_columns();
+			
+			
 			// disable clone inputs
 			// Note: Previous attempted to check if input was already disabled, however the browser caches this attribute, 
 			// so a refresh would cause the code to fail.
@@ -85,7 +89,68 @@
 			
 			// render
 			this.render();
+			
+			
+			
 					
+		},
+		
+		render_columns : function(){
+			
+			this.$el.find('.acf-table').each(function(){
+				
+				// vars
+				var $table = $(this);
+				
+				
+				// validate
+				if( ! $table.hasClass('table-layout') ) {
+				
+					return;
+					
+				}
+				
+		
+				// accomodate for order / remove
+				var column_width = 100;
+				if( $table.find('> thead > tr > th.order').exists() ) {
+				
+					column_width = 93;
+					
+				}
+				
+				
+				// find columns that already have a width and remove these amounts from the column_width var
+				$table.find('> thead > tr > th[width]').each(function(){
+					
+					column_width -= parseInt( $(this).attr('width') );
+					
+				});
+		
+				
+				// selecotr
+				var $selector = $table.find('> thead > tr > th.acf-th').not('[width]');
+				
+				if( $selector.length > 1 ) {
+					
+					column_width = column_width / $selector.length;
+					
+					$selector.each(function( i ){
+						
+						// dont add width to last th
+						if( (i+1) == $selector.length  ) {
+						
+							return;
+							
+						}
+						
+						$(this).attr('width', column_width + '%');
+						
+					});
+				}
+				
+			});
+			
 		},
 		
 		render : function(){
@@ -402,6 +467,10 @@
 			}
 						
 			
+			// set column widths
+			this.render_columns();
+			
+			
 			// disable clone inputs
 			// Note: Previous attempted to check if input was already disabled, however the browser caches this attribute, 
 			// so a refresh would cause the code to fail.
@@ -410,6 +479,64 @@
 			
 			// render
 			this.render();
+			
+		},
+		
+		render_columns : function(){
+			
+			this.$el.find('.acf-table').each(function(){
+				
+				// vars
+				var $table = $(this);
+				
+				
+				// validate
+				if( ! $table.hasClass('table-layout') ) {
+				
+					return;
+					
+				}
+				
+		
+				// accomodate for order / remove
+				var column_width = 100;
+				if( $table.find('> thead > tr > th.order').exists() ) {
+				
+					column_width = 93;
+					
+				}
+				
+				
+				// find columns that already have a width and remove these amounts from the column_width var
+				$table.find('> thead > tr > th[width]').each(function(){
+					
+					column_width -= parseInt( $(this).attr('width') );
+					
+				});
+		
+				
+				// selecotr
+				var $selector = $table.find('> thead > tr > th.acf-th').not('[width]');
+				
+				if( $selector.length > 1 ) {
+					
+					column_width = column_width / $selector.length;
+					
+					$selector.each(function( i ){
+						
+						// dont add width to last th
+						if( (i+1) == $selector.length  ) {
+						
+							return;
+							
+						}
+						
+						$(this).attr('width', column_width + '%');
+						
+					});
+				}
+				
+			});
 			
 		},
 		

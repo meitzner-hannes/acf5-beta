@@ -4,26 +4,21 @@
 // Note: $args is always passed to this view from above
 $fields = array();
 $layout = false;
+$parent = 0;
 
 
 // use fields if passed in
-if( !empty($args['fields']) )
-{
-	$fields = acf_extract_var( $args, 'fields');
-}
-
-
-// get layout
-$layout = acf_extract_var( $args, 'layout');
+extract( $args );
 
 
 // add clone
 $fields[] = acf_get_valid_field(array(
-	'ID'	=> 'acfcloneindex',
-	'key'	=> 'acfcloneindex',
-	'label'	=> __('New Field','acf'),
-	'name'	=> 'new_field',
-	'type'	=> 'text',
+	'ID'		=> 'acfcloneindex',
+	'key'		=> 'acfcloneindex',
+	'label'		=> __('New Field','acf'),
+	'name'		=> 'new_field',
+	'type'		=> 'text',
+	'parent'	=> $parent
 ));
 
 ?>

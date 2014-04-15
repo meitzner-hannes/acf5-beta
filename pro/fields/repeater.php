@@ -197,9 +197,10 @@ class acf_field_repeater extends acf_field
 							
 							
 							// Add custom width
-							if( count($field['sub_fields']) > 1 && !empty($sub_field['width']) )
-							{
-								$atts['width'] = "{$sub_field['width']}%";
+							if( count($field['sub_fields']) > 1 && !empty($sub_field['column_width']) ) {
+							
+								$atts['width'] = "{$sub_field['column_width']}%";
+								
 							}
 								
 							?>
@@ -307,7 +308,8 @@ class acf_field_repeater extends acf_field
 		// vars
 		$args = array(
 			'fields'	=> $field['sub_fields'],
-			'layout'	=> $field['layout']
+			'layout'	=> $field['layout'],
+			'parent'	=> $field['ID']
 		);
 		
 		

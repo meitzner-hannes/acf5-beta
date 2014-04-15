@@ -32,6 +32,10 @@ class acf_pro {
 		add_action('init',										array($this, 'wp_init'));
 		add_action('acf/input/admin_enqueue_scripts',			array($this, 'input_admin_enqueue_scripts'));
 		add_action('acf/field_group/admin_enqueue_scripts',		array($this, 'field_group_admin_enqueue_scripts'));
+		add_action('acf/render_field_settings', 				array($this, 'render_field_settings'));
+		
+		
+		// filters
 		add_filter('acf/update_field',							array($this, 'update_field'), 1, 1);
 		add_filter('acf/prepare_field_for_export', 				array($this, 'prepare_field_for_export'));
 		add_filter('acf/prepare_field_for_import', 				array($this, 'prepare_field_for_import'));
@@ -362,6 +366,41 @@ class acf_pro {
 		
 		// return
 		return $field;
+		
+	}
+	
+	
+	/*
+	*  render_field_settings
+	*
+	*  description
+	*
+	*  @type	function
+	*  @date	15/04/2014
+	*  @since	5.0.0
+	*
+	*  @param	$post_id (int)
+	*  @return	$post_id (int)
+	*/
+	
+	function render_field_settings( $field ) {
+		
+		// bail early if not a sub field
+		if( $field['parent'] == $field['field_group'] ) {
+			
+			return;
+			
+		}
+		
+		
+		// add column width
+		acf_render_field_setting( $field, array(
+			'label'			=> __('Column Width','acf'),
+			'type'			=> 'number',
+			'name'			=> 'column_width',
+			'append'		=> '%'
+		));
+		
 		
 	}
 	 

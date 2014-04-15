@@ -47,7 +47,7 @@ class acf_field_message extends acf_field
 	
 	
 	/*
-	*  render_field_options()
+	*  render_field_settings()
 	*
 	*  Create extra options for your field. This is rendered when editing a field.
 	*  The value of $field['name'] can be used (like bellow) to save extra data to the $field
@@ -59,7 +59,7 @@ class acf_field_message extends acf_field
 	*  @date	23/01/13
 	*/
 	
-	function render_field_options( $field ) {
+	function render_field_settings( $field ) {
 		
 		// default_value
 		acf_render_field_option( $this->name, array(

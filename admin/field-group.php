@@ -22,7 +22,7 @@ class acf_field_group {
 		add_action( 'save_post',										array( $this,'save_post' ) );
 		
 		// ajax
-		add_action( 'wp_ajax_acf/field_group/render_field_options',		array( $this, 'ajax_render_field_options') );
+		add_action( 'wp_ajax_acf/field_group/render_field_settings',		array( $this, 'ajax_render_field_settings') );
 		add_action( 'wp_ajax_acf/field_group/render_location_value',	array( $this, 'ajax_render_location_value') );
 		add_action( 'wp_ajax_acf/field_group/move_field',				array( $this, 'ajax_move_field') );
 		
@@ -734,9 +734,9 @@ class acf_field_group {
 	
 	
 	/*
-	*  ajax_render_field_options
+	*  ajax_render_field_settings
 	*
-	*  This function can be accessed via an AJAX action and will return the result from the acf_render_field_options function
+	*  This function can be accessed via an AJAX action and will return the result from the acf_render_field_settings function
 	*
 	*  @type	function (ajax)
 	*  @date	30/09/13
@@ -746,7 +746,7 @@ class acf_field_group {
 	*  @return	n/a
 	*/
 	
-	function ajax_render_field_options() {
+	function ajax_render_field_settings() {
 		
 		// vars
 		$options = array(
@@ -783,7 +783,7 @@ class acf_field_group {
 		
 		
 		// render
-		acf_render_field_options( $field );
+		acf_render_field_settings( $field );
 		
 		
 		// die

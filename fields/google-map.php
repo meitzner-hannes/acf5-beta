@@ -130,7 +130,7 @@ class acf_field_google_map extends acf_field
 	
 	
 	/*
-	*  render_field_options()
+	*  render_field_settings()
 	*
 	*  Create extra options for your field. This is rendered when editing a field.
 	*  The value of $field['name'] can be used (like bellow) to save extra data to the $field
@@ -142,7 +142,7 @@ class acf_field_google_map extends acf_field
 	*  @param	$field	- an array holding all the field's data
 	*/
 	
-	function render_field_options( $field ) {
+	function render_field_settings( $field ) {
 		
 		
 		// center_lat

@@ -123,7 +123,7 @@ $atts = array(
 				
 				
 				// custom field options
-				acf_render_field_options( $field );
+				acf_render_field_settings( $field );
 				
 				
 				// load view

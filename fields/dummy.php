@@ -152,7 +152,7 @@ class acf_field_dummy extends acf_field
 	
 	
 	/*
-	*  render_field_options()
+	*  render_field_settings()
 	*
 	*  Create extra options for your field. This is rendered when editing a field.
 	*  The value of $field['name'] can be used (like bellow) to save extra data to the $field
@@ -164,7 +164,7 @@ class acf_field_dummy extends acf_field
 	*  @param	$field	- an array holding all the field's data
 	*/
 	
-	function render_field_options( $field )
+	function render_field_settings( $field )
 	{
 		
 	}
@@ -210,7 +210,7 @@ class acf_field_dummy extends acf_field
 	*  field_group_admin_enqueue_scripts()
 	*
 	*  This action is called in the admin_enqueue_scripts action on the edit screen where your field is edited.
-	*  Use this action to add css + javascript to assist your render_field_options() action.
+	*  Use this action to add css + javascript to assist your render_field_settings() action.
 	*
 	*  $info	http://codex.wordpress.org/Plugin_API/Action_Reference/admin_enqueue_scripts
 	*  @type	action
@@ -228,7 +228,7 @@ class acf_field_dummy extends acf_field
 	*  field_group_admin_head()
 	*
 	*  This action is called in the admin_head action on the edit screen where your field is edited.
-	*  Use this action to add css and javascript to assist your render_field_options() action.
+	*  Use this action to add css and javascript to assist your render_field_settings() action.
 	*
 	*  @info	http://codex.wordpress.org/Plugin_API/Action_Reference/admin_head
 	*  @type	action

@@ -200,7 +200,7 @@ function acf_render_field( $field = false ) {
 
 
 /*
-*  acf_render_field_options
+*  acf_render_field_settings
 *
 *  This function will render the available field options using an action to trigger the field's render function
 *
@@ -212,15 +212,15 @@ function acf_render_field( $field = false ) {
 *  @return	n/a
 */
 
-function acf_render_field_options( $field ) {
+function acf_render_field_settings( $field ) {
 	
 	// get valid field
 	$field = acf_get_valid_field( $field );
 	
 	
 	// create field specific html
-	do_action( "acf/render_field_options", $field);
-	do_action( "acf/render_field_options/type={$field['type']}", $field);
+	do_action( "acf/render_field_settings", $field);
+	do_action( "acf/render_field_settings/type={$field['type']}", $field);
 	
 }
 

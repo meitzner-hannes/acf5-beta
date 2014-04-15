@@ -1134,7 +1134,7 @@
 			
 			
 			var ajax_data = {
-				action		: 'acf/field_group/render_field_options',
+				action		: 'acf/field_group/render_field_settings',
 				nonce		: acf.o.nonce,
 				post_id		: acf.o.post_id,
 				prefix		: $select.attr('name').replace('[type]', ''),

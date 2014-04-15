@@ -42,13 +42,13 @@ class acf_field {
 		$this->add_filter("acf/update_field/type={$this->name}",			array($this, 'update_field'), 10, 1);
 		$this->add_filter("acf/delete_field/type={$this->name}",			array($this, 'delete_field'), 10, 1);
 		$this->add_action("acf/render_field/type={$this->name}",			array($this, 'render_field'), 10, 1);
-		$this->add_action("acf/render_field_options/type={$this->name}",	array($this, 'render_field_options'), 10, 1);
+		$this->add_action("acf/render_field_settings/type={$this->name}",	array($this, 'render_field_settings'), 10, 1);
 		
 		
 		// input actions
 		$this->add_action("acf/input/admin_enqueue_scripts",			array($this, 'input_admin_enqueue_scripts'), 10, 0);
 		$this->add_action("acf/input/admin_head",						array($this, 'input_admin_head'), 10, 0);
-		$this->add_filter("acf/input/form_data",						array($this, 'input_form_data'), 10, 1);
+		$this->add_action("acf/input/form_data",						array($this, 'input_form_data'), 10, 1);
 		$this->add_filter("acf/input/admin_l10n",						array($this, 'input_admin_l10n'), 10, 1);
 		$this->add_action("acf/input/admin_footer",						array($this, 'input_admin_footer'), 10, 1);
 		

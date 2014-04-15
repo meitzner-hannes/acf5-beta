@@ -134,13 +134,11 @@ class acf_field_color_picker extends acf_field
 	function render_field_settings( $field ) {
 		
 		// display_format
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Default Value','acf'),
 			'instructions'	=> '',
 			'type'			=> 'text',
 			'name'			=> 'default_value',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['default_value'],
 			'placeholder'	=> '#FFFFFF'
 		));
 		

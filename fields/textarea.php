@@ -111,58 +111,48 @@ class acf_field_textarea extends acf_field
 	function render_field_settings( $field )
 	{
 		// default_value
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Default Value','acf'),
 			'instructions'	=> __('Appears when creating a new post','acf'),
 			'type'			=> 'textarea',
 			'name'			=> 'default_value',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['default_value'],
 		));
 		
 		
 		// placeholder
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Placeholder Text','acf'),
 			'instructions'	=> __('Appears within the input','acf'),
 			'type'			=> 'text',
 			'name'			=> 'placeholder',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['placeholder'],
 		));
 		
 		
 		// maxlength
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Character Limit','acf'),
 			'instructions'	=> __('Leave blank for no limit','acf'),
 			'type'			=> 'number',
 			'name'			=> 'maxlength',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['maxlength'],
 		));
 		
 		
 		// rows
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Rows','acf'),
 			'instructions'	=> __('Sets the textarea height','acf'),
 			'type'			=> 'number',
 			'name'			=> 'rows',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['rows'],
 			'placeholder'	=> 8
 		));
 		
 		
 		// formatting
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Formatting','acf'),
 			'instructions'	=> __('Effects value on front end','acf'),
 			'type'			=> 'select',
 			'name'			=> 'formatting',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['formatting'],
 			'choices'		=> array(
 				'html'			=> __("Automatically add paragraphs",'acf'),
 				'br'			=> __("Automatically add &lt;br&gt;",'acf'),

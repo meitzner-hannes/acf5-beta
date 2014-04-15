@@ -84,24 +84,20 @@ class acf_field_true_false extends acf_field
 	function render_field_settings( $field )
 	{
 		// message
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Message','acf'),
 			'instructions'	=> __('eg. Show extra content','acf'),
 			'type'			=> 'text',
 			'name'			=> 'message',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['message'],
 		));
 		
 		
 		// default_value
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Default Value','acf'),
 			'instructions'	=> '',
 			'type'			=> 'true_false',
 			'name'			=> 'default_value',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['default_value'],
 		));
 		
 	}

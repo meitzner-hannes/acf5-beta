@@ -1101,8 +1101,8 @@
 			}
 			
 			
-			// hide and disable current options
-			$tbody.children('tr[data-option]').hide().find('[name]').attr('disabled', 'true');
+			// hide and disable current settings
+			$tbody.children('tr[data-setting]').hide().find('[name]').attr('disabled', 'true');
 				
 			
 			// render field
@@ -1110,10 +1110,10 @@
 			
 			
 			// show field options if they already exist
-			if( $tbody.children('tr[data-option="' + new_type + '"]').exists() )
+			if( $tbody.children('tr[data-setting="' + new_type + '"]').exists() )
 			{
 				// show and enable options
-				$tbody.children('tr[data-option="' + new_type + '"]').show().find('[name]').removeAttr('disabled');
+				$tbody.children('tr[data-setting="' + new_type + '"]').show().find('[name]').removeAttr('disabled');
 				
 				
 				// trigger event

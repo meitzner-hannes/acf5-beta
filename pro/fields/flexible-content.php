@@ -359,35 +359,29 @@ class acf_field_flexible_content extends acf_field
 		
 		
 		// min
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Button Label','acf'),
 			'instructions'	=> '',
 			'type'			=> 'text',
 			'name'			=> 'button_label',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['button_label'],
 		));
 		
 		
 		// min
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Minimum Layouts','acf'),
 			'instructions'	=> '',
 			'type'			=> 'number',
 			'name'			=> 'min',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['min'],
 		));
 		
 		
 		// max
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Maximum Layouts','acf'),
 			'instructions'	=> '',
 			'type'			=> 'number',
 			'name'			=> 'max',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['max'],
 		));
 				
 	}

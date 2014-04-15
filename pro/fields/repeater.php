@@ -335,37 +335,31 @@ class acf_field_repeater extends acf_field
 		
 		
 		// min
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Minimum Rows','acf'),
 			'instructions'	=> '',
 			'type'			=> 'number',
 			'name'			=> 'min',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['min'],
 			'placeholder'	=> '0',
 		));
 		
 		
 		// max
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Maximum Rows','acf'),
 			'instructions'	=> '',
 			'type'			=> 'number',
 			'name'			=> 'max',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['max'],
 			'placeholder'	=> '0',
 		));
 		
 		
 		// layout
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Layout','acf'),
 			'instructions'	=> '',
 			'type'			=> 'radio',
 			'name'			=> 'layout',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['layout'],
 			'layout'		=> 'horizontal',
 			'choices'		=> array(
 				'table'			=> __('Table','acf'),
@@ -375,13 +369,11 @@ class acf_field_repeater extends acf_field
 		
 		
 		// button_label
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Button Label','acf'),
 			'instructions'	=> '',
 			'type'			=> 'text',
 			'name'			=> 'button_label',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['button_label'],
 		));
 		
 	}

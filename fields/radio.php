@@ -182,59 +182,49 @@ class acf_field_radio extends acf_field
 		
 		
 		// choices
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Choices','acf'),
 			'instructions'	=> __('Enter each choice on a new line.','acf') . '<br /><br />' . __('For more control, you may specify both a value and label like this:','acf'). '<br /><br />' . __('red : Red','acf'),
 			'type'			=> 'textarea',
 			'name'			=> 'choices',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['choices'],
 		));
 		
 		
 		// other_choice
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Other','acf'),
 			'instructions'	=> '',
 			'type'			=> 'true_false',
 			'name'			=> 'other_choice',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['other_choice'],
 			'message'		=> __("Add 'other' choice to allow for custom values", 'acf')
 		));
 		
 		
 		// save_other_choice
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Save Other','acf'),
 			'instructions'	=> '',
 			'type'			=> 'true_false',
 			'name'			=> 'save_other_choice',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['save_other_choice'],
 			'message'		=> __("Save 'other' values to the field's choices", 'acf')
 		));
 		
 		
 		// default_value
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Default Value','acf'),
 			'instructions'	=> __('Appears when creating a new post','acf'),
 			'type'			=> 'text',
 			'name'			=> 'default_value',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['default_value'],
 		));
 		
 		
 		// layout
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Layout','acf'),
 			'instructions'	=> '',
 			'type'			=> 'radio',
 			'name'			=> 'layout',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['layout'],
 			'layout'		=> 'horizontal', 
 			'choices'		=> array(
 				'vertical'		=> __("Vertical",'acf'), 

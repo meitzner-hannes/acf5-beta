@@ -345,18 +345,11 @@ class acf_field_post_object extends acf_field
 		
 		
 		// default_value
-		/*
-$choices = array_merge(acf_get_post_types(), array(
-			'all' => __("All",'acf')
-		));
-*/
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Filter by Post Type','acf'),
 			'instructions'	=> '',
 			'type'			=> 'select',
 			'name'			=> 'post_type',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['post_type'],
 			'choices'		=> acf_get_post_types(),
 			'multiple'		=> 1,
 			'ui'			=> 1,
@@ -366,18 +359,11 @@ $choices = array_merge(acf_get_post_types(), array(
 		
 		
 		// default_value
-		/*
-$choices = wp_parse_args(acf_get_taxonomy_terms(), array(
-			'all' => __("All",'acf')
-		));
-*/
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Filter by Taxonomy','acf'),
 			'instructions'	=> '',
 			'type'			=> 'select',
 			'name'			=> 'taxonomy',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['taxonomy'],
 			'choices'		=> acf_get_taxonomy_terms(),
 			'multiple'		=> 1,
 			'ui'			=> 1,
@@ -387,13 +373,11 @@ $choices = wp_parse_args(acf_get_taxonomy_terms(), array(
 		
 		
 		// allow_null
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Allow Null?','acf'),
 			'instructions'	=> '',
 			'type'			=> 'radio',
 			'name'			=> 'allow_null',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['allow_null'],
 			'choices'		=> array(
 				1				=> __("Yes",'acf'),
 				0				=> __("No",'acf'),
@@ -403,13 +387,11 @@ $choices = wp_parse_args(acf_get_taxonomy_terms(), array(
 		
 		
 		// multiple
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Select multiple values?','acf'),
 			'instructions'	=> '',
 			'type'			=> 'radio',
 			'name'			=> 'multiple',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['multiple'],
 			'choices'		=> array(
 				1				=> __("Yes",'acf'),
 				0				=> __("No",'acf'),
@@ -419,13 +401,11 @@ $choices = wp_parse_args(acf_get_taxonomy_terms(), array(
 		
 		
 		// return_format
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Return Format','acf'),
 			'instructions'	=> '',
 			'type'			=> 'radio',
 			'name'			=> 'return_format',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['return_format'],
 			'choices'		=> array(
 				'object'		=> __("Post Object",'acf'),
 				'id'			=> __("Post ID",'acf'),

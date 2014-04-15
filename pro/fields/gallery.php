@@ -464,50 +464,42 @@ class acf_field_gallery extends acf_field
 		
 		
 		// min
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Minimum Selection','acf'),
 			'instructions'	=> '',
 			'type'			=> 'number',
 			'name'			=> 'min',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['min'],
 			'placeholder'	=> '0',
 		));
 		
 		
 		// max
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Maximum Selection','acf'),
 			'instructions'	=> '',
 			'type'			=> 'number',
 			'name'			=> 'max',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['max'],
 			'placeholder'	=> '0',
 		));
 		
 		
 		// preview_size
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Preview Size','acf'),
 			'instructions'	=> __('Shown when entering data','acf'),
 			'type'			=> 'radio',
 			'name'			=> 'preview_size',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['preview_size'],
 			'layout'		=> 'horizontal',
 			'choices'		=> acf_get_image_sizes()
 		));
 		
 		
 		// library
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Library','acf'),
 			'instructions'	=> __('Limit the media library choice','acf'),
 			'type'			=> 'radio',
 			'name'			=> 'library',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['library'],
 			'layout'		=> 'horizontal',
 			'choices' 		=> array(
 				'all'			=> __('All', 'acf'),

@@ -626,13 +626,11 @@ class acf_field_relationship extends acf_field
 	function render_field_settings( $field ) {
 		
 		// post_type
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Filter by Post Type','acf'),
 			'instructions'	=> '',
 			'type'			=> 'select',
 			'name'			=> 'post_type',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['post_type'],
 			'choices'		=> acf_get_post_types(),
 			'multiple'		=> 1,
 			'ui'			=> 1,
@@ -642,13 +640,11 @@ class acf_field_relationship extends acf_field
 		
 		
 		// taxonomy
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Filter by Taxonomy','acf'),
 			'instructions'	=> '',
 			'type'			=> 'select',
 			'name'			=> 'taxonomy',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['taxonomy'],
 			'choices'		=> acf_get_taxonomy_terms(),
 			'multiple'		=> 1,
 			'ui'			=> 1,
@@ -658,13 +654,11 @@ class acf_field_relationship extends acf_field
 		
 		
 		// filters
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Filters','acf'),
 			'instructions'	=> '',
 			'type'			=> 'checkbox',
 			'name'			=> 'filters',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['filters'],
 			'choices'		=> array(
 				'search'		=> __("Search",'acf'),
 				'post_type'		=> __("Post Type",'acf'),
@@ -674,13 +668,11 @@ class acf_field_relationship extends acf_field
 		
 		
 		// filters
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Elements','acf'),
 			'instructions'	=> __('Selected elements will be displayed in each result','acf'),
 			'type'			=> 'checkbox',
 			'name'			=> 'elements',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['elements'],
 			'choices'		=> array(
 				'featured_image'	=> __("Featured Image",'acf'),
 			),
@@ -693,24 +685,20 @@ class acf_field_relationship extends acf_field
 			$field['max'] = '';
 		}
 		
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Maximum posts','acf'),
 			'instructions'	=> '',
 			'type'			=> 'number',
 			'name'			=> 'max',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['max'],
 		));
 		
 		
 		// return_format
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Return Format','acf'),
 			'instructions'	=> '',
 			'type'			=> 'radio',
 			'name'			=> 'return_format',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['return_format'],
 			'choices'		=> array(
 				'object'		=> __("Post Object",'acf'),
 				'id'			=> __("Post ID",'acf'),

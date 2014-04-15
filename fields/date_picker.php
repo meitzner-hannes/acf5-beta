@@ -160,13 +160,11 @@ class acf_field_date_picker extends acf_field
 		
 		
 		// display_format
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Display format','acf'),
 			'instructions'	=> __('The format displayed when editing a post','acf'),
 			'type'			=> 'radio',
 			'name'			=> 'display_format',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['display_format'],
 			'other_choice'	=> 1,
 			'choices'		=> array(
 				'd/m/Y'			=> date('d/m/Y'),
@@ -177,13 +175,11 @@ class acf_field_date_picker extends acf_field
 				
 		
 		// return_format
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Return format','acf'),
 			'instructions'	=> __('The format returned via template functions','acf'),
 			'type'			=> 'radio',
 			'name'			=> 'return_format',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['return_format'],
 			'other_choice'	=> 1,
 			'choices'		=> array(
 				'd/m/Y'			=> date('d/m/Y'),
@@ -195,13 +191,11 @@ class acf_field_date_picker extends acf_field
 		
 		
 		// first_day
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Week Starts On','acf'),
 			'instructions'	=> '',
 			'type'			=> 'select',
 			'name'			=> 'first_day',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['first_day'],
 			'choices'		=> array_values( $wp_locale->weekday )
 		));
 		

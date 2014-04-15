@@ -62,14 +62,12 @@ class acf_field_message extends acf_field
 	function render_field_settings( $field ) {
 		
 		// default_value
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Message','acf'),
 			'instructions'	=> __('Please note that all text will first be passed through the wp function ','acf') . 
 							   '<a href="http://codex.wordpress.org/Function_Reference/wpautop" target="_blank">wpautop()</a>',
 			'type'			=> 'textarea',
 			'name'			=> 'message',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['message'],
 		));
 		
 	}

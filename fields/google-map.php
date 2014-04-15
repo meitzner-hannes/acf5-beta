@@ -146,51 +146,43 @@ class acf_field_google_map extends acf_field
 		
 		
 		// center_lat
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Center','acf'),
 			'instructions'	=> __('Center the initial map','acf'),
 			'type'			=> 'text',
 			'name'			=> 'center_lat',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['center_lat'],
 			'prepend'		=> 'lat',
 			'placeholder'	=> $this->default_values['center_lat']
 		));
 		
 		
 		// center_lng
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Center','acf'),
 			'instructions'	=> __('Center the initial map','acf'),
 			'type'			=> 'text',
 			'name'			=> 'center_lng',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['center_lng'],
 			'prepend'		=> 'lng',
 			'placeholder'	=> $this->default_values['center_lng']
 		));
 		
 		
 		// zoom
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Zoom','acf'),
 			'instructions'	=> __('Set the initial zoom level','acf'),
 			'type'			=> 'text',
 			'name'			=> 'zoom',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['zoom'],
 			'placeholder'	=> $this->default_values['zoom']
 		));
 		
 		
 		// allow_null
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Height','acf'),
 			'instructions'	=> __('Customise the map height','acf'),
 			'type'			=> 'text',
 			'name'			=> 'height',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['height'],
 			'append'		=> 'px',
 			'placeholder'	=> $this->default_values['height']
 		));

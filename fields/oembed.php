@@ -219,24 +219,20 @@ class acf_field_oembed extends acf_field
 	function render_field_settings( $field )
 	{
 		// width
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Embed Size','acf'),
 			'type'			=> 'text',
 			'name'			=> 'width',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['width'],
 			'append'		=> 'px',
 			'placeholder'	=> $this->default_values['width']
 		));
 		
 		
 		// height
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Embed Size','acf'),
 			'type'			=> 'text',
 			'name'			=> 'height',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['height'],
 			'append'		=> 'px',
 			'placeholder'	=> $this->default_values['height']
 		));

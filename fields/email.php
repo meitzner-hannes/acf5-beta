@@ -100,46 +100,38 @@ class acf_field_email extends acf_field
 	function render_field_settings( $field )
 	{
 		// default_value
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Default Value','acf'),
 			'instructions'	=> __('Appears when creating a new post','acf'),
 			'type'			=> 'text',
 			'name'			=> 'default_value',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['default_value'],
 		));
 		
 		
 		// placeholder
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Placeholder Text','acf'),
 			'instructions'	=> __('Appears within the input','acf'),
 			'type'			=> 'text',
 			'name'			=> 'placeholder',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['placeholder'],
 		));
 		
 		
 		// prepend
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Prepend','acf'),
 			'instructions'	=> __('Appears before the input','acf'),
 			'type'			=> 'text',
 			'name'			=> 'prepend',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['prepend'],
 		));
 		
 		
 		// append
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Append','acf'),
 			'instructions'	=> __('Appears after the input','acf'),
 			'type'			=> 'text',
 			'name'			=> 'append',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['append'],
 		));
 
 	}	

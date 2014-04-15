@@ -151,13 +151,11 @@ class acf_field_image extends acf_field {
 	function render_field_settings( $field ) {
 		
 		// return_format
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Return Value','acf'),
 			'instructions'	=> __('Specify the returned value on front end','acf'),
 			'type'			=> 'radio',
 			'name'			=> 'return_format',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['return_format'],
 			'layout'		=> 'horizontal',
 			'choices'		=> array(
 				'array'			=> __("Image Array",'acf'),
@@ -168,26 +166,22 @@ class acf_field_image extends acf_field {
 		
 		
 		// preview_size
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Preview Size','acf'),
 			'instructions'	=> __('Shown when entering data','acf'),
 			'type'			=> 'radio',
 			'name'			=> 'preview_size',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['preview_size'],
 			'layout'		=> 'horizontal',
 			'choices'		=> acf_get_image_sizes()
 		));
 		
 		
 		// library
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Library','acf'),
 			'instructions'	=> __('Limit the media library choice','acf'),
 			'type'			=> 'radio',
 			'name'			=> 'library',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['library'],
 			'layout'		=> 'horizontal',
 			'choices' 		=> array(
 				'all'			=> __('All', 'acf'),

@@ -227,37 +227,31 @@ class acf_field_wysiwyg extends acf_field
 		
 		
 		// default_value
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Default Value','acf'),
 			'instructions'	=> __('Appears when creating a new post','acf'),
 			'type'			=> 'textarea',
 			'name'			=> 'default_value',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['default_value'],
 		));
 		
 		
 		// toolbar
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Toolbar','acf'),
 			'instructions'	=> '',
 			'type'			=> 'radio',
 			'name'			=> 'toolbar',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['toolbar'],
 			'layout'		=> 'horizontal',
 			'choices'		=> $choices
 		));
 		
 		
 		// media_upload
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Show Media Upload Buttons?','acf'),
 			'instructions'	=> '',
 			'type'			=> 'radio',
 			'name'			=> 'media_upload',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['media_upload'],
 			'layout'		=> 'horizontal',
 			'choices'		=> array(
 				1				=>	__("Yes",'acf'),

@@ -166,35 +166,29 @@ class acf_field_checkbox extends acf_field
 		
 		
 		// choices
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Choices','acf'),
 			'instructions'	=> __('Enter each choice on a new line.','acf') . '<br /><br />' . __('For more control, you may specify both a value and label like this:','acf'). '<br /><br />' . __('red : Red','acf'),
 			'type'			=> 'textarea',
 			'name'			=> 'choices',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['choices'],
 		));	
 		
 		
 		// default_value
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Default Value','acf'),
 			'instructions'	=> __('Enter each default value on a new line','acf'),
 			'type'			=> 'textarea',
 			'name'			=> 'default_value',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['default_value'],
 		));
 		
 		
 		// layout
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Layout','acf'),
 			'instructions'	=> '',
 			'type'			=> 'radio',
 			'name'			=> 'layout',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['layout'],
 			'layout'		=> 'horizontal', 
 			'choices'		=> array(
 				'vertical'		=> __("Vertical",'acf'), 

@@ -243,13 +243,11 @@ class acf_field_user extends acf_field
 			$choices[ $role ] = translate_user_role( $details['name'] );
 		}
 		
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Filter by role','acf'),
 			'instructions'	=> '',
 			'type'			=> 'select',
 			'name'			=> 'role',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['role'],
 			'choices'		=> $choices,
 			'multiple'		=> 1,
 			'ui'			=> 1,
@@ -260,13 +258,11 @@ class acf_field_user extends acf_field
 		
 		
 		// allow_null
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Allow Null?','acf'),
 			'instructions'	=> '',
 			'type'			=> 'radio',
 			'name'			=> 'allow_null',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['allow_null'],
 			'choices'		=> array(
 				1				=> __("Yes",'acf'),
 				0				=> __("No",'acf'),
@@ -276,13 +272,11 @@ class acf_field_user extends acf_field
 		
 		
 		// multiple
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Select multiple values?','acf'),
 			'instructions'	=> '',
 			'type'			=> 'radio',
 			'name'			=> 'multiple',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['multiple'],
 			'choices'		=> array(
 				1				=> __("Yes",'acf'),
 				0				=> __("No",'acf'),

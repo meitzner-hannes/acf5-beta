@@ -313,35 +313,29 @@ class acf_field_select extends acf_field
 		
 		
 		// choices
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Choices','acf'),
 			'instructions'	=> __('Enter each choice on a new line.','acf') . '<br /><br />' . __('For more control, you may specify both a value and label like this:','acf'). '<br /><br />' . __('red : Red','acf'),
 			'type'			=> 'textarea',
 			'name'			=> 'choices',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['choices'],
 		));	
 		
 		
 		// default_value
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Default Value','acf'),
 			'instructions'	=> __('Enter each default value on a new line','acf'),
 			'type'			=> 'textarea',
 			'name'			=> 'default_value',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['default_value'],
 		));
 		
 		
 		// allow_null
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Allow Null?','acf'),
 			'instructions'	=> '',
 			'type'			=> 'radio',
 			'name'			=> 'allow_null',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['allow_null'],
 			'choices'		=> array(
 				1				=> __("Yes",'acf'),
 				0				=> __("No",'acf'),
@@ -351,13 +345,11 @@ class acf_field_select extends acf_field
 		
 		
 		// multiple
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Select multiple values?','acf'),
 			'instructions'	=> '',
 			'type'			=> 'radio',
 			'name'			=> 'multiple',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['multiple'],
 			'choices'		=> array(
 				1				=> __("Yes",'acf'),
 				0				=> __("No",'acf'),
@@ -367,47 +359,25 @@ class acf_field_select extends acf_field
 		
 		
 		// ui
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Stylised UI','acf'),
 			'instructions'	=> '',
 			'type'			=> 'radio',
 			'name'			=> 'ui',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['ui'],
 			'choices'		=> array(
 				1				=> __("Yes",'acf'),
 				0				=> __("No",'acf'),
 			),
 			'layout'	=>	'horizontal',
 		));
-		
-		
-		// search
-		/*
-acf_render_field_option( $this->name, array(
-			'label'			=> __('Allow Search?','acf'),
-			'instructions'	=> '',
-			'type'			=> 'radio',
-			'name'			=> 'search',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['search'],
-			'choices'		=> array(
-				1				=> __("Yes",'acf'),
-				0				=> __("No",'acf'),
-			),
-			'layout'	=>	'horizontal',
-		));
-*/
-		
+				
 		
 		// ajax
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Use AJAX to lazy load choices?','acf'),
 			'instructions'	=> '',
 			'type'			=> 'radio',
 			'name'			=> 'ajax',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['ajax'],
 			'choices'		=> array(
 				1				=> __("Yes",'acf'),
 				0				=> __("No",'acf'),

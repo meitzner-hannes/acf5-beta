@@ -577,9 +577,9 @@ function acf_render_field_option( $type, $field )
 *  @date	28/09/13
 *  @since	5.0.0
 *
-*  @param	$type (string) the origional field_type (not $field['type'])
-*  @param	$field (array)
-*  @return	N/A
+*  @param	$field (array) the origional field being edited
+*  @param	$setting (array) the settings field to create
+*  @return	n/a
 */
 
 function acf_render_field_setting( $field, $setting ) {

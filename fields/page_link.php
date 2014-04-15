@@ -374,13 +374,11 @@ class acf_field_page_link extends acf_field
 	function render_field_settings( $field ) {
 		
 		// post_type
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Filter by Post Type','acf'),
 			'instructions'	=> '',
 			'type'			=> 'select',
 			'name'			=> 'post_type',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['post_type'],
 			'choices'		=> acf_get_post_types(),
 			'multiple'		=> 1,
 			'ui'			=> 1,
@@ -390,13 +388,11 @@ class acf_field_page_link extends acf_field
 		
 		
 		// taxonomy
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Filter by Taxonomy','acf'),
 			'instructions'	=> '',
 			'type'			=> 'select',
 			'name'			=> 'taxonomy',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['taxonomy'],
 			'choices'		=> acf_get_taxonomy_terms(),
 			'multiple'		=> 1,
 			'ui'			=> 1,
@@ -406,13 +402,11 @@ class acf_field_page_link extends acf_field
 		
 		
 		// allow_null
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Allow Null?','acf'),
 			'instructions'	=> '',
 			'type'			=> 'radio',
 			'name'			=> 'allow_null',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['allow_null'],
 			'choices'		=> array(
 				1				=> __("Yes",'acf'),
 				0				=> __("No",'acf'),
@@ -422,13 +416,11 @@ class acf_field_page_link extends acf_field
 		
 		
 		// multiple
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Select multiple values?','acf'),
 			'instructions'	=> '',
 			'type'			=> 'radio',
 			'name'			=> 'multiple',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['multiple'],
 			'choices'		=> array(
 				1				=> __("Yes",'acf'),
 				0				=> __("No",'acf'),

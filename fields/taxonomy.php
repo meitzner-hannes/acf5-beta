@@ -507,24 +507,20 @@ class acf_field_taxonomy extends acf_field
 	function render_field_settings( $field )
 	{
 		// default_value
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Taxonomy','acf'),
 			'type'			=> 'select',
 			'name'			=> 'taxonomy',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['taxonomy'],
 			'choices'		=> acf_get_taxonomies(),
 		));
 		
 		
 		// field_type
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Field Type','acf'),
 			'instructions'	=> '',
 			'type'			=> 'select',
 			'name'			=> 'field_type',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['field_type'],
 			'optgroup'		=> true,
 			'choices'		=> array(
 				__("Multiple Values",'acf') => array(
@@ -540,13 +536,11 @@ class acf_field_taxonomy extends acf_field
 		
 		
 		// allow_null
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Allow Null?','acf'),
 			'instructions'	=> '',
 			'type'			=> 'radio',
 			'name'			=> 'allow_null',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['allow_null'],
 			'choices'		=> array(
 				1				=> __("Yes",'acf'),
 				0				=> __("No",'acf'),
@@ -556,25 +550,21 @@ class acf_field_taxonomy extends acf_field
 		
 		
 		// allow_null
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Load & Save Terms to Post','acf'),
 			'instructions'	=> '',
 			'type'			=> 'true_false',
 			'name'			=> 'load_save_terms',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['load_save_terms'],
 			'message'		=> __("Load value based on the post's terms and update the post's terms on save",'acf')
 		));
 		
 		
 		// return_format
-		acf_render_field_option( $this->name, array(
+		acf_render_field_setting( $field, array(
 			'label'			=> __('Return Value','acf'),
 			'instructions'	=> '',
 			'type'			=> 'radio',
 			'name'			=> 'return_format',
-			'prefix'		=> $field['prefix'],
-			'value'			=> $field['return_format'],
 			'choices'		=> array(
 				'object'		=>	__("Term Object",'acf'),
 				'id'			=>	__("Term ID",'acf')

@@ -45,7 +45,7 @@ New features in ACF5
 * Migrated field & sub field settings (not values) to post objects instead of postmeta
 * Added Select2 JS for AJAX and search functionality on select lists
 * Added AJAX search functionality for Post Object, taxonomy, user and select fields
-* Added JSON read/write functionality to automaticaly save field groups to files (saves DB query time)
+* Added JSON read/write functionality to automatically save field groups to files (saves DB query time)
 * Added JSON import/export functionality to replace old XML style
 * New location rules allow field groups on comments
 * New location rules allow field groups on user (including registration and bbPress)

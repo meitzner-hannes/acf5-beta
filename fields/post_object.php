@@ -182,6 +182,7 @@ class acf_field_post_object extends acf_field
 			// vars
 			$this_posts = array();
 			$this_json = array();
+			$this_search_weight = array();
 			
 			
 			$keys = array_keys($posts);
@@ -217,6 +218,8 @@ class acf_field_post_object extends acf_field
 				// title
 				$title = '';
 				$ancestors = get_ancestors( $post->ID, $post->post_type );
+				$search_weight = 0;
+				
 				
 				if( !empty($ancestors) )
 				{
@@ -249,7 +252,34 @@ class acf_field_post_object extends acf_field
 					'id'	=> $post->ID,
 					'text'	=> $title
 				);
+				
+				
+				// add search weight
+				if( !empty($args['s']) ) {
+					
+					// vars
+					$haystack = strtolower($title);
+					$needle = strtolower($args['s']);
+					
+					if( strpos($haystack, $needle) !== false ) {
+						
+						$search_weight = strlen($needle);
+						
+					}
+					
+				}
+				
+				$this_search_weight[] = $search_weight;
 
+			}
+			
+			
+			// order by weight
+			if( !empty($args['s']) ) {
+				
+				// sort the array with menu_order ascending
+				array_multisort( $this_search_weight, SORT_DESC, $this_json );
+				
 			}
 			
 			

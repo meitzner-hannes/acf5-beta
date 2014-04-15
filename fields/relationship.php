@@ -217,6 +217,7 @@ class acf_field_relationship extends acf_field
 			// vars
 			$this_posts = array();
 			$this_json = array();
+			$this_search_weight = array();
 			
 			
 			$keys = array_keys($posts);
@@ -249,12 +250,44 @@ class acf_field_relationship extends acf_field
 			
 			foreach( $this_posts as $post )
 			{
+				// vars
+				$title = $this->get_result( $post, $field, $options['post_id'] );
+				$search_weight = 0;
+				
+				
 				// add to json
 				$this_json[] = array(
 					'id'	=> $post->ID,
-					'text'	=> $this->get_result( $post, $field, $options['post_id'] )
+					'text'	=> $title
 				);
+				
+				
+				// add search weight
+				if( !empty($args['s']) ) {
+					
+					// vars
+					$haystack = strtolower($title);
+					$needle = strtolower($args['s']);
+					
+					if( strpos($haystack, $needle) !== false ) {
+						
+						$search_weight = strlen($needle);
+						
+					}
+					
+				}
+				
+				$this_search_weight[] = $search_weight;
 
+			}
+			
+			
+			// order by weight
+			if( !empty($args['s']) ) {
+				
+				// sort the array with menu_order ascending
+				array_multisort( $this_search_weight, SORT_DESC, $this_json );
+				
 			}
 			
 			

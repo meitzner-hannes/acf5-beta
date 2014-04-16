@@ -1354,8 +1354,8 @@
 			
 			this.$el.find('[data-name="bulk-actions-select"]').hide();
 			
-			this.$el.find('.acf-gallery-main').animate({ right : 300 }, 250);
-			this.$el.find('.acf-gallery-side').animate({ width : 299 }, 250);
+			this.$el.find('.acf-gallery-main').animate({ right : 350 }, 250);
+			this.$el.find('.acf-gallery-side').animate({ width : 349 }, 250);
 			
 		},
 		
@@ -1366,6 +1366,10 @@
 			
 			// deselect attachmnet
 			this.clear_selection();
+			
+			
+			// disable sidebar
+			this.$el.find('.acf-gallery-side').find('input, textarea, select').attr('disabled', 'disabled');
 			
 			
 			// animate
@@ -1382,8 +1386,8 @@
 		
 		fetch : function( id ){
 			
-			// $el
-			var $el = this.$el;
+			// reference
+			var _this = this;
 			
 			
 			// vars
@@ -1397,9 +1401,9 @@
 			
 			
 			// abort XHR if this field is already loading AJAX data
-			if( $el.data('xhr') )
+			if( this.$el.data('xhr') )
 			{
-				$el.data('xhr').abort();
+				this.$el.data('xhr').abort();
 			}
 			
 			
@@ -1412,15 +1416,54 @@
 				data		: data,
 				success		: function( html ){
 					
-					// render
-					$el.find('.acf-gallery-side-data').html( html );
+					
+					// validate
+					if( !html ) {
+						
+						return;
+						
+					}
+					
+					
+					_this.render_fetch( html );
 					
 				}
 			});
 			
 			
 			// update el data
-			$el.data('xhr', xhr);
+			this.$el.data('xhr', xhr);
+			
+		},
+		
+		render_fetch : function( html ){
+			
+			// vars
+			var $side = this.$el.find('.acf-gallery-side-data');
+			
+			
+			// render
+			$side.html( html );
+			
+			
+			// remove acf form data
+			$side.find('.compat-field-acf-form-data').remove();
+			
+			
+			// detach meta tr
+			var $tr = $side.find('> .compat-attachment-fields > tbody > tr').detach();
+			
+			
+			// add tr
+			$side.find('> table.form-table > tbody').append( $tr );			
+			
+			
+			// remove origional meta table
+			$side.find('> .compat-attachment-fields').remove();
+			
+			
+			// setup fields
+			acf.do_action('append', $side);
 			
 		},
 		
@@ -1701,6 +1744,17 @@
 	*  @return	N/A
 	*/
 	
+	acf.add_action('submit', function( $el ){
+		
+		acf.get_fields({ type : 'gallery'}, $el).each(function(){
+			
+			acf.fields.gallery.set( $(this) ).close_sidebar();
+			
+		});
+		
+	});
+	
+	
 	$(window).on('resize', function(){
 		
 		acf.get_fields({ type : 'gallery'}).each(function(){
@@ -1710,6 +1764,7 @@
 		});
 		
 	});
+	
 	
 	
 	$(document).on('click', '.acf-gallery .acf-gallery-attachment', function( e ){

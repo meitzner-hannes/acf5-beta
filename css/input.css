@@ -1027,8 +1027,9 @@ ul.acf-checkbox-list li label {
 
 
 /* compat-item */
-.compat-item .compat-field-acf-form-data {
-	display: none;
+.compat-field-acf-form-data,
+.compat-field-acf-blank {
+	display: none !important;
 }
 
 .compat-item .acf-field {

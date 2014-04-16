@@ -167,9 +167,14 @@ class acf_field_gallery extends acf_field
 					update_post_meta( $id, '_wp_attachment_image_alt', wp_slash( $alt ) );
 				}
 			}
-		
+			
+			
+			// save post
 			wp_update_post( $post );
 			
+			
+			// save meta
+			acf_save_post( $id );
 						
 		}
 		
@@ -258,16 +263,14 @@ class acf_field_gallery extends acf_field
 		
 		$attachment = wp_prepare_attachment_for_js( $id );
 		$prefix = "attachments[{$id}]";
+		$compat = get_compat_media_markup( $id );
 		
 		?>
-		<div class="acf-gallery-side-info">
-			<p class="filename"><strong><?php echo $attachment['title']; ?></strong></p>
+		<div class="acf-gallery-side-info acf-cf">
+			<img src="<?php echo $attachment['sizes']['thumbnail']['url']; ?>" alt="<?php echo $attachment['alt']; ?>" />
+			<p class="filename"><strong><?php _e('Attachment Details', 'acf'); ?></strong></p>
 			<p class="uploaded"><?php echo $attachment['dateFormatted']; ?></p>
 			<p class="dimensions"><?php echo $attachment['width']; ?> × <?php echo $attachment['height']; ?></p>
-			<p>
-				<a target="_blank" href="<?php echo admin_url("post.php?post={$id}&action=edit"); ?>">Edit</a> 
-				<a href="#" class="remove-attachment" data-name="remove-attachment-button" data-id="<?php echo $id; ?>">Remove</a>
-			</p>
 		</div>
 		<table class="form-table">
 			<tbody>
@@ -312,7 +315,10 @@ class acf_field_gallery extends acf_field
 				?>
 			</tbody>
 		</table>
+		<?php echo $compat['item']; ?>
+		
 		<?php
+		
 	}
 	
 	

@@ -399,7 +399,7 @@
 	top: 0;
 	left: 0;
 	bottom: 0;
-	width: 299px;
+	width: 349px;
 }
 
 .acf-gallery .bulk-actions-select {
@@ -409,34 +409,36 @@
 
 /* side info */
 .acf-gallery .acf-gallery-side-info {
-	padding: 5px 0;
-	margin: 0 0 15px;
-	background: #F9F9F9;
-	border-bottom: #F0F0F0 solid 1px;
+	position: relative;
+	width: 100%;
+	padding: 10px;
+	margin: -10px 0 15px -10px;
+	background: #F1F1F1;
+	border-bottom: #DFDFDF solid 1px;
+}
+
+.acf-gallery .acf-gallery-side-info img {
+	float: left;
+	width: 100%;
+	max-width: 55px;
+	max-height: 55px;
+	margin: 0 10px 0 0;
+	background: #FFFFFF;
+	padding: 3px;
+	border: #DFDFDF solid 1px;
+	border-radius: 1px;
 }
 
 .acf-gallery .acf-gallery-side-info p {
-	font-size: 12px;
+	font-size: 13px;
 	line-height: 15px;
-	margin: 0 0 5px;
+	margin: 4px 0;
 	
 	color: #999999;
 }
 
 .acf-gallery .acf-gallery-side-info p strong {
 	color: #000;
-}
-
-.acf-gallery .acf-gallery-side-info a {
-	text-decoration: none;
-}
-
-.acf-gallery .acf-gallery-side-info a:hover {
-	text-decoration: underline;
-}
-
-.acf-gallery .acf-gallery-side-info a.remove-attachment {
-	color: #BC0B0B;
 }
 
 
@@ -447,9 +449,9 @@
 	right: 0;
 	bottom: 44px;
 	left: 0;
-	padding: 10px;
 	overflow: auto;
 	overflow-x: inherit;
+	padding: 10px;
 }
 
 .acf-gallery .acf-gallery-side-data .acf-label {

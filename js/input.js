@@ -4918,6 +4918,10 @@ if( ! this.$trigger )
 */
 				
 				
+				// action for 3rd party customization
+				acf.do_action('submit', $form);
+				
+				
 				// submit form again
 				if( this.$trigger )
 				{

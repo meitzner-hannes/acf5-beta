@@ -22,7 +22,7 @@ class acf_field_group {
 		add_action( 'save_post',										array( $this,'save_post' ) );
 		
 		// ajax
-		add_action( 'wp_ajax_acf/field_group/render_field_settings',		array( $this, 'ajax_render_field_settings') );
+		add_action( 'wp_ajax_acf/field_group/render_field_settings',	array( $this, 'ajax_render_field_settings') );
 		add_action( 'wp_ajax_acf/field_group/render_location_value',	array( $this, 'ajax_render_location_value') );
 		add_action( 'wp_ajax_acf/field_group/move_field',				array( $this, 'ajax_move_field') );
 		
@@ -310,19 +310,20 @@ class acf_field_group {
 			{
 				// vars
 				$specific = false;
+				$save = acf_extract_var( $field, 'save' );
 				
 				
 				// only saved field if has changed
-				if( ! acf_extract_var( $field, 'changed' ) )
-				{
+				if( $save == 'meta' ) {
+				
 					$specific = array(
 						'menu_order',
 						'post_parent',
 					);
+					
 				}
 				
 				
-				// add args
 				// set only field_group which allows the parent to be 0 (parent) or 123 (sub field)
 				$field['field_group'] = $post_id;
 				

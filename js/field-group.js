@@ -217,7 +217,7 @@
 		update_field_meta : function( $el, name, value ){
 			
 			// vars
-	    	$input = $el.find('> .acf-hidden > .input-' + name);
+	    	var $input = $el.find('> .acf-hidden > .input-' + name);
 	    	
 	    	
 	    	// create hidden input if doesn't exist
@@ -230,13 +230,38 @@
 				$input = $(html);
 				
 				
+				// reset value
+				$input.val('');
+				
+				
 				// append
 				$el.find('> .acf-hidden').append( $input );
 			}
 			
 			
+			// bail early if no change
+			if( $input.val() == value ) {
+				
+				//console.log('update_field_meta: no value change %o', $input);
+				return;
+			}
+			
+			
 			// update value
 			$input.val( value );
+			
+			
+			// bail early if updating save
+			if( name == 'save' ) {
+				
+				//console.log('update_field_meta: name = save %o', $input);
+				return;
+				
+			}
+			
+			
+			// meta has changed, update save
+			this.save_field( $el, 'meta' );
 			
 		},
 		
@@ -258,7 +283,7 @@
 		delete_field_meta : function( $el, name ){
 		
 			// vars
-	    	$input = $el.find('> .acf-hidden > .input-' + name);
+	    	var $input = $el.find('> .acf-hidden > .input-' + name);
 	    	
 	    	
 	    	// return
@@ -267,6 +292,49 @@
 				$input.remove();
 				
 			}
+			
+			
+			// meta has changed, update save
+			this.save_field( $el, 'meta' );
+			
+		},
+		
+		
+		/*
+		*  save_field
+		*
+		*  This function will update the changed input for a given field making sure it is saved on submit
+		*
+		*  @type	function
+		*  @date	8/04/2014
+		*  @since	5.0.0
+		*
+		*  @param	$el
+		*  @return	n/a
+		*/
+		
+		save_field : function( $el, type ){
+			
+			//console.log('save_field: %o %o', $el, type);
+			
+			// defaults
+			type = type || 'settings';
+			
+			
+			// vars
+			var value = this.get_field_meta( $el, 'save' );
+			
+			
+			// bail early if already 'settings'
+			if( value == 'settings' ) {
+				
+				return;
+				
+			}
+			
+			
+			// update meta
+			this.update_field_meta( $el, 'save', type );
 			
 		},
 		
@@ -329,7 +397,7 @@
 			_this.$fields.find('.field').each(function(){
 				
 				// vars
-				var changed = _this.get_field_meta( $(this), 'changed'),
+				var save = _this.get_field_meta( $(this), 'save'),
 					ID = _this.get_field_meta( $(this), 'ID'),
 					open = $(this).hasClass('open');
 				
@@ -352,9 +420,17 @@
 				
 				
 				// remove unneccessay inputs
-				if( changed != '1' ) {
+				if( save == 'settings' ) {
+					
+					// do nothing
+					
+				} else if( save == 'meta' ) {
 					
 					$(this).children('.field-settings').find('[name^="acf_fields[' + ID + ']"]').remove();
+					
+				} else {
+					
+					$(this).find('[name^="acf_fields[' + ID + ']"]').remove();
 					
 				}
 				
@@ -509,26 +585,6 @@
 			
 			// update type
 			$el.find('> .field-info .li-field_type').text( type );
-			
-		},
-		
-		
-		/*
-		*  save_field
-		*
-		*  This function will update the changed input for a given field making sure it is saved on submit
-		*
-		*  @type	function
-		*  @date	8/04/2014
-		*  @since	5.0.0
-		*
-		*  @param	$el
-		*  @return	n/a
-		*/
-		
-		save_field : function( $el ){
-			
-			this.update_field_meta( $el, 'changed', 1 );
 			
 		},
 		

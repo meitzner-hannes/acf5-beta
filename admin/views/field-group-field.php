@@ -17,15 +17,28 @@ $atts = array(
 	'data-type'	=> $field['type'],
 );
 
+$metas = array(
+	'ID'			=> $field['ID'],
+	'key'			=> $field['key'],
+	'parent'		=> $field['parent'],
+	'menu_order'	=> $field['menu_order'],
+	'save'			=> '',
+);
+
 ?>
 <div <?php echo acf_esc_attr( $atts ); ?>>
 	
 	<div class="field-meta acf-hidden">
-		<input type="hidden" class="input-ID" name="<?php echo $field['prefix']; ?>[ID]" value="<?php echo $field['ID']; ?>" />
-		<input type="hidden" class="input-key" name="<?php echo $field['prefix']; ?>[key]" value="<?php echo $field['key']; ?>" />
-		<input type="hidden" class="input-parent" name="<?php echo $field['prefix']; ?>[parent]" value="<?php echo $field['parent']; ?>" />
-		<input type="hidden" class="input-menu_order" name="<?php echo $field['prefix']; ?>[menu_order]" value="<?php echo $field['menu_order']; ?>" />
-		<input type="hidden" class="input-changed" name="<?php echo $field['prefix']; ?>[changed]" value="0" />
+		<?php 
+		
+		// meta		
+		foreach( $metas as $k => $v ) {
+			
+			acf_hidden_input(array( 'class' => "input-{$k}", 'name' => "{$field['prefix']}[{$k}]", 'value' => $v ));
+				
+		}
+		
+		?>
 	</div>
 	
 	<ul class="field-info acf-hl acf-tbody">

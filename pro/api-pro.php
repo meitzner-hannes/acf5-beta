@@ -284,12 +284,7 @@ function acf_get_options_pages() {
 	// get pages
 	if( !empty($GLOBALS['acf_options_pages']) )
 	{
-		$keys = array_keys($GLOBALS['acf_options_pages']);
-		
-		foreach( $keys as $key )
-		{
-			$pages[ $key ] = acf_extract_var($GLOBALS['acf_options_pages'], $key);
-		}
+		$pages = array_merge($pages, $GLOBALS['acf_options_pages']);
 	}
 	
 	

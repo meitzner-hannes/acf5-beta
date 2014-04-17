@@ -107,6 +107,29 @@ http://support.advancedcustomfields.com/
 
 == Changelog ==
 
+= 5.0.0 =
+* Overhaul of HTML & CSS
+* Migrated field & sub field settings (not values) to post objects instead of postmeta
+* Added Select2 JS for AJAX and search functionality on select lists
+* Added AJAX search functionality for Post Object, taxonomy, user and select fields
+* Added JSON read/write functionality to automatically save field groups to files (saves DB query time)
+* Added JSON import/export functionality to replace old XML style
+* New location rules allow field groups on comments
+* New location rules allow field groups on user (including registration and bbPress)
+* New location rules allow field groups on widgets
+* New API folder contains a library of functions to use in plugins and themes
+* New oembed field for easy iframe embeds
+* New Gallery field design
+* New field group options for `Label placement` and `Instruction placement` allow for an all new look!
+* New PHP + AJAX validation replaces old JS style
+* New Relationship field setting for 'Filters' (Search, Post Type, Taxonomy)
+* New field group functionality allows you to move a field between groups
+* New field group functionality allows you to drag a field between parents (repeater)
+* New Add-ons page uses an external JSON file to read in data (easy to add 3rd party fields)
+* Huge improvements to core functionality resulting in faster load times!
+* New archives group in page_link field selection
+* New functions for options page allow creation of both parent and child menu pages
+
 = 4.3.4 =
 * Post Object field: Fixed get_pages bug cuasing 'pages' to not appear
 * Page Link field: Fixed get_pages bug cuasing 'pages' to not appear

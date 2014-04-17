@@ -121,6 +121,7 @@ class acf {
 			acf_include('admin/update.php');
 			acf_include('admin/settings-export.php');
 			acf_include('admin/settings-addons.php');
+			acf_include('admin/settings-info.php');
 			
 		}
 		

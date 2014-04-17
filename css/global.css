@@ -171,6 +171,17 @@ img.acf-fw {
 	border-color: #EBEBEB;
 }
 
+.acf-icon.logo {
+	width: 150px;
+	height: 150px;
+	border-radius: 75px;
+	background: #5EE8BF;
+	
+	border: 0 none;
+	position: absolute;
+    right: 0;
+    top: 0;
+}
 
 /*--------------------------------------------------------------------------------------------
 *
@@ -301,6 +312,16 @@ img.acf-fw {
 }
 */
 
+/* acf */
+.acf-sprite-logo {
+	background-position: 0 -150px;
+	width: 120px;
+	height: 55px;
+}
+
+.acf-icon .acf-sprite-logo {
+	margin: -28px 0 0 -61px;
+}
 
 /*--------------------------------------------------------------------------------------------
 *
@@ -765,7 +786,10 @@ img.acf-fw {
 *---------------------------------------------------------------------------------------------*/
 
 /* Menu */
-#adminmenu a[href="edit.php?post_type=acf-field-group&page=acf-upgrade"]{ display: none; }
+#adminmenu a[href="edit.php?post_type=acf-field-group&page=acf-upgrade"],
+#adminmenu a[href="edit.php?post_type=acf-field-group&page=acf-settings-info"] {
+	display: none;
+}
 
 
 /*---------------------------------------------------------------------------------------------

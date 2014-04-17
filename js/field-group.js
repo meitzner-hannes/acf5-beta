@@ -944,7 +944,7 @@
 							content : html
 						});
 						
-						acf.field_group.remove_field( $field );
+						acf.field_group.delete_field( $field );
 						
 					}
 				});

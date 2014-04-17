@@ -114,6 +114,43 @@ img.acf-fw {
 .has-value .hide-if-value { display: none; }
 
 
+/*---------------------------------------------------------------------------------------------
+*
+*  callout
+*
+*---------------------------------------------------------------------------------------------*/
+
+.acf-callout {
+	margin: 20px 0;
+    padding: 20px;
+    
+    background-color: #FCF8F2;
+    border-left: 3px solid #F0AD4E;
+}
+
+.acf-callout h4 {
+	color: #F0AD4E;
+	margin: 0 !important;
+}
+
+.acf-callout.danger {
+	border-color: #D9534F;
+	background-color: #FDF7F7;
+}
+
+.acf-callout.danger h4 {
+	color: #D9534F;
+}
+
+.acf-callout.success {
+	background-color: #f4faf6;
+	border-color: #bcf1c5;
+}
+
+.acf-callout.success h4 {
+	color: #3aad60;
+}
+
 
 /*--------------------------------------------------------------------------------------------
 *

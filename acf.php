@@ -79,41 +79,12 @@ class acf {
 		);
 		
 		
-		// includes
-		$this->includes();
+		// include helpers
+		include_once('api/api-helpers.php');
 		
 		
 		// set text domain
 		load_textdomain( 'acf', acf_get_path( 'lang/acf-' . get_locale() . '.mo' ) );
-		
-			
-		// actions
-		add_action('plugins_loaded',	array($this, 'wp_plugins_loaded'), 99);
-		add_action('setup_theme',		array($this, 'wp_setup_theme'), 99);
-		add_action('after_setup_theme',	array($this, 'wp_after_setup_theme'), 5);
-		add_action('init',				array($this, 'wp_init'), 5);
-		add_filter('posts_where',		array($this, 'wp_posts_where'), 10, 2 );
-		
-	}
-	
-	
-	/*
-	*  includes
-	*
-	*  This function will include all the ACF files
-	*
-	*  @type	function
-	*  @date	10/03/2014
-	*  @since	5.0.0
-	*
-	*  @param	n/a
-	*  @return	n/a
-	*/
-	
-	function includes() {
-		
-		// helpers
-		include_once('api/api-helpers.php');
 		
 		
 		// api
@@ -182,6 +153,15 @@ class acf {
 		
 		// pro
 		acf_include('pro/acf-pro.php');
+		
+			
+		// actions
+		add_action('plugins_loaded',	array($this, 'wp_plugins_loaded'), 99);
+		add_action('setup_theme',		array($this, 'wp_setup_theme'), 99);
+		add_action('after_setup_theme',	array($this, 'wp_after_setup_theme'), 5);
+		add_action('init',				array($this, 'wp_init'), 5);
+		add_filter('posts_where',		array($this, 'wp_posts_where'), 10, 2 );
+		
 	}
 	
 

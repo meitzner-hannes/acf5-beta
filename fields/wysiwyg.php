@@ -35,6 +35,39 @@ class acf_field_wysiwyg extends acf_field
 	
 	
 	/*
+	*  load_field()
+	*
+	*  This filter is applied to the $field after it is loaded from the database
+	*
+	*  @type	filter
+	*  @date	23/01/2013
+	*  @since	3.6.0	
+	*
+	*  @param	$field (array) the field array holding all the field options
+	*  @return	$field
+	*/
+	
+	function load_field( $field ) {
+		
+		// v4 to v5 compatibility
+		if( $field['media_upload'] === 'yes' ) {
+			
+			$field['media_upload'] = 1;
+			
+		} elseif( $field['media_upload'] === 'no' ) {
+			
+			$field['media_upload'] = 0;
+			
+		}
+		
+		
+		// return
+		return $field;
+		
+	}
+	
+	
+	/*
 	*  toolbars()
 	*
 	*  This filter allows you to customize the WYSIWYG toolbars

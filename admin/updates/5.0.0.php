@@ -280,6 +280,18 @@ function _migrate_field_500( $field ) {
 			
 		}
 		
+	} elseif( $field['type'] == 'wysiwyg' ) {
+		
+		if( $field['media_upload'] == 'yes' ) {
+			
+			$field['media_upload'] = 1;
+			
+		} else {
+			
+			$field['media_upload'] = 0;
+			
+		}
+		
 	}
 	
 	

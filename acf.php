@@ -61,7 +61,7 @@ class acf {
 		$this->settings = array(
 			
 			// basic
-			'name'			=> __('Advanced Custom Fields Pro', 'acf'),
+			'name'			=> __('Advanced Custom Fields', 'acf'),
 			'version'		=> '5.0.0',
 						
 			// urls

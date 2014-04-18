@@ -129,6 +129,8 @@ http://support.advancedcustomfields.com/
 * Huge improvements to core functionality resulting in faster load times!
 * New archives group in page_link field selection
 * New functions for options page allow creation of both parent and child menu pages
+* Date picker field: Removed save_format setting. Values now save as Y:m:d h:i:s
+* Date picker field: Added return_format setting
 
 = 4.3.4 =
 * Post Object field: Fixed get_pages bug cuasing 'pages' to not appear

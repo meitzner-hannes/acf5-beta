@@ -1319,6 +1319,17 @@
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
+	"\/inc\/tinymce\/tinymce.code.min.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/inc\/tinymce\/tinymce.code.min.js",
+		"outputAbbreviatedPath": "\/inc\/tinymce\/tinymce.code.min.min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
 	"\/js\/field-group.js": {
 		"fileType": 64,
 		"ignore": 0,

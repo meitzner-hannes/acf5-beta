@@ -1357,6 +1357,8 @@
 			this.$el.find('.acf-gallery-main').animate({ right : 350 }, 250);
 			this.$el.find('.acf-gallery-side').animate({ width : 349 }, 250);
 			
+			this.$el.find('.acf-gallery-attachment .acf-icon').addClass('small');
+			
 		},
 		
 		close_sidebar : function(){
@@ -1381,6 +1383,8 @@
 				$(this).find('.acf-gallery-side-data').html( '' );
 				
 			});
+			
+			this.$el.find('.acf-gallery-attachment .acf-icon').removeClass('small');
 			
 		},
 		

@@ -105,15 +105,19 @@ class acf_field_google_map extends acf_field
 				<?php endforeach; ?>
 			</div>
 			
-			<div class="title">
+			<div class="title acf-soh">
 				
 				<div class="has-value">
-					<a href="#" class="acf-sprite-delete" title="Clear location"></a>
+					<a href="#" class="acf-icon light acf-soh-target" title="<?php _e("Clear location", 'acf'); ?>">
+						<i class="acf-sprite-delete"></i>
+					</a>
 					<h4><?php echo $field['value']['address']; ?></h4>
 				</div>
 				
 				<div class="no-value">
-					<a href="#" class="acf-sprite-locate" title="Find current location"></a>
+					<a href="#" class="acf-icon light acf-soh-target" title="<?php _e("Find current location", 'acf'); ?>">
+						<i class="acf-sprite-locate"></i>
+					</a>
 					<input type="text" placeholder="<?php _e("Search for address...",'acf'); ?>" class="search" />
 				</div>
 				

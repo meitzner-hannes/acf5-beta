@@ -123,16 +123,10 @@ class acf_field_file extends acf_field
 	<div class="acf-hidden">
 		<input type="hidden" <?php acf_esc_attr_e(array( 'name' => $field['name'], 'value' => $field['value'], 'data-name' => 'id' )); ?> />	
 	</div>
-	<div class="show-if-value acf-soh">
-		<ul class="acf-hl">
-			<li>
+	<div class="show-if-value acf-cf">
+		<ul class="file-info acf-hl acf-soh">
+			<li class="icon">
 				<img data-name="icon" src="<?php echo $o['icon']; ?>" alt=""/>
-				<div class="acf-soh-target">
-					<ul class="acf-bl acf-soh-target">
-						<li><a class="acf-icon" data-name="remove-button" href="#"><i class="acf-sprite-delete"></i></a></li>
-						<li><a class="acf-icon" data-name="edit-button" href="#"><i class="acf-sprite-edit"></i></a></li>
-					</ul>
-				</div>
 			</li>
 			<li>
 				<p>
@@ -148,7 +142,14 @@ class acf_field_file extends acf_field
 				</p>
 				
 			</li>
+			<li>
+				<ul class="acf-hl acf-soh-target">
+					<li><a class="acf-icon" data-name="edit-button" href="#"><i class="acf-sprite-edit"></i></a></li>
+					<li><a class="acf-icon" data-name="remove-button" href="#"><i class="acf-sprite-delete"></i></a></li>
+				</ul>
+			</li>
 		</ul>
+		
 	</div>
 	<div class="hide-if-value">
 		<p><?php _e('No File selected','acf'); ?> <a data-name="add-button" class="acf-button" href="#"><?php _e('Add File','acf'); ?></a></p>

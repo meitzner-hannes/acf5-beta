@@ -160,16 +160,16 @@ img.acf-fw {
 
 .acf-icon {
 	display: block;
-	height: 22px;
-	width: 22px;
-	border: #BBBBBB solid 1px;
-	border-radius: 12px;
+	height: 28px;
+	width: 28px;
+	border: #BBB solid 1px;
+	border-radius: 15px;
 	
 	position: relative;
 	overflow: hidden;
 	
-	font-size: 12px;
-	line-height: 21px;
+	font-size: 13px;
+	line-height: 27px;
 	text-align: center;
 	background: #fff;
 }
@@ -189,8 +189,6 @@ img.acf-fw {
 	line-height: 18px;
 }
 
-
-/* add */
 .acf-icon [class^="acf-sprite-"] {
 	position: absolute;
 	top: 50%;
@@ -198,14 +196,21 @@ img.acf-fw {
 	margin: -4px 0 0 -4px;
 }
 
-.acf-icon.full {
+.acf-icon.light {
+	border: 0 none;
+	padding: 1px;
 	background: #F5F5F5;
-	border-color: #F5F5F5;
 }
 
-.acf-icon.full:hover {
+.acf-icon.light:hover {
 	background: #EBEBEB;
-	border-color: #EBEBEB;
+}
+
+.acf-icon.dark {
+	border: 0 none;
+	padding: 1px;
+	background: #0B0B0B;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
 }
 
 .acf-icon.logo {
@@ -227,117 +232,66 @@ img.acf-fw {
 *--------------------------------------------------------------------------------------------*/
 
 /* add */
-.acf-sprite-add {
-	background-position: 0 0;
-	width: 8px;
-	height: 8px;
-}
-
-.acf-sprite-add:hover,
-.acf-icon:hover .acf-sprite-add {
-	background-position: 0 -50px;
-}
+.acf-sprite-add { background-position: 0 0; width: 8px; height: 8px; }
+.acf-icon .acf-sprite-add { margin: -4px 0 0 -4px; }
+.acf-icon.dark .acf-sprite-add { background-position: 0 -50px; }
+.acf-sprite-add:hover, .acf-icon:hover .acf-sprite-add { background-position: 0 -100px; }
 
 
 /* remove */
-.acf-sprite-remove {
-	background-position: -50px 0;
-	width: 9px;
-	height: 2px;
-}
-
-.acf-icon .acf-sprite-remove {
-	margin: -1px 0 0 -4px;
-}
-
-.acf-sprite-remove:hover,
-.acf-icon:hover .acf-sprite-remove {
-	background-position: -50px -50px;
-}
+.acf-sprite-remove { background-position: -50px 0; width: 9px; height: 2px; }
+.acf-icon .acf-sprite-remove { margin: -1px 0 0 -4px; }
+.acf-icon.dark .acf-sprite-remove { background-position: -50px -50px; }
+.acf-sprite-remove:hover, .acf-icon:hover .acf-sprite-remove { background-position: -50px -100px; }
 
 
 /* delete */
-.acf-sprite-delete {
-	background-position: -100px 0;
-	width: 9px;
-	height: 9px;
-}
-
-.acf-sprite-delete:hover,
-.acf-icon:hover .acf-sprite-delete {
-	background-position: -100px -50px;
-}
+.acf-sprite-delete { background-position: -100px 0; width: 10px; height: 10px; }
+.acf-icon .acf-sprite-delete { margin: -5px 0 0 -5px; }
+.acf-icon.dark .acf-sprite-delete { background-position: -100px -50px; }
+.acf-sprite-delete:hover, .acf-icon:hover .acf-sprite-delete { background-position: -100px -100px; }
 
 
 /* edit */
-.acf-sprite-edit {
-	width: 11px;
-	height: 11px;
-	background-position: -150px 0;
-}
-
-.acf-icon .acf-sprite-edit {
-	margin: -6px 0 0 -5px;
-}
-
-.acf-sprite-edit:hover,
-.acf-icon:hover .acf-sprite-edit {
-	background-position: -150px -50px;
-}
+.acf-sprite-edit { background-position: -150px 0; width: 14px; height: 14px; }
+.acf-icon .acf-sprite-edit { margin: -7px 0 0 -7px; }
+.acf-icon.dark .acf-sprite-edit { background-position: -150px -50px; }
+.acf-sprite-edit:hover, .acf-icon:hover .acf-sprite-edit { background-position: -150px -100px; }
 
 
-/* edit */
-.acf-sprite-locate {
-	background-position: -200px 0;
-}
+/* locate */
+.acf-sprite-locate { background-position: -200px 0; width: 12px; height: 13px; }
+.acf-icon .acf-sprite-locate { margin: -6px 0 0 -7px; }
+.acf-icon.dark .acf-sprite-locate { background-position: -200px -50px; }
+.acf-sprite-locate:hover, .acf-icon:hover .acf-sprite-locate { background-position: -200px -100px; }
 
-.acf-sprite-locate:hover,
-.acf-icon:hover .acf-sprite-locate {
-	background-position: -200px -50px;
-}
+
+/* left */
+.acf-sprite-left { background-position: -250px 0; width: 6px; height: 10px; }
+.acf-icon .acf-sprite-left { margin: -5px 0 0 -4px; }
+.acf-icon.dark .acf-sprite-left { background-position: -250px -50px; }
+.acf-sprite-left:hover, .acf-icon:hover .acf-sprite-left { background-position: -250px -100px; }
+
+
+/* right */
+.acf-sprite-right { background-position: -300px 0; width: 6px; height: 10px; }
+.acf-icon .acf-sprite-right { margin: -5px 0 0 -3px; }
+.acf-icon.dark .acf-sprite-right { background-position: -300px -50px; }
+.acf-sprite-right:hover, .acf-icon:hover .acf-sprite-right { background-position: -300px -100px; }
 
 
 /* arrow */
 .acf-sprite-arrow {
-	background-position: 0 -100px;
+	background-position: 0 -150px;
 	margin: 4px 5px 0 7px;
 	width: 16px;
 	height: 16px;
 }
 
 
-/* left / right */
-.acf-sprite-left {
-	background-position: -250px 0;
-	width: 7px;
-	height: 10px;
-}
-
-.acf-sprite-right {
-	background-position: -300px 0;
-	width: 7px;
-	height: 10px;
-}
-
-.acf-icon .acf-sprite-left {
-	margin: -5px 0 0 -3px;
-}
-
-.acf-icon .acf-sprite-right {
-	margin: -5px 0 0 -3px;
-}
-
-
-/* submit */
-.acf-sprite-submit {
-	background-position: -300px 0;
-	width: 9px;
-	height: 9px;
-}
-
 /* gallery */
 .acf-sprite-media {
-	background-position: -50px -100px;
+	background-position: -50px -150px;
 	width: 36px;
 	height: 36px;
 }
@@ -351,7 +305,7 @@ img.acf-fw {
 
 /* acf */
 .acf-sprite-logo {
-	background-position: 0 -150px;
+	background-position: -100px -150px;
 	width: 120px;
 	height: 55px;
 }

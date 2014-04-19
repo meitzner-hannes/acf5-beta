@@ -163,21 +163,20 @@ class acf_field_oembed extends acf_field
 			<div class="acf-hidden">
 				<input type="hidden" data-name="value-input" name="<?php echo esc_attr($field['name']); ?>" value="<?php echo esc_attr($field['value']); ?>" />
 			</div>
-			<div class="title">
+			<div class="title acf-soh">
 				
 				<div class="title-value">
-					<a data-name="clear-button" href="#" class="acf-icon full">
-						<i class="acf-sprite-delete"></i>
-					</a>
 					<h4 data-name="value-title"><?php echo $field['value']; ?></h4>
 				</div>
 				
 				<div class="title-search">
-					<a data-name="search-button" href="#" class="acf-icon full">
-						<i class="acf-sprite-submit"></i>
-					</a>
-					<input data-name="search-input" type="text" placeholder="Search..." autocomplete="off" />
+					
+					<input data-name="search-input" type="text" placeholder="<?php _e("Enter URL", 'acf'); ?>" autocomplete="off" />
 				</div>
+				
+				<a data-name="clear-button" href="#" class="acf-icon light acf-soh-target">
+					<i class="acf-sprite-delete"></i>
+				</a>
 				
 			</div>
 			<div class="canvas">
@@ -187,7 +186,7 @@ class acf_field_oembed extends acf_field
 				</div>
 				
 				<div class="canvas-error">
-					<p><strong>Error</strong>. No embed found for the given URL</p>
+					<p><strong><?php _e("Error", 'acf'); ?></strong>. <?php _e("No embed found for the given URL", 'acf'); ?></p>
 				</div>
 				
 				<div class="canvas-media" data-name="value-embed">

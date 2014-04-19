@@ -114,7 +114,7 @@
 }
 
 .acf-field-list .field .field-info .acf-icon {
-	margin: 2px 5px 0 0;
+	margin: 1px 5px 0 0;
 	cursor: move;
 	background: transparent;
 	float: left;
@@ -190,7 +190,7 @@
 	border: #E1E1E1 solid 1px;
 	padding: 5px;
 	font: inherit;
-	margin: 1px 0 0;
+	margin: 3px 0 0;
 	float: left;
 	border-radius: 3px;
 	display: none;

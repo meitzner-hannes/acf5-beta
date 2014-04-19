@@ -3198,7 +3198,7 @@ else if( acf.isset(_this, 'triggers', key) )
 	*  @return	N/A
 	*/
 	
-	$(document).on('click', '.acf-google-map .acf-sprite-remove', function( e ){
+	$(document).on('click', '.acf-google-map .acf-sprite-delete', function( e ){
 		
 		e.preventDefault();
 		

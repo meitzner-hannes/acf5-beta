@@ -121,9 +121,9 @@ class acf_field_image extends acf_field {
 		<input <?php acf_esc_attr_e( $input_atts ); ?>/>
 	</div>
 	<div class="view show-if-value acf-soh">
-		<ul class="acf-bl acf-soh-target">
-			<li><a class="acf-icon" data-name="remove-button" href="#"><i class="acf-sprite-delete"></i></a></li>
-			<li><a class="acf-icon" data-name="edit-button" href="#"><i class="acf-sprite-edit"></i></a></li>
+		<ul class="acf-hl acf-soh-target">
+			<li><a class="acf-icon dark" data-name="edit-button" href="#"><i class="acf-sprite-edit"></i></a></li>
+			<li><a class="acf-icon dark" data-name="remove-button" href="#"><i class="acf-sprite-delete"></i></a></li>
 		</ul>
 		<img data-name="value-url" src="<?php echo $url; ?>" alt=""/>
 	</div>

@@ -33,7 +33,7 @@ class acf_field_relationship extends acf_field
 								<input type="hidden" name="<%= name %>[]" value="<%= value %>" />
 								<span data-id="<%= value %>" class="acf-relationship-item">
 									<%= text %>
-									<a href="#" class="acf-icon"><i class="acf-sprite-remove"></i></a>
+									<a href="#" class="acf-icon small dark"><i class="acf-sprite-remove"></i></a>
 								</span>
 							</li>'
 		);
@@ -627,7 +627,7 @@ class acf_field_relationship extends acf_field
 						<input type="hidden" name="<?php echo $field['name']; ?>[]" value="<?php echo $k; ?>" />
 						<span data-id="<?php echo $k; ?>" class="acf-relationship-item">
 							<?php echo $v; ?>
-							<a href="#" class="acf-icon"><i class="acf-sprite-remove"></i></a>
+							<a href="#" class="acf-icon small dark"><i class="acf-sprite-remove"></i></a>
 						</span>
 					</li>
 				<?php endforeach; ?>

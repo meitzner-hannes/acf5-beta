@@ -37,7 +37,7 @@ class acf_field_gallery extends acf_field
 										<img alt="" src="<%= url %>">
 									</div>
 									<div class="actions acf-soh-target">
-										<a class="acf-icon" data-name="remove-attachment-button" data-id="<%= id %>" href="#">
+										<a class="acf-icon dark" data-name="remove-attachment-button" data-id="<%= id %>" href="#">
 											<i class="acf-sprite-delete"></i>
 										</a>
 									</div>
@@ -383,7 +383,7 @@ class acf_field_gallery extends acf_field
 							<img src="<?php echo $src; ?>" alt="" />
 						</div>
 						<div class="actions acf-soh-target">
-							<a class="acf-icon" data-name="remove-attachment-button" data-id="<?php echo $id; ?>" href="#">
+							<a class="acf-icon dark" data-name="remove-attachment-button" data-id="<?php echo $id; ?>" href="#">
 								<i class="acf-sprite-delete"></i>
 							</a>
 						</div>

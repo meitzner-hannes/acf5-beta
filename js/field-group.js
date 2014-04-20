@@ -855,6 +855,10 @@
 		
 		move_field : function( $field ){
 			
+			// reference
+			var _this = this;
+			
+			
 			// AJAX data
 			var ajax_data = {
 				'action'	: 'acf/field_group/move_field',
@@ -863,8 +867,49 @@
 			};
 			
 			
+			// vars
+			var warning = false;
+
+
+
 			// validate
 			if( !ajax_data.field_id ) {
+				
+				warning = true;
+				
+			}
+			
+			
+			// look for changes in current field
+			if( this.get_field_meta( $field, 'save' ) == 'settings' ) {
+				
+				warning = true;
+				
+			}
+			
+			
+			// look for changes in sub fields
+			$field.find('.field').not('[data-id="acfcloneindex"]').each(function(){
+				
+				// if no ID
+				if( ! _this.get_field_meta( $(this), 'ID' ) ) {
+					
+					warning = true;
+					
+				}
+				
+				
+				// if settings change
+				if( _this.get_field_meta( $(this), 'save' ) == 'settings' ) {
+					
+					warning = true;
+					
+				}
+				
+			});
+			
+			
+			if( warning ) {
 				
 				alert( acf._e('move_field_warning') );
 				return;

@@ -805,7 +805,9 @@ var acf = {
 			$('body').append( tmpl );
 			
 			
-			$('#acf-popup').on('click', '.bg, .acf-close-popup', function(){
+			$('#acf-popup').on('click', '.bg, .acf-close-popup', function( e ){
+				
+				e.preventDefault();
 				
 				acf.close_popup();
 				

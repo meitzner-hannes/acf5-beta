@@ -659,6 +659,32 @@ class acf_field_repeater extends acf_field
 		}
 		
 	}
+	
+	
+	/*
+	*  update_field()
+	*
+	*  This filter is appied to the $field before it is saved to the database
+	*
+	*  @type	filter
+	*  @since	3.6
+	*  @date	23/01/13
+	*
+	*  @param	$field - the field array holding all the field options
+	*  @param	$post_id - the field group ID (post_type = acf)
+	*
+	*  @return	$field - the modified field
+	*/
+
+	function update_field( $field ) {
+		
+		// remove sub fields
+		unset($field['sub_fields']);
+		
+				
+		// return		
+		return $field;
+	}
 
 }
 

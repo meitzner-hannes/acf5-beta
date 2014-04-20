@@ -216,7 +216,7 @@ class acf_field_flexible_content extends acf_field
 		// load default layout
 		if( empty($field['layouts']) )
 		{
-			$field['layouts'][] = array();
+			$field['layouts'] = array();
 		}
 		
 		
@@ -404,9 +404,30 @@ class acf_field_flexible_content extends acf_field
 	*/
 
 	function update_field( $field ) {
-	
-		// normalize layout array keys
-		$field['layouts'] = array_values($field['layouts']);
+		
+		// vars
+		$layouts = acf_extract_var($field, 'layouts');
+		
+		
+		// update layouts
+		$field['layouts'] = array();
+		
+		
+		
+		// loop through sub fields
+		if( !empty($layouts) ) {
+			
+			foreach( $layouts as $layout ) {
+				
+				// remove sub fields
+				unset($layout['sub_fields']);
+				
+			}
+			
+			
+			// append to layouts
+			$field['layouts'][] = $layout;	
+		}
 		
 		
 		// return		

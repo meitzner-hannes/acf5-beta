@@ -753,24 +753,27 @@ class acf_field_flexible_content extends acf_field
 		
 		if( !empty($field['layouts']) ) {
 			
-			
-			
-		}
-		
-		// loop through layouts
-		foreach( $field['layouts'] as $layout )
-		
-		
-		// loop through sub fields
-		if( !empty($field['sub_fields']) ) {
-		
-			foreach( $field['sub_fields'] as $sub_field ) {
-			
-				acf_delete_field( $sub_field['ID'] );
+			// loop through layouts
+			foreach( $field['layouts'] as $layout ) {
+				
+				// loop through sub fields
+				if( !empty($layout['sub_fields']) ) {
+				
+					foreach( $layout['sub_fields'] as $sub_field ) {
+					
+						acf_delete_field( $sub_field['ID'] );
+						
+					}
+					// foreach
+					
+				}
+				// if
 				
 			}
+			// foreach
 			
 		}
+		// if
 		
 	}
 	

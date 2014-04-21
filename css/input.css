@@ -926,6 +926,13 @@ ul.acf-checkbox-list li label {
 }
 
 
+/* Create gallery fix */
+.media-modal .media-sidebar .collection-settings .setting span {
+	padding-top: 8px;
+	margin: 0 10px 0 0;
+}
+
+
 /*---------------------------------------------------------------------------------------------
 *
 *  Media Model (Edit Mode)

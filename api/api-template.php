@@ -438,17 +438,31 @@ function get_field_objects( $post_id = false, $format_value = true, $load_value 
 		));
 	}
 	
-	if( is_array($keys) )
-	{
-		foreach( $keys as $key )
-		{
+	if( is_array($keys) ) {
+	
+		foreach( $keys as $key ) {
+			
+			// get field
 			$field = get_field_object( $key, $post_id, $format_value, $load_value );
 			
-			if( empty($field) )
-			{
+			
+			// validate field
+			if( empty($field) ) {
+			
 				continue;
+			
 			}
 			
+			
+			// ignore sub fields
+			if( count($field['ancestors']) > 1 ) {
+			
+				continue;
+				
+			}
+			
+			
+			// append to $value
 			$value[ $field['name'] ] = $field;
 		}
  	}

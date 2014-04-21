@@ -685,6 +685,48 @@ class acf_field_repeater extends acf_field
 		// return		
 		return $field;
 	}
+	
+	
+	/*
+	*  duplicate_field()
+	*
+	*  This filter is appied to the $field before it is duplicated and saved to the database
+	*
+	*  @type	filter
+	*  @since	3.6
+	*  @date	23/01/13
+	*
+	*  @param	$field - the field array holding all the field options
+	*
+	*  @return	$field - the modified field
+	*/
+
+	function duplicate_field( $field ) {
+		
+		// get sub fields
+		$sub_fields = acf_extract_var( $field, 'sub_fields' );
+		
+		
+		// save field to get ID
+		$field = acf_update_field( $field );
+		
+		
+		// loop through sub fields
+		if( !empty($sub_fields) ) {
+		
+			foreach( $sub_fields as $sub_field ) {
+			
+				// duplicate sub field
+				acf_duplicate_field( $sub_field['ID'], $field['ID'] );
+				
+			}
+			
+		}
+		
+						
+		// return		
+		return $field;
+	}
 
 }
 

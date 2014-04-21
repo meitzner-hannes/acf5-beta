@@ -850,7 +850,8 @@ function acf_duplicate_field( $selector = 0, $parent_id = 0 ){
 	
 	
 	// filter for 3rd party customization
-	$field = apply_filters('acf/duplicate_field', $field);
+	$field = apply_filters( "acf/duplicate_field", $field);
+	$field = apply_filters( "acf/duplicate_field/type={$field['type']}", $field );
 	
 	
 	// save
@@ -890,7 +891,8 @@ function acf_delete_field( $selector = 0 ) {
 	
 	
 	// action for 3rd party customisation
-	do_action( 'acf/delete_field', $field );
+	do_action( "acf/delete_field", $field);
+	do_action( "acf/delete_field/type={$field['type']}", $field );
 	
 	
 	// return

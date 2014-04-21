@@ -40,7 +40,8 @@ class acf_field {
 		// field
 		$this->add_filter("acf/load_field/type={$this->name}",				array($this, 'load_field'), 10, 1);
 		$this->add_filter("acf/update_field/type={$this->name}",			array($this, 'update_field'), 10, 1);
-		$this->add_filter("acf/delete_field/type={$this->name}",			array($this, 'delete_field'), 10, 1);
+		$this->add_filter("acf/duplicate_field/type={$this->name}",			array($this, 'duplicate_field'), 10, 1);
+		$this->add_action("acf/delete_field/type={$this->name}",			array($this, 'delete_field'), 10, 1);
 		$this->add_action("acf/render_field/type={$this->name}",			array($this, 'render_field'), 10, 1);
 		$this->add_action("acf/render_field_settings/type={$this->name}",	array($this, 'render_field_settings'), 10, 1);
 		

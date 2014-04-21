@@ -214,9 +214,11 @@ class acf_field_flexible_content extends acf_field
 	function render_field_settings( $field ) {
 		
 		// load default layout
-		if( empty($field['layouts']) )
-		{
+		if( empty($field['layouts']) ) {
+		
 			$field['layouts'] = array();
+			$field['layouts'][] = acf_get_valid_flexible_content_layout();
+			
 		}
 		
 		
@@ -387,53 +389,6 @@ class acf_field_flexible_content extends acf_field
 				
 	}
 	
-	
-	/*
-	*  update_field()
-	*
-	*  This filter is appied to the $field before it is saved to the database
-	*
-	*  @type	filter
-	*  @since	3.6
-	*  @date	23/01/13
-	*
-	*  @param	$field - the field array holding all the field options
-	*  @param	$post_id - the field group ID (post_type = acf)
-	*
-	*  @return	$field - the modified field
-	*/
-
-	function update_field( $field ) {
-		
-		// vars
-		$layouts = acf_extract_var($field, 'layouts');
-		
-		
-		// update layouts
-		$field['layouts'] = array();
-		
-		
-		
-		// loop through sub fields
-		if( !empty($layouts) ) {
-			
-			foreach( $layouts as $layout ) {
-				
-				// remove sub fields
-				unset($layout['sub_fields']);
-				
-			}
-			
-			
-			// append to layouts
-			$field['layouts'][] = $layout;	
-		}
-		
-		
-		// return		
-		return $field;
-	}
-		
 	
 	/*
 	*  format_value()
@@ -758,6 +713,53 @@ class acf_field_flexible_content extends acf_field
 	
 	
 	/*
+	*  update_field()
+	*
+	*  This filter is appied to the $field before it is saved to the database
+	*
+	*  @type	filter
+	*  @since	3.6
+	*  @date	23/01/13
+	*
+	*  @param	$field - the field array holding all the field options
+	*  @param	$post_id - the field group ID (post_type = acf)
+	*
+	*  @return	$field - the modified field
+	*/
+
+	function update_field( $field ) {
+		
+		// vars
+		$layouts = acf_extract_var($field, 'layouts');
+		
+		
+		// update layouts
+		$field['layouts'] = array();
+		
+		
+		// loop through sub fields
+		if( !empty($layouts) ) {
+			
+			foreach( $layouts as $layout ) {
+				
+				// remove sub fields
+				unset($layout['sub_fields']);
+				
+				
+				// append to layouts
+				$field['layouts'][] = $layout;	
+				
+			}
+			
+		}
+		
+		
+		// return		
+		return $field;
+	}
+	
+	
+	/*
 	*  delete_field
 	*
 	*  description
@@ -797,6 +799,75 @@ class acf_field_flexible_content extends acf_field
 		// if
 		
 	}
+	
+	
+	/*
+	*  duplicate_field()
+	*
+	*  This filter is appied to the $field before it is duplicated and saved to the database
+	*
+	*  @type	filter
+	*  @since	3.6
+	*  @date	23/01/13
+	*
+	*  @param	$field - the field array holding all the field options
+	*
+	*  @return	$field - the modified field
+	*/
+	
+	function duplicate_field( $field ) {
+		
+		// vars
+		$sub_fields = array();
+		
+		
+		if( !empty($field['layouts']) ) {
+			
+			// loop through layouts
+			foreach( $field['layouts'] as $layout ) {
+				
+				// extract sub fields
+				$extra = acf_extract_var( $layout, 'sub_fields' );
+				
+				
+				// merge
+				if( !empty($extra) ) {
+					
+					$sub_fields = array_merge($sub_fields, $extra);
+					
+				}
+				
+			}
+			// foreach
+			
+		}
+		// if
+		
+		
+		// save field to get ID
+		$field = acf_update_field( $field );
+		
+		
+		// loop through sub fields
+		if( !empty($sub_fields) ) {
+		
+			foreach( $sub_fields as $sub_field ) {
+			
+				// duplicate sub field
+				acf_duplicate_field( $sub_field['ID'], $field['ID'] );
+				
+			}
+			
+		}
+		
+		
+		// return		
+		return $field;
+		
+	}
+	
+	
+	
 	
 }
 

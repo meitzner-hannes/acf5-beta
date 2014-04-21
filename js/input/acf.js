@@ -1171,6 +1171,7 @@ var acf = {
 			}
 			
 			
+			
 			// vars
 			var _prototype = wp.media.view.AttachmentCompat.prototype;
 			
@@ -1322,8 +1323,42 @@ var acf = {
 				this.model.saveCompat( data );
 				
 			};
+			
+			
+			// update the wp.media.view.settings.post.id setting
+			setTimeout(function(){
+			
+				// Hack for CPT without a content editor
+				try
+				{
+					// post_id may be string (user_1) and therefore, the uploaded image cannot be attached to the post
+					if( $.isNumeric(acf.o.post_id) )
+					{
+						wp.media.view.settings.post.id = acf.o.post_id;
+					}
+					
+				} 
+				catch(e)
+				{
+					// one of the objects was 'undefined'...
+				}
+				
+				
+				// setup fields
+				//$(document).trigger('acf/setup_fields', [ $(document) ]);
+				
+			}, 10);
+			
+			
 		}
 	};
+	
+	acf.add_action('load', function(){
+		
+		acf.media.init();
+		
+	});
+	
 	
 	
 	/*
@@ -1431,6 +1466,7 @@ var acf = {
 		
 		render_field : function( key ){
 			
+			console.log('render_field %o',key);
 			// reference
 			var _this = this;
 			
@@ -1699,6 +1735,13 @@ else if( acf.isset(_this, 'triggers', key) )
 		
 	}; 
 	
+	acf.add_action('ready', function(){
+		
+		acf.conditional_logic.init();
+		
+	}, 100);
+	
+	
 	
 	/*
 	*  ready
@@ -1715,15 +1758,31 @@ else if( acf.isset(_this, 'triggers', key) )
 	
 	$(document).ready(function(){
 		
-		// fire ready
+		// action for 3rd party customization
 		acf.do_action('ready', $('body'));
-		
-		
-		// initialize conditional logic
-		acf.conditional_logic.init();
 		
 	});
 	
+	
+	/*
+	*  load
+	*
+	*  description
+	*
+	*  @type	function
+	*  @date	19/02/2014
+	*  @since	5.0.0
+	*
+	*  @param	$post_id (int)
+	*  @return	$post_id (int)
+	*/
+	
+	$(window).load(function(){
+		
+		// action for 3rd party customization
+		acf.do_action('load', $('body'));
+		
+	});
 	
 	
 	/*
@@ -1746,50 +1805,6 @@ else if( acf.isset(_this, 'triggers', key) )
 		{
 			$('#acf-form-data input[name="_acfchanged"]').val(1);
 		}
-		
-	});
-			
-			
-			
-	/*
-	*  window load
-	*
-	*  @description: 
-	*  @since: 3.5.5
-	*  @created: 22/12/12
-	*/
-	
-	$(window).load(function(){
-		
-		acf.do_action('load', $('body'));
-		
-		
-		// init
-		acf.media.init();
-		
-		
-		setTimeout(function(){
-			
-			// Hack for CPT without a content editor
-			try
-			{
-				// post_id may be string (user_1) and therefore, the uploaded image cannot be attached to the post
-				if( $.isNumeric(acf.o.post_id) )
-				{
-					wp.media.view.settings.post.id = acf.o.post_id;
-				}
-				
-			} 
-			catch(e)
-			{
-				// one of the objects was 'undefined'...
-			}
-			
-			
-			// setup fields
-			//$(document).trigger('acf/setup_fields', [ $(document) ]);
-			
-		}, 10);
 		
 	});
 	

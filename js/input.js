@@ -1431,6 +1431,7 @@ var acf = {
 			}
 			
 			
+			
 			// vars
 			var _prototype = wp.media.view.AttachmentCompat.prototype;
 			
@@ -1582,8 +1583,42 @@ var acf = {
 				this.model.saveCompat( data );
 				
 			};
+			
+			
+			// update the wp.media.view.settings.post.id setting
+			setTimeout(function(){
+			
+				// Hack for CPT without a content editor
+				try
+				{
+					// post_id may be string (user_1) and therefore, the uploaded image cannot be attached to the post
+					if( $.isNumeric(acf.o.post_id) )
+					{
+						wp.media.view.settings.post.id = acf.o.post_id;
+					}
+					
+				} 
+				catch(e)
+				{
+					// one of the objects was 'undefined'...
+				}
+				
+				
+				// setup fields
+				//$(document).trigger('acf/setup_fields', [ $(document) ]);
+				
+			}, 10);
+			
+			
 		}
 	};
+	
+	acf.add_action('load', function(){
+		
+		acf.media.init();
+		
+	});
+	
 	
 	
 	/*
@@ -1691,6 +1726,7 @@ var acf = {
 		
 		render_field : function( key ){
 			
+			console.log('render_field %o',key);
 			// reference
 			var _this = this;
 			
@@ -1959,6 +1995,13 @@ else if( acf.isset(_this, 'triggers', key) )
 		
 	}; 
 	
+	acf.add_action('ready', function(){
+		
+		acf.conditional_logic.init();
+		
+	}, 100);
+	
+	
 	
 	/*
 	*  ready
@@ -1975,15 +2018,31 @@ else if( acf.isset(_this, 'triggers', key) )
 	
 	$(document).ready(function(){
 		
-		// fire ready
+		// action for 3rd party customization
 		acf.do_action('ready', $('body'));
-		
-		
-		// initialize conditional logic
-		acf.conditional_logic.init();
 		
 	});
 	
+	
+	/*
+	*  load
+	*
+	*  description
+	*
+	*  @type	function
+	*  @date	19/02/2014
+	*  @since	5.0.0
+	*
+	*  @param	$post_id (int)
+	*  @return	$post_id (int)
+	*/
+	
+	$(window).load(function(){
+		
+		// action for 3rd party customization
+		acf.do_action('load', $('body'));
+		
+	});
 	
 	
 	/*
@@ -2006,50 +2065,6 @@ else if( acf.isset(_this, 'triggers', key) )
 		{
 			$('#acf-form-data input[name="_acfchanged"]').val(1);
 		}
-		
-	});
-			
-			
-			
-	/*
-	*  window load
-	*
-	*  @description: 
-	*  @since: 3.5.5
-	*  @created: 22/12/12
-	*/
-	
-	$(window).load(function(){
-		
-		acf.do_action('load', $('body'));
-		
-		
-		// init
-		acf.media.init();
-		
-		
-		setTimeout(function(){
-			
-			// Hack for CPT without a content editor
-			try
-			{
-				// post_id may be string (user_1) and therefore, the uploaded image cannot be attached to the post
-				if( $.isNumeric(acf.o.post_id) )
-				{
-					wp.media.view.settings.post.id = acf.o.post_id;
-				}
-				
-			} 
-			catch(e)
-			{
-				// one of the objects was 'undefined'...
-			}
-			
-			
-			// setup fields
-			//$(document).trigger('acf/setup_fields', [ $(document) ]);
-			
-		}, 10);
 		
 	});
 	
@@ -4585,17 +4600,27 @@ acf.add_action('ready append', function( $el ){
 	
 	acf.add_action('ready append', function( $el ){
 		
+		// vars
+		var refresh = false;
+		
 		
 		// add tabs
 		acf.get_fields({ type : 'tab'}, $el).each(function(){
 			
 			acf.fields.tab.add_tab( $(this) );
 			
+			refresh = true;
+			
 		});
 		
 		
 		// activate first tab
-		acf.fields.tab.refresh( $el );
+		if( refresh ) {
+			
+			acf.fields.tab.refresh( $el );
+			
+		}
+		
 		
 	});
 	
@@ -4628,37 +4653,48 @@ acf.add_action('ready append', function( $el ){
 	acf.add_action('hide_field', function( $field ){
 		
 		// validate
-		if( ! acf.is_field($field, {type : 'tab'}) )
-		{
+		if( ! acf.is_field($field, {type : 'tab'}) ) {
+		
 			return;
+			
 		}
 		
 		
 		// vars
-		var $tab = $field.siblings('.acf-tab-wrap').find('a[data-key="' + acf.get_data($field, 'key') + '"]');
+		var $a = $field.siblings('.acf-tab-wrap').find('a[data-key="' + acf.get_data($field, 'key') + '"]'),
+			$li = $a.parent();
+			
 		
+		// bail early if already hidden
+		if( $li.is(':hidden') ) {
 		
-		// if tab is already hidden, then ignore the following functiolnality
-		if( $tab.is(':hidden') )
-		{
 			return;
+			
 		}
 		
 		
 		// visibility
-		$tab.parent().hide();
+		$li.hide();
 		
 		
-		if( $tab.parent().siblings(':visible').exists() )
-		{
-			// if the $target to be hidden is a tab button, lets toggle a sibling tab button
-			$tab.parent().siblings(':visible').first().children('a').trigger('click');
+		// bail early if active tab exists
+		if( $li.siblings('.active').exists() ) {
+		
+			return;
+			
 		}
-		else
-		{
-			// no onther tabs
-			acf.fields.tab.hide_tab_fields( $field );
+		
+		
+		// if sibling tab exists, click it
+		if( $li.siblings(':visible').exists() ) {
+			
+			$li.siblings(':visible').first().children('a').trigger('click');
+			return;
 		}
+		
+		
+		// hide fields under this tab
+		acf.fields.tab.hide_tab_fields( $field );
 		
 	});
 	
@@ -4666,41 +4702,44 @@ acf.add_action('ready append', function( $el ){
 	acf.add_action('show_field', function( $field ){
 		
 		// validate
-		if( ! acf.is_field($field, {type : 'tab'}) )
-		{
+		if( ! acf.is_field($field, {type : 'tab'}) ) {
+		
 			return;
+			
 		}
 		
 		
 		// vars
-		var $tab = $field.siblings('.acf-tab-wrap').find('a[data-key="' + acf.get_data($field, 'key') + '"]');
+		var $a = $field.siblings('.acf-tab-wrap').find('a[data-key="' + acf.get_data($field, 'key') + '"]'),
+			$li = $a.parent();
+			
 		
+		// if tab is already visible, then ignore the following functionality
+		if( $li.is(':visible') ) {
 		
-		// if tab is already visible, then ignore the following functiolnality
-		if( $tab.is(':visible') )
-		{
 			return;
+			
 		}
 		
 		
 		// visibility
-		$tab.parent().show();
+		$li.show();
 		
 		
-		// if this is the active tab
-		if( $tab.parent().hasClass('active') )
-		{
-			$tab.trigger('click');
+		// bail early if this is the active tab
+		if( $li.hasClass('active') ) {
+		
 			return;
+			
 		}
 		
 		
 		// if the sibling active tab is actually hidden by conditional logic, take ownership of tabs
-		if( $tab.parent().siblings('.active').hasClass('acf-conditional_logic-hide') )
-		{
+		if( !$li.siblings(':visible').exists() ) {
+		
 			// show this tab group
-			$tab.trigger('click');
-			return;
+			$a.trigger('click');
+			
 		}
 		
 

@@ -125,10 +125,19 @@
 	padding-bottom: 6px;
 	font-size: 14px;
 	line-height: 14px;
+	min-height: 14px;
 }
 
 .acf-field-list .field .field-info .row-options {
 	visibility: hidden;
+}
+
+.acf-field-list .field .field-info .row-options a {
+	margin-left: 4px;
+}
+
+.acf-field-list .field .field-info .row-options a:first-child {
+	margin-left: 0;
 }
 
 .acf-field-list .field:hover > .field-info .row-options {
@@ -148,7 +157,7 @@
 	border-top-color: #E1E1E1;
 }
 
-.acf-field-list .field.open > .acf-tbody {
+.acf-field-list .field.open > .field-info {
 	background: #3595BC;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#46AFDB), to(#3199C5)); /* Safari 4+, Chrome */
 	background-image: -webkit-linear-gradient(top, #46AFDB, #3199C5); /* Chrome 10+, Safari 5.1+, iOS 5+ */
@@ -166,15 +175,15 @@
 	margin: -1px 0 0 -1px;
 }
 
-.acf-field-list .field.open > .acf-tbody a {
-	color: inherit;
+.acf-field-list .field.open > .field-info a {
+	color: #fff !important;
 }
 
-.acf-field-list .field.open > .acf-tbody a:hover {
+.acf-field-list .field.open > .field-info a:hover {
 	
 }
 
-.acf-field-list .field.open > .acf-tbody > .li-field_order .acf-icon {
+.acf-field-list .field.open > .field-info > .li-field_order .acf-icon {
 	border-color: #fff;
 }
 

@@ -256,6 +256,7 @@ class acf_settings_export {
     	$added = array();
     	$ignored = array();
     	$ref = array();
+    	$order = array();
     	
     	foreach( $json as $field_group )
     	{
@@ -284,6 +285,10 @@ class acf_settings_export {
 			$ref[ $field_group['key'] ] = $field_group['ID'];
 			
 			
+			// add to order
+			$order[ $field_group['ID'] ] = 0;
+			
+			
 			// add fields
 			foreach( $fields as $field ) {
 				
@@ -301,6 +306,17 @@ class acf_settings_export {
 				
 				// add field group reference
 				$field['field_group'] = $field_group['key'];
+				
+				
+				// add field menu_order
+				if( !isset($order[ $field['parent'] ]) ) {
+					
+					$order[ $field['parent'] ] = 0;
+					
+				}
+				
+				$field['menu_order'] = $order[ $field['parent'] ];
+				$order[ $field['parent'] ]++;
 				
 				
 				// save field

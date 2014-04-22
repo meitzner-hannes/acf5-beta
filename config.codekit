@@ -479,15 +479,6 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/fields\/text.php": {
-		"fileType": 8192,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/fields\/text.php",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
 	"\/fields\/textarea.php": {
 		"fileType": 8192,
 		"ignore": 0,
@@ -1319,12 +1310,12 @@
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
-	"\/inc\/tinymce\/tinymce.code.min.js": {
+	"\/inc\/tinymce\/plugins\/code\/plugin.min.js": {
 		"fileType": 64,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/inc\/tinymce\/tinymce.code.min.js",
-		"outputAbbreviatedPath": "\/inc\/tinymce\/tinymce.code.min.min.js",
+		"inputAbbreviatedPath": "\/inc\/tinymce\/plugins\/code\/plugin.min.js",
+		"outputAbbreviatedPath": "\/inc\/tinymce\/plugins\/code\/plugin.min.min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,

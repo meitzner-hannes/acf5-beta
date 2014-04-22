@@ -19,9 +19,8 @@ class acf_field_date_picker extends acf_field
 		$this->label = __("Date Picker",'acf');
 		$this->category = 'jquery';
 		$this->defaults = array(
-			'date_format'		=> 'Ymd',
 			'display_format'	=> 'd/m/Y',
-			'return_format'		=> 'Ymd',
+			'return_format'		=> 'd/m/Y',
 			'first_day'			=> 1
 		);
 		
@@ -102,7 +101,8 @@ class acf_field_date_picker extends acf_field
 			// Year
 			'Y'	=> 'yy',	// Numeric, 4 digits 								1999, 2003
 			'y'	=> 'y',		// Numeric, 2 digits 								99, 03
-						
+			
+			
 			// Month
 			'm'	=> 'mm',	// Numeric, with leading zeros  					01–12
 			'n'	=> 'm',		// Numeric, without leading zeros  					1–12
@@ -122,9 +122,9 @@ class acf_field_date_picker extends acf_field
 		);
 		
 		
-		foreach( $php_to_js as $from => $to )
+		foreach( $php_to_js as $php => $js )
 		{
-			$el_atts['data-display_format'] = str_replace($from, $to, $el_atts['data-display_format']);
+			$el_atts['data-display_format'] = str_replace($php, $js, $el_atts['data-display_format']);
 		}
 		
 
@@ -239,6 +239,14 @@ class acf_field_date_picker extends acf_field
 		// get time
 		$unixtimestamp = strtotime( $value );
  
+		
+		// bail early if timestamp is not correct
+		if( !$unixtimestamp ) {
+			
+			return $value;
+			
+		}
+		
 		
 		// translate
 		$value = date_i18n($field['return_format'], $unixtimestamp);

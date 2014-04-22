@@ -29,9 +29,9 @@
 			
 			// create options
 			var args = $.extend( {}, acf.l10n.date_picker, { 
-				dateFormat		:	'yy-mm-dd',
+				dateFormat		:	'yymmdd',
 				altField		:	$hidden,
-				altFormat		:	'yy-mm-dd',
+				altFormat		:	'yymmdd',
 				changeYear		:	true,
 				yearRange		:	"-100:+100",
 				changeMonth		:	true,

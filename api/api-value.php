@@ -187,21 +187,56 @@ function acf_update_value( $value = null, $post_id = 0, $field ) {
 		// update_option -> http://core.trac.wordpress.org/browser/tags/3.5.1/wp-includes/option.php#L0: line 215 (does not use stripslashes_deep)
 		$value = stripslashes_deep($value);
 		
-		$return = update_option( $post_id . '_' . $field['name'], $value );
-				  update_option( '_' . $post_id . '_' . $field['name'], $field['key'] );
+		$return = acf_update_option( $post_id . '_' . $field['name'], $value );
+				  acf_update_option( '_' . $post_id . '_' . $field['name'], $field['key'] );
 	}
 	
 	
 	// clear cache
 	wp_cache_delete( "load_value/post_id={$post_id}/name={$field['name']}", 'acf' );
-	
-	
-	//update cache
-	//wp_cache_set( "load_value/post_id={$post_id}/name={$field['name']}", $value, 'acf' );
 
 	
 	// return
 	return $return;
+}
+
+
+/*
+*  acf_update_option
+*
+*  This function is a wrapper for the WP update_option but provides logic for a 'no' autoload
+*
+*  @type	function
+*  @date	4/01/2014
+*  @since	5.0.0
+*
+*  @param	$option (string)
+*  @param	$value (mixed)
+*  @return	(boolean)
+*/
+
+function acf_update_option( $option = '', $value = false, $autoload = 'no' ) {
+	
+	// vars
+	$deprecated = '';
+	$return = false;
+	
+	
+	// add or update
+	if( get_option($option) !== false ) {
+	
+	    $return = update_option( $option, $value );
+	    
+	} else {
+	
+		$return = add_option( $option, $value, $deprecated, $autoload );
+		
+	}
+	
+	
+	// return
+	return $return;
+	
 }
 
 

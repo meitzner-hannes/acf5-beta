@@ -1,20 +1,11 @@
 <?php 
 
-// vars
-$version = acf_get_setting('version');
-$pro = acf_get_setting('pro', false);
-$tabs = array(
-	'new'		=> __("What's New", 'acf'),
-	'changelog'	=> __("Changelog", 'acf')
-);
+// extract args
+extract( $args );
 
-$active = 'new';
-
-if( !empty($_GET['tab']) && !empty($tabs[$_GET['tab']]) ) {
-	
-	$active = $_GET['tab'];
-	
-}
+// test
+$have_pro = false;
+$have_addons = false;
 
 ?>
 <div class="wrap about-wrap">
@@ -35,191 +26,156 @@ if( !empty($_GET['tab']) && !empty($tabs[$_GET['tab']]) ) {
 	
 	<div class="changelog">
 	
-		<h2 class="about-headline-callout">A smoother custom field experience</h2>
+		<h2 class="about-headline-callout"><?php _e("A smoother custom field experience", 'acf'); ?></h2>
 		
 		<div class="feature-section col three-col">
 			<div class="col-1">
 				<img src="http://assets.advancedcustomfields.com/info/5.0.0/select2.png">
-				<h4>Improved Usability</h4>
-				<p>Including the popular Select2 library has improved both usability and speed across a number of field types including post object, page link, taxonomy and select.</p>
+				<h4><?php _e("Improved Usability", 'acf'); ?></h4>
+				<p><?php _e("Including the popular Select2 library has improved both usability and speed across a number of field types including post object, page link, taxonomy and select.", 'acf'); ?></p>
 			</div>
 			<div class="col-2">
 				<img src="http://assets.advancedcustomfields.com/info/5.0.0/design.png">
-				<h4>Improved Design</h4>
-				<p>Many fields have undergone a visual refresh to make ACF look better than ever! Noticeable changes are seen on the gallery, relationship and oEmbed (new) fields!</p>
+				<h4><?php _e("Improved Design", 'acf'); ?></h4>
+				<p><?php _e("Many fields have undergone a visual refresh to make ACF look better than ever! Noticeable changes are seen on the gallery, relationship and oEmbed (new) fields!", 'acf'); ?></p>
 			</div>
 			<div class="col-3 last-feature">
 				<img src="http://assets.advancedcustomfields.com/info/5.0.0/sub-fields.png">
-				<h4>Improved Sub Fields</h4>
-				<p>Redesigning the data architecture has allowed sub fields to live independently from their parents. This allows you to drag and drop fields in and out of parent fields!</p>
+				<h4><?php _e("Improved Data", 'acf'); ?></h4>
+				<p><?php _e("Redesigning the data architecture has allowed sub fields to live independently from their parents. This allows you to drag and drop fields in and out of parent fields!", 'acf'); ?></p>
 			</div>
 		</div>
 		
 		<hr />
 		
-		<h2 class="about-headline-callout">Goodbye Add-ons. Hello PRO</h2>
+		<h2 class="about-headline-callout"><?php _e("Goodbye Add-ons. Hello PRO", 'acf'); ?></h2>
 		
-		<?php 
-		
-		// vars
-		$has_addon = true;
-		$addons = array(
-			'acf-flexible-content',
-			'acf-gallery',
-			'acf-options-page',
-			'acf-repeater',
-		);
-		
-		
-		// get active plugins
-		$plugins = implode(' ', get_option('active_plugins'));
-		
-		
-		foreach( $addons as $addon ) {
-			
-			if( strpos($plugins, $addon) !== false ) {
-				
-				$has_addon = true;
-				break;
-			}
-			
-		}
-		
-		$pro = false;
-		
-		?>
-		<div class="feature-section col three-col">
-			<div class="col-2">
-				<h4>Free vs PRO</h4>
-				<p>ACF is now available in both a <a href="http://wordpress.org/extend/plugins/advanced-custom-fields/" target="_blank">free version</a> and a <a href="http://advancedcustomfields.com/pro" target="_blank">PRO version</a>. The PRO version includes extra functionality such as the repeater field, gallery field, flexible content field and options page.</p>
-				<p>With both personal and developer licenses available, premium functionality is more affordable & accessible than ever!</p>
-			</div>
-			<div class="col-1">
-				<h4>Removing the bottleneck</h4>
-				<p>All 4 premium Add-ons have now been combined into a PRO version of the ACF plugin. his change was necessary to remove the development bottleneck surrounding premium content and updates.</p>
-				<p>By removing the bottleneck, premium updates will roll out faster and more stable.</p>
-			</div>
-			
-			<div class="col-3 last-feature">
-				<h4>Website Status</h4>
-				
-				<?php if( $has_addon && $pro ): ?>
-				<div class="acf-callout success">
-					<h4>Good</h4>
-					<p>ACF PRO is installed and premium functionality is available</p>
-				</div>
-				<?php elseif( $has_addon ):  ?>
-				<div class="acf-callout">
-					<h4>Warning</h4>
-					<p>ACF PRO is required for premium functionality.</p>
-					<p>Please <a href="http://advancedcustomfields.com/pro" target="_blank">purchase an ACF PRO license</a> or read our guide to <a href="http://www.advancedcustomfields.com/resources/updates/upgrading-v4-v5/" target="_blank">roll back version 4</a>.</p>
-				</div>
-				<?php else: ?>
-				<div class="acf-callout success">
-					<h4>Good</h4>
-					<p>ACF is installed and premium functionality is not required</p>
-				</div>
-				<?php endif; ?>
-			</div>
+		<?php if( $have_pro ): ?>
+		<div class="acf-callout success">
+			<h4><?php _e("Systems check", 'acf'); ?></h4>
+			<p><?php _e("Everything looks good. With ACF PRO installed, all premium features will continue to work as normal.", 'acf'); ?></p>
 		</div>
+		<?php elseif( $have_addons ): ?>
+		<div class="acf-callout">
+			<h4><?php _e("Systems check", 'acf'); ?></h4>
+			<p><?php _e("Issue detected. This website makes use of ACF4 add-ons and without ACF5 PRO these premium features will no longer be available.", 'acf'); ?></p>
+			<p><?php _e("Please see below for information regarding the changes to add-ons and your options to either upgrade or rollback.", 'acf'); ?></p>
+		</div>
+		<?php else: ?>
+		<div class="acf-callout success">
+			<h4><?php _e("Systems check", 'acf'); ?></h4>
+			<p><?php _e("Everything looks good. This website does not use premium add-ons, and is not affected by this change.", 'acf'); ?></p>
+		</div>
+		<?php endif; ?>
 		
 		<div class="feature-section col three-col">
-			<div class="col-1">
-				<h4>Discounts</h4>
-				<p>To help make the migration from Add-ons to PRO as easy as possible, you will be able to purchase the ACF PRO plugin at a heavily reduced rate via the <a href="http://www.advancedcustomfields.com/store/account/" target="_blank">account section</a> of the ACF website. Please login to view your discount!</p>
-			</div>
-			<div class="col-2 last-feature">
-				<h4>Upgrading from FREE to PRO</h4>
-				<p>Upon purchase of an ACF PRO personal or developer license, you will gain access to download the ACF PRO plugin. Simply add the new plugin, deactivate the old one, and activate the new one!</p>
-			</div>
 		
+			<div class="col">
+				<h4><?php _e("Introducing ACF PRO", 'acf'); ?></h4>
+				<p><?php printf(__('Alongside ACF5 is the all new <a href="%s">ACF5 PRO</a> version! This PRO version includes all 4 premium add-ons (repeater field, gallery field, flexible content field and options page) and with both personal and developer licenses available, premium functionality is more affordable than ever before!', 'acf'), esc_url('http://advancedcustomfields.com/pro')); ?></p>
+			</div>
+			
+			<?php if( !$have_pro && $have_addons ): ?>
+			<div class="col">
+				<h4><?php _e("Upgrade to PRO", 'acf'); ?></h4>
+				<p><?php printf(__('To help make the migration from ACF4 add-ons to ACF5 PRO as easy as possible, you can purchase the ACF5 PRO plugin at a heavily reduced rate via your <a href="%s">online account</a>.', 'acf'), esc_url('http://www.advancedcustomfields.com/store/account/')); ?></p>
+				<p><?php printf(__('You can then simply update from ACF5 to ACF5 PRO by following this <a href="%s">upgrade guide</a>.', 'acf'), esc_url('http://www.advancedcustomfields.com/resources/updates/upgrading-v4-v5/')); ?></p>
+			</div>
+			<?php else: ?>
+			<div class="col">
+				<h4><?php _e("New features", 'acf'); ?></h4>
+				<p><?php _e("ACF PRO contains awesome features such as repeatable data, flexible content layouts, a beautiful gallery field and the ability to create extra admin options pages!", 'acf'); ?></p>
+				<p><?php printf(__('To find out more, be sure to read <a href="%s">What’s new in version 5</a>.', 'acf'), esc_url('http://www.advancedcustomfields.com/resources/updates/whats-new-version-5/')); ?></p>
+			</div>
+			<?php endif; ?>
+			
+			<div class="col last-feature">
+				<h4><?php _e("Support", 'acf'); ?></h4>
+				<p><?php _e("Please contact out support team and view the community forums for help with any issues you experience during this update.", 'acf'); ?></p>
+				<p><?php printf(__('If time is critical, you can <a href="%s">roll back to ACF4</a>.', 'acf'), esc_url('http://www.advancedcustomfields.com/resources/updates/upgrading-v4-v5/')); ?></p>
+			</div>
+			
 		</div>
-		
 		
 		<hr />
 		
-		<h2 class="about-headline-callout">Under the Hood</h2>
+		<h2 class="about-headline-callout"><?php _e("Under the Hood", 'acf'); ?></h2>
 		
 		<div class="feature-section col three-col">
 			
 			<div class="col">
-				<h4>Smarter field settings</h4>
-				<p>ACF now saves it's field settings as individual post objects</p>
+				<h4><?php _e("Smarter field settings", 'acf'); ?></h4>
+				<p><?php _e("ACF now saves it's field settings as individual post objects", 'acf'); ?></p>
 			</div>
 			
 			<div class="col">
-				<h4>More AJAX</h4>
-				<p>More fields use AJAX powered search to speed up page loading</p>
+				<h4><?php _e("More AJAX", 'acf'); ?></h4>
+				<p><?php _e("More fields use AJAX powered search to speed up page loading", 'acf'); ?></p>
 			</div>
 			
 			<div class="col last-feature">
-				<h4>Local JSON</h4>
-				<p>New auto export to JSON feature improves speed</p>
+				<h4><?php _e("Local JSON", 'acf'); ?></h4>
+				<p><?php _e("New auto export to JSON feature improves speed", 'acf'); ?></p>
 			</div>
 			
 			<div class="col">
-				<h4>Version control</h4>
-				<p>New auto export to JSON feature allows field settings to be version controlled</p>
+				<h4><?php _e("Better version control", 'acf'); ?></h4>
+				<p><?php _e("New auto export to JSON feature allows field settings to be version controlled", 'acf'); ?></p>
 			</div>
 			
 			<div class="col">
-				<h4>Swapped XML for JSON</h4>
-				<p>Import / Export now uses JSON in favour of XML</p>
+				<h4><?php _e("Swapped XML for JSON", 'acf'); ?></h4>
+				<p><?php _e("Import / Export now uses JSON in favour of XML", 'acf'); ?></p>
 			</div>
 			
 			<div class="col last-feature">
-				<h4>New Forms</h4>
-				<p>Fields can now be mapped to comments, widgets and all user forms!</p>
+				<h4><?php _e("New Forms", 'acf'); ?></h4>
+				<p><?php _e("Fields can now be mapped to comments, widgets and all user forms!", 'acf'); ?></p>
 			</div>
 			
 			<div class="col">
-				<h4>New Field</h4>
-				<p>A new field for embedding content has been added</p>
+				<h4><?php _e("New Field", 'acf'); ?></h4>
+				<p><?php _e("A new field for embedding content has been added", 'acf'); ?></p>
 			</div>
 			
 			<div class="col">
-				<h4>New Gallery</h4>
-				<p>The gallery field has undergone a much needed facelift</p>
+				<h4><?php _e("New Gallery", 'acf'); ?></h4>
+				<p><?php _e("The gallery field has undergone a much needed facelift", 'acf'); ?></p>
 			</div>
 			
 			<div class="col last-feature">
-				<h4>New Settings</h4>
-				<p>Field group settings have been added for label placement and instruction placement</p>
+				<h4><?php _e("New Settings", 'acf'); ?></h4>
+				<p><?php _e("Field group settings have been added for label placement and instruction placement", 'acf'); ?></p>
 			</div>
 			
 			<div class="col">
-				<h4>Better Front End Forms</h4>
-				<p>acf_form() can now create a new post on submission</p>
+				<h4><?php _e("Better Front End Forms", 'acf'); ?></h4>
+				<p><?php _e("acf_form() can now create a new post on submission", 'acf'); ?></p>
 			</div>
 			
 			<div class="col">
-				<h4>Better Validation</h4>
-				<p>Form validation is now done via PHP + AJAX in favour of only JS</p>
+				<h4><?php _e("Better Validation", 'acf'); ?></h4>
+				<p><?php _e("Form validation is now done via PHP + AJAX in favour of only JS", 'acf'); ?></p>
 			</div>
 			
 			<div class="col last-feature">
-				<h4>Relationship Field</h4>
-				<p>New Relationship field setting for 'Filters' (Search, Post Type, Taxonomy)</p>
+				<h4><?php _e("Relationship Field", 'acf'); ?></h4>
+				<p><?php _e("New Relationship field setting for 'Filters' (Search, Post Type, Taxonomy)", 'acf'); ?></p>
 			</div>
 			
 			<div class="col">
-				<h4>Moving Fields</h4>
-				<p>New field group functionality allows you to move a field between groups</p>
+				<h4><?php _e("Moving Fields", 'acf'); ?></h4>
+				<p><?php _e("New field group functionality allows you to move a field between groups & parents", 'acf'); ?></p>
 			</div>
 			
 			<div class="col">
-				<h4>Moving Field Heirachy</h4>
-				<p>New Add-ons page uses an external JSON file to read in data (easy to add 3rd party fields)</p>
+				<h4><?php _e("Page Link", 'acf'); ?></h4>
+				<p><?php _e("New archives group in page_link field selection", 'acf'); ?></p>
 			</div>
 			
 			<div class="col last-feature">
-				<h4>Page Link</h4>
-				<p>New archives group in page_link field selection</p>
-			</div>
-			
-			<div class="col">
-				<h4>Better Options Pages</h4>
-				<p>New functions for options page allow creation of both parent and child menu pages</p>
+				<h4><?php _e("Better Options Pages", 'acf'); ?></h4>
+				<p><?php _e("New functions for options page allow creation of both parent and child menu pages", 'acf'); ?></p>
 			</div>			
 		</div>
 		

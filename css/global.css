@@ -133,6 +133,10 @@ img.acf-fw {
 	margin: 0 !important;
 }
 
+.acf-callout p {
+	margin-bottom: 0;
+}
+
 .acf-callout.danger {
 	border-color: #D9534F;
 	background-color: #FDF7F7;

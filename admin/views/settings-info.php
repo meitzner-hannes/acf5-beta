@@ -91,7 +91,7 @@ $have_addons = false;
 			
 			<div class="col last-feature">
 				<h4><?php _e("Support", 'acf'); ?></h4>
-				<p><?php _e("Please contact out support team and view the community forums for help with any issues you experience during this update.", 'acf'); ?></p>
+				<p><?php _e("Please contact our support team and view the community forums for help with any issues you experience during this update.", 'acf'); ?></p>
 				<p><?php printf(__('If time is critical, you can <a href="%s">roll back to ACF4</a>.', 'acf'), esc_url('http://www.advancedcustomfields.com/resources/updates/upgrading-v4-v5/')); ?></p>
 			</div>
 			

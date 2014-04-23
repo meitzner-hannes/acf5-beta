@@ -415,6 +415,7 @@ function acf_add_options_sub_page( $page = '' ) {
 function acf_set_options_page_title( $title = 'Options' ) {
 	
 	acf()->settings['options_page']['page_title'] = $title;
+	
 }
 
 

@@ -101,6 +101,7 @@ class acf {
 		acf_include('core/local.php');
 		acf_include('core/location.php');
 		acf_include('core/revisions.php');
+		acf_include('core/compatibility.php');
 		
 		
 		// forms

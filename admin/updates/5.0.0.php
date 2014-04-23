@@ -101,61 +101,35 @@ function _migrate_field_group_500( $ofg ) {
 	// get all rules
  	$rules = get_post_meta($ofg->ID, 'rule', false);
  	
- 	if( is_array($rules) )
- 	{
+ 	if( is_array($rules) ) {
+ 	
  		$group_no = 0;
  		
-	 	foreach( $rules as $rule )
-	 	{
+	 	foreach( $rules as $rule ) {
+	 		
 	 		// if field group was duplicated, it may now be a serialized string!
 	 		$rule = maybe_unserialize($rule);
 	 		
 	 		
 		 	// does this rule have a group?
 		 	// + groups were added in 4.0.4
-		 	if( !isset($rule['group_no']) )
-		 	{
+		 	if( !isset($rule['group_no']) ) {
+		 	
 			 	$rule['group_no'] = $group_no;
 			 	
 			 	// sperate groups?
-			 	if( get_post_meta($ofg->ID, 'allorany', true) == 'any' )
-			 	{
+			 	if( get_post_meta($ofg->ID, 'allorany', true) == 'any' ) {
+			 	
 				 	$group_no++;
+				 	
 			 	}
+			 	
 		 	}
 		 	
 		 	
 		 	// extract vars
 		 	$group = acf_extract_var( $rule, 'group_no' );
 		 	$order = acf_extract_var( $rule, 'order_no' );
-		 	
-		 	
-		 	// param changes
-		 	$param_replace = array(
-		 		'taxonomy'		=> 'post_taxonomy',
-		 		'ef_media'		=> 'attachment',
-		 		'ef_taxonomy'	=> 'taxonomy',
-		 		'ef_user'		=> 'user_role',
-		 	);
-		 	
-		 	if( array_key_exists($rule['param'], $param_replace) ) {
-			 	
-			 	$rule['param'] = $param_replace[ $rule['param'] ];
-			 	
-		 	}
-		 	
-		 	
-		 	// category / taxonomy terms are saved differently
-		 	if( $rule['param'] == 'post_category' || $rule['param'] == 'post_taxonomy' ) {
-			 	
-			 	$term_id = $rule['value'];
-			 	$taxonomy = $wpdb->get_var( $wpdb->prepare( "SELECT taxonomy FROM $wpdb->term_taxonomy WHERE term_id = %d LIMIT 1", $term_id) );
-			 	$term = get_term( $term_id, $taxonomy );
-			 	
-			 	// update rule value
-			 	$rule['value'] = "{$term->taxonomy}:{$term->slug}";
-			 	
-		 	}
 		 	
 		 	
 		 	// add to group
@@ -175,35 +149,38 @@ function _migrate_field_group_500( $ofg ) {
  	
  	
 	// settings
- 	$position = get_post_meta($ofg->ID, 'position', true);
- 	if( $position )
-	{
+ 	if( $position = get_post_meta($ofg->ID, 'position', true) ) {
+ 	
 		$nfg['position'] = $position;
-	}
-	
-	$layout = get_post_meta($ofg->ID, 'layout', true);
- 	if( $layout )
-	{
-		// change no_box to seamless
-		if( $layout == 'no_box' )
-		{
-			$layout = 'seamless';
-		}
 		
-		// layout is now style
-		$nfg['style'] = $layout;
 	}
 	
-	$hide_on_screen = get_post_meta($ofg->ID, 'hide_on_screen', true);
- 	if( $hide_on_screen )
-	{
-		$hide_on_screen = maybe_unserialize($hide_on_screen);
-		$nfg['hide_on_screen'] = $hide_on_screen;
+ 	if( $layout = get_post_meta($ofg->ID, 'layout', true) ) {
+ 	
+		$nfg['layout'] = $layout;
+		
 	}
+	
+ 	if( $hide_on_screen = get_post_meta($ofg->ID, 'hide_on_screen', true) ) {
+ 	
+		$nfg['hide_on_screen'] = maybe_unserialize($hide_on_screen);
+		
+	}
+	
+	
+	// Note: acf_update_field_group will call the acf_get_valid_field_group function and apply 'compatbility' changes
 	
 	
 	// save field group
-	$nfg = acf_update_field_group($nfg);
+	$nfg = acf_update_field_group( $nfg );
+	
+	
+	// trash?
+	if( $post_status == 'trash' ) {
+		
+		acf_trash_field_group( $nfg['ID'] );
+		
+	}
 	
 	
 	// return
@@ -230,145 +207,38 @@ function _migrate_field_500( $field ) {
 	$field['menu_order'] = acf_extract_var( $field, 'order_no' );
 	
 	
-	// conditional logic has changed
-	if( !empty($field['conditional_logic']['status']) )
-	{
-		if( is_array($field['conditional_logic']['rules']) )
-	 	{
-	 		$group = 0;
-	 		$all_or_any = $field['conditional_logic']['all_or_any'];
-	 		
-		 	foreach( $field['conditional_logic']['rules'] as $rule )
-		 	{
-			 	// sperate groups?
-			 	if( $all_or_any == 'any' )
-			 	{
-				 	$group++;
-			 	}
-			 	
-			 	
-			 	// add to group
-			 	$groups[ $group ][] = $rule;
-	 	
-		 	}
-		 	
-		 	// sort groups
-			ksort( $groups );
-	 	}
-	}
-	else
-	{
-		$field['conditional_logic'] = 0;
-	}
-	
-	
-	// image / file settings
-	if( $field['type'] == 'image' || $field['type'] == 'file' ) {
-		
-		// save_format is now return_format
-		if( !empty($field['save_format']) ) {
-			
-			$field['return_format'] = acf_extract_var( $field, 'save_format' );
-			
-		}
-		
-		
-		// object is now array
-		if( $field['return_format'] == 'object' ) {
-			
-			$field['return_format'] = 'array';
-			
-		}
-		
-	} elseif( $field['type'] == 'wysiwyg' ) {
-		
-		if( $field['media_upload'] == 'yes' ) {
-			
-			$field['media_upload'] = 1;
-			
-		} else {
-			
-			$field['media_upload'] = 0;
-			
-		}
-		
-	} elseif( $field['type'] == 'date_picker' ) {
-		
-		// extract vars
-		$date_format = acf_extract_var( $field, 'date_format' );
-		$display_format = acf_extract_var( $field, 'display_format' );
-		
-		
-		// php_to_js
-		$php_to_js = array(
-			
-			// Year
-			'Y'	=> 'yy',	// Numeric, 4 digits 								1999, 2003
-			'y'	=> 'y',		// Numeric, 2 digits 								99, 03
-			
-			
-			// Month
-			'm'	=> 'mm',	// Numeric, with leading zeros  					01–12
-			'n'	=> 'm',		// Numeric, without leading zeros  					1–12
-			'F'	=> 'MM',	// Textual full   									January – December
-			'M'	=> 'M',		// Textual three letters    						Jan - Dec 
-			
-			
-			// Weekday
-			'l'	=> 'DD',	// Full name  (lowercase 'L') 						Sunday – Saturday
-			'D'	=> 'D',		// Three letter name 	 							Mon – Sun 
-			
-			
-			// Day of Month
-			'd'	=> 'dd',	// Numeric, with leading zeros						01–31
-			'j'	=> 'd',		// Numeric, without leading zeros 					1–31
-			'S'	=> '',		// The English suffix for the day of the month  	st, nd or th in the 1st, 2nd or 15th. 
-		);
-		
-		foreach( $php_to_js as $php => $js ) {
-		
-			$date_format = str_replace($js, $php, $date_format);
-			$display_format = str_replace($js, $php, $display_format);
-			
-		}
-		
-		
-		// append settings
-		$field['return_format'] = $date_format;
-		$field['display_format'] = $display_format;
-		
-	}
+	// get valid field
+	$field = acf_get_valid_field( $field );
 	
 	
 	// save field
 	$field = acf_update_field( $field );
 	
 	
-	// sub fields? They need formatted data
-	$sub_field_groups = array();
+	// sub fields
+	if( $field['type'] == 'repeater' ) {
 	
-	if( $field['type'] == 'repeater' )
-	{
 		$sub_fields = acf_extract_var($field, 'sub_fields');
 		$keys = array_keys($sub_fields);
 		
-		foreach( $keys as $key )
-		{
+		foreach( $keys as $key ) {
+		
 			$sub_field = acf_extract_var($sub_fields, $key);
 			$sub_field['parent'] = $field['ID'];
 			
 			_migrate_field_500( $sub_field );
+			
 		}
 		
 		// save field again with less sub field data
 		$field = acf_update_field( $field );
-	}
-	elseif( $field['type'] == 'flexible_content' )
-	{
+	
+	} elseif( $field['type'] == 'flexible_content' ) {
+	
 		$keys = array_keys($field['layouts']);
 		
-		foreach( $keys as $key )
-		{
+		foreach( $keys as $key ) {
+		
 			$layout_key = uniqid();
 			
 			$field['layouts'][ $key ]['key'] = $layout_key;
@@ -376,14 +246,16 @@ function _migrate_field_500( $field ) {
 			$sub_fields = acf_extract_var($field['layouts'][ $key ], 'sub_fields');
 			$keys2 = array_keys($sub_fields);
 			
-			foreach( $keys2 as $key2 )
-			{
+			foreach( $keys2 as $key2 ) {
+			
 				$sub_field = acf_extract_var($sub_fields, $key2);
 				$sub_field['parent'] = $field['ID'];
 				$sub_field['parent_layout'] = $layout_key;
 				
 				_migrate_field_500( $sub_field );
+				
 			}
+			
 		}
 		
 		// save field again with less sub field data

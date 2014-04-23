@@ -434,7 +434,7 @@
 		
 		
 		/*
-		*  duplicate
+		*  duplicate_layout
 		*
 		*  This function will duplicate a fc layout
 		*
@@ -446,7 +446,7 @@
 		*  @return	n/a
 		*/
 		
-		duplicate : function( $tr ){
+		duplicate_layout : function( $tr ){
 			
 			// save select values
 			$tr.find('select').each(function(){

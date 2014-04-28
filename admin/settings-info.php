@@ -102,6 +102,14 @@ class acf_settings_info {
 		}
 		
 		
+		// set active tab
+		if( !empty($_GET['tab']) && array_key_exists($_GET['tab'], $view['tabs']) ) {
+			
+			$view['active'] = $_GET['tab'];
+			
+		}
+		
+		
 		// load view
 		acf_get_view('settings-info', $view);
 

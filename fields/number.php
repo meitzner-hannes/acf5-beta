@@ -188,6 +188,67 @@ class acf_field_number extends acf_field
 	
 	
 	/*
+	*  validate_value
+	*
+	*  description
+	*
+	*  @type	function
+	*  @date	11/02/2014
+	*  @since	5.0.0
+	*
+	*  @param	$post_id (int)
+	*  @return	$post_id (int)
+	*/
+	
+	function validate_value( $valid, $value, $field, $input ){
+		
+		// if value is not numeric...
+		if( !is_numeric($value) ) {
+			
+			// allow blank to be saved
+			if( !empty($value) ) {
+				
+				$valid = __('Value must be a number', 'acf');
+				
+			}
+			
+			
+			// return early
+			return $valid;
+			
+		}
+		
+		
+		
+		// defaults
+		$field['min'] = empty($field['min']) ? 0 : $field['min'];
+		$field['max'] = empty($field['max']) ? 0 : $field['max'];
+		$value = intval($value);
+		
+		
+		// min
+		if( $value < $field['min'] ) {
+			
+			$valid = sprintf( 'Value must be equal to or higher than %d', $field['min'] );
+			
+		}
+		
+		
+		// max
+		if( $value > $field['max'] ) {
+			
+			$valid = sprintf( 'Value must be equal to or lower than %d', $field['max'] );
+			
+		}
+		
+		
+		// return		
+		return $valid;
+		
+	}
+	
+	
+	/*
 	*  update_value()
 	*
 	*  This filter is appied to the $value before it is updated in the db

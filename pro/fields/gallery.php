@@ -400,17 +400,17 @@ class acf_field_gallery extends acf_field
 			
 			<ul class="acf-hl">
 				<li>
-					<a data-name="add-attachment-button" class="acf-button blue">Add to gallery</a>
+					<a data-name="add-attachment-button" class="acf-button blue"><?php _e('Add to gallery', 'acf'); ?></a>
 				</li>
 				<li class="acf-fr">
 					<select data-name="bulk-actions-select">
-						<option value="">Bulk actions</option>
-						<option value="date">Sort by date uploaded</option>
-						<option value="modified">Sort by date modified</option>
-						<option value="title">Sort by title</option>
-						<option value="reverse">Reverse current order</option>
+						<option value=""><?php _e('Bulk actions', 'acf'); ?></option>
+						<option value="date"><?php _e('Sort by date uploaded', 'acf'); ?></option>
+						<option value="modified"><?php _e('Sort by date modified', 'acf'); ?></option>
+						<option value="title"><?php _e('Sort by title', 'acf'); ?></option>
+						<option value="reverse"><?php _e('Reverse current order', 'acf'); ?></option>
 					</select>
-					<!-- <a class="acf-button bulk-actions-apply">Apply</a> -->
+					<!-- <a class="acf-button bulk-actions-apply"><?php _e('Apply', 'acf'); ?></a> -->
 				</li>
 			</ul>
 			
@@ -431,10 +431,10 @@ class acf_field_gallery extends acf_field
 			
 			<ul class="acf-hl">
 				<li>
-					<a data-name="close-attachment-button" class="acf-button">Close</a>
+					<a data-name="close-attachment-button" class="acf-button"><?php _e('Close', 'acf'); ?></a>
 				</li>
 				<li class="acf-fr">
-					<a data-name="save-attachment-button" class="acf-button blue">Update</a>
+					<a data-name="save-attachment-button" class="acf-button blue"><?php _e('Update', 'acf'); ?></a>
 				</li>
 			</ul>
 			

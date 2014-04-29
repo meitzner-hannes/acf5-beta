@@ -270,7 +270,7 @@ class acf_field_flexible_content extends acf_field
 										'name'		=> 'label',
 										'prefix'	=> $layout_prefix,
 										'value'		=> $layout['label'],
-										'prepend'	=> 'Label'
+										'prepend'	=> __('Label','acf')
 									));
 									
 									?>
@@ -285,7 +285,7 @@ class acf_field_flexible_content extends acf_field
 										'name'		=> 'name',
 										'prefix'	=> $layout_prefix,
 										'value'		=> $layout['name'],
-										'prepend'	=> 'Name'
+										'prepend'	=> __('Name','acf')
 									));
 									
 									?>
@@ -321,7 +321,7 @@ class acf_field_flexible_content extends acf_field
 										'name'		=> 'min',
 										'prefix'	=> $layout_prefix,
 										'value'		=> $layout['min'],
-										'prepend'	=> 'Min'
+										'prepend'	=> __('Min','acf')
 									));
 									
 									?>
@@ -334,7 +334,7 @@ class acf_field_flexible_content extends acf_field
 										'name'		=> 'max',
 										'prefix'	=> $layout_prefix,
 										'value'		=> $layout['max'],
-										'prepend'	=> 'Max'
+										'prepend'	=> __('Max','acf')
 									));
 									
 									?>

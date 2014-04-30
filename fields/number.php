@@ -229,7 +229,7 @@ class acf_field_number extends acf_field
 		// min
 		if( $value < $field['min'] ) {
 			
-			$valid = sprintf( 'Value must be equal to or higher than %d', $field['min'] );
+			$valid = sprintf(__('Value must be equal to or higher than %d', 'acf'), $field['min'] );
 			
 		}
 		
@@ -237,7 +237,7 @@ class acf_field_number extends acf_field
 		// max
 		if( $value > $field['max'] ) {
 			
-			$valid = sprintf( 'Value must be equal to or lower than %d', $field['max'] );
+			$valid = sprintf(__('Value must be equal to or lower than %d', 'acf'), $field['max'] );
 			
 		}
 		

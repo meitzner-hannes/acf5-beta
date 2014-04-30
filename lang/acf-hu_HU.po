@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Custom Fields\n"
-"POT-Creation-Date: 2014-04-27 01:24+0100\n"
-"PO-Revision-Date: 2014-04-27 01:49+0100\n"
+"POT-Creation-Date: 2014-04-29 02:26+0000\n"
+"PO-Revision-Date: 2014-04-29 14:55+0100\n"
 "Last-Translator: Balazs Tihanyi <balazstihanyi@t-email.hu>\n"
 "Language-Team: Elliot Condon <e@elliotcondon.com>\n"
 "Language: hu_HU\n"
@@ -331,7 +331,7 @@ msgstr "Mezőtípusok"
 
 #: admin/field-groups.php:362
 msgid "Functions"
-msgstr "Függvények (functions)"
+msgstr "Funkciók (functions)"
 
 #: admin/field-groups.php:363
 msgid "Actions"
@@ -884,7 +884,7 @@ msgstr "Importálás"
 
 #: admin/views/settings-info.php:13
 msgid "Welcome to Advanced Custom Fields"
-msgstr "Üdvözlet az Advanced Custom Fields-től"
+msgstr "Üdvözlet! Itt az Advanced Custom Fields"
 
 #: admin/views/settings-info.php:14
 #, php-format
@@ -897,7 +897,7 @@ msgstr ""
 
 #: admin/views/settings-info.php:29
 msgid "A smoother custom field experience"
-msgstr "Egyéni mező hozzáadása"
+msgstr "Egyéni mezők simább használatának élménye"
 
 #: admin/views/settings-info.php:34
 msgid "Improved Usability"
@@ -909,9 +909,9 @@ msgid ""
 "across a number of field types including post object, page link, taxonomy "
 "and select."
 msgstr ""
-"A népszerű Select2 könyvtár bevonása nagyban javítja a használhatóságot és a "
-"sebességet számos mezőtípus esetében, mint a bejegyzés objektumok, "
-"oldalhivatkozások, osztályozások és a kiválasztás."
+"A népszerű Select2 könyvtár bevonása számos mezőtípusnál javítja a "
+"használhatóságot és a sebességet, például a bejegyzés objektumok, "
+"oldalhivatkozások, osztályozások és a kiválasztás esetében."
 
 #: admin/views/settings-info.php:39
 msgid "Improved Design"
@@ -923,7 +923,7 @@ msgid ""
 "ever! Noticeable changes are seen on the gallery, relationship and oEmbed "
 "(new) fields!"
 msgstr ""
-"Számos mező vizuálisan megújult, hogy az ACF jobban nézzen ki, mint valaha! "
+"Számos mező vizuálisan megújult, hogy az ACF jobban nézzen ki, mint valaha. "
 "Észrevehető változások történtek a galéria, kapcsolat és oEmbed (új) mezők "
 "esetében."
 
@@ -938,8 +938,8 @@ msgid ""
 "and out of parent fields!"
 msgstr ""
 "Az adatszerkezet újratervezésének köszönhetően az almezők függetlenek lettek "
-"a szülőmezőktől Ez lehetővé teszi, hogy a mezőket fogd-és-vidd módszerrel "
-"szülőmezőkbe, vagy azokon kívülre helyezzük át."
+"a szülőmezőktől. Mindez lehetővé teszi, hogy a mezőket fogd-és-vidd módon "
+"más mezőkbe, vagy azokon kívülre helyezzük át."
 
 #: admin/views/settings-info.php:51
 msgid "Goodbye Add-ons. Hello PRO"
@@ -955,16 +955,17 @@ msgid ""
 "Everything looks good. With ACF PRO installed, all premium features will "
 "continue to work as normal."
 msgstr ""
-"Minden rendben. Az ACF PRO változat telepítésével minden prémium "
-"szolgáltatás a továbbiakban is megfelelően fog működni."
+"Minden rendben. Az ACF5 PRO változat telepítésével a továbbiakban is "
+"megfelelően fog működni minden prémium szolgáltatás."
 
 #: admin/views/settings-info.php:61
 msgid ""
 "Issue detected. This website makes use of ACF4 add-ons and without ACF5 PRO "
 "these premium features will no longer be available."
 msgstr ""
-"Probléma észlelve. A weboldal ACF4 bővítmény kiegészítéseket használ és az "
-"ACF5 PRO változat nélkül ezek a szolgáltatások nem lesznek elérhetőek."
+"Probléma észlelve. Az oldal ACF4 bővítmény kiegészítéseket használ, az ACF5 "
+"PRO változat nélkül ezek a szolgáltatások a továbbiakban nem lesznek "
+"elérhetőek."
 
 #: admin/views/settings-info.php:62
 msgid ""
@@ -981,7 +982,7 @@ msgid ""
 "affected by this change."
 msgstr ""
 "Minden rendben. A weboldal nem használ prémium kiegészítő bővítményeket, így "
-"nem érintik a változások."
+"a változások nem érintik."
 
 #: admin/views/settings-info.php:74
 msgid "Introducing ACF PRO"
@@ -996,10 +997,10 @@ msgid ""
 "developer licenses available, premium functionality is more affordable than "
 "ever before!"
 msgstr ""
-"Az ACF5 mellett létezik egy új <a href=\"%s\">ACF5 PRO</a> változat! Ez a "
-"PRO változat magában foglalja mind a 4 korábbi prémium kiegészítőt (ismétlő "
-"csoportmező, galéria mező, rugalmas tartalom mező és beállítás oldal). A "
-"személyes és fejlesztői licencek révén a prémium funkcionalitás sokkal "
+"Az ACF5 mellett létezik egy új <a href=\"%s\">ACF5 PRO</a> változat. Ez a "
+"változat magában foglalja mind a négy korábbi prémium kiegészítőt (ismétlő "
+"csoportmező, galéria, rugalmas tartalom és beállítás oldal). A személyes és "
+"fejlesztői licenceknek köszönhetően a prémium funkcionalitás így sokkal "
 "megfizethetőbb, mint korábban."
 
 #: admin/views/settings-info.php:80
@@ -1013,9 +1014,9 @@ msgid ""
 "possible, you can purchase the ACF5 PRO plugin at a heavily reduced rate via "
 "your <a href=\"%s\">online account</a>."
 msgstr ""
-"Annak érdekében, hogy segítsük az ACF4 bővítményekről az ACF5 PRO változatra "
-"történő átállást, az ACF5 PRO bővítmény jelentős árkedvezménnyel vásárolható "
-"meg az <a href=\"%s\">online felhasználói fiókon</a> keresztül."
+"Annak érdekében, hogy segítsük az ACF4 kiegészítő bővítményekről az ACF5 PRO "
+"változatra történő átállást, az ACF5 PRO licenc jelentős árkedvezménnyel "
+"vásárolható meg az <a href=\"%s\">online felhasználói fiókon</a> keresztül."
 
 #: admin/views/settings-info.php:82
 #, php-format
@@ -1023,8 +1024,8 @@ msgid ""
 "You can then simply update from ACF5 to ACF5 PRO by following this <a href="
 "\"%s\">upgrade guide</a>."
 msgstr ""
-"Ezt követően az ACF5 bővítmény egyszerűen frissíthető az ACF5 PRO változatra "
-"a <a href=\"%s\">frissítési útmutató</a> alapján."
+"Az ACF5 bővítmény ezt követően egyszerűen frissíthető az ACF5 PRO változatra "
+"a <a href=\"%s\">frissítési útmutatót</a> követve."
 
 #: admin/views/settings-info.php:86
 msgid "New features"
@@ -1036,17 +1037,17 @@ msgid ""
 "layouts, a beautiful gallery field and the ability to create extra admin "
 "options pages!"
 msgstr ""
-"Az ACF PRO változat elképesztő szolgáltatásokat kínál, mint ismételhető "
-"adatok, rugalmas tartalomelrendezések, gyönyörű galériamező és egyéni "
-"beállítás-oldalak létrehozása!"
+"Az ACF PRO változat bámulatos szolgáltatásokat kínál, úgymint ismételhető "
+"adatok, rugalmas tartalomelrendezések, gyönyörű galériamező, illetve egyéni "
+"beállítás oldalak létrehozása."
 
 #: admin/views/settings-info.php:88
 #, php-format
 msgid ""
 "To find out more, be sure to read <a href=\"%s\">What’s new in version 5</a>."
 msgstr ""
-"Ha többet szeretnénk megtudni, feltétlenül olvassuk el az <a href=\"%s"
-"\">Újdonságok az ACF5 verzióban</a> dokumentumot."
+"Ha többet szeretnénk megtudni, feltétlenül látogassuk meg az <a href=\"%s"
+"\">Újdonságok az ACF5 verzióban</a> oldalt."
 
 #: admin/views/settings-info.php:93
 msgid "Support"
@@ -1058,13 +1059,13 @@ msgid ""
 "any issues you experience during this update."
 msgstr ""
 "Amennyiben a frissítés során bármilyen problémába ütköznénk, segítségért "
-"vegyük fel a kapcsolatot a támogató csapattal és tájékozódjunk a közösségi "
+"vegyük fel a kapcsolatot a támogató csapattal, és tájékozódjunk a közösségi "
 "fórumokon."
 
 #: admin/views/settings-info.php:95
 #, php-format
 msgid "If time is critical, you can <a href=\"%s\">roll back to ACF4</a>."
-msgstr "Kritikus esetben <a href=\"%s\">visszatérhetünk az ACF4 verzióhoz</a>."
+msgstr "Kritikus esetben visszatérhetünk az <a href=\"%s\">ACF4 verzióhoz</a>."
 
 #: admin/views/settings-info.php:102
 msgid "Under the Hood"
@@ -1076,7 +1077,7 @@ msgstr "Okosabb mezőbeállítások"
 
 #: admin/views/settings-info.php:108
 msgid "ACF now saves it's field settings as individual post objects"
-msgstr "Az ACF a mezőbeállításokat már külön bejegyzés objektumokba menti"
+msgstr "Az ACF a mezőbeállításokat immár külön bejegyzés objektumokba menti."
 
 #: admin/views/settings-info.php:112
 msgid "More AJAX"
@@ -1085,8 +1086,8 @@ msgstr "Több AJAX"
 #: admin/views/settings-info.php:113
 msgid "More fields use AJAX powered search to speed up page loading"
 msgstr ""
-"Több mező használ AJAX alapú keresést az oldal gyorsabb betöltődésének "
-"érdekében"
+"Több mező használ AJAX-alapú keresést az oldal gyorsabb betöltésének "
+"érdekében."
 
 #: admin/views/settings-info.php:117
 msgid "Local JSON"
@@ -1094,7 +1095,7 @@ msgstr "Helyi JSON"
 
 #: admin/views/settings-info.php:118
 msgid "New auto export to JSON feature improves speed"
-msgstr "Az új JSON autoexport szolgáltatás növeli a sebességet"
+msgstr "Az új JSON autoexport szolgáltatás javítja a sebességet."
 
 #: admin/views/settings-info.php:122
 msgid "Better version control"
@@ -1106,30 +1107,31 @@ msgid ""
 "controlled"
 msgstr ""
 "Az új JSON autoexport szolgáltatás lehetővé teszi a mezőbeállítások "
-"verziókezelését"
+"verziókezelését."
 
 #: admin/views/settings-info.php:127
 msgid "Swapped XML for JSON"
-msgstr "JSON formátum az XML helyett"
+msgstr "XML helyett JSON"
 
 #: admin/views/settings-info.php:128
 msgid "Import / Export now uses JSON in favour of XML"
 msgstr ""
-"Az importálás és exportálás JSON formátumban történik a korábbi XML helyett"
+"Az importálás és exportálás JSON formátumban történik a korábbi XML megoldás "
+"helyett."
 
 #: admin/views/settings-info.php:132
 msgid "New Forms"
-msgstr "Új adatlapok"
+msgstr "Új űrlapok"
 
 #: admin/views/settings-info.php:133
 msgid "Fields can now be mapped to comments, widgets and all user forms!"
 msgstr ""
 "A mezők már hozzászólásokhoz, widgetekhez és felhasználói adatlapokhoz is "
-"hozzárendelhetők"
+"hozzárendelhetők."
 
 #: admin/views/settings-info.php:138
 msgid "A new field for embedding content has been added"
-msgstr "Új mezőtípus beágyazott tartalmak számára"
+msgstr "Új mezőtípus áll rendelkezésre beágyazott tartalmak számára."
 
 #: admin/views/settings-info.php:142
 msgid "New Gallery"
@@ -1137,7 +1139,7 @@ msgstr "Új galéria"
 
 #: admin/views/settings-info.php:143
 msgid "The gallery field has undergone a much needed facelift"
-msgstr "A galéria mezőtípus jelentős és esedékes felfrissítésen esett át"
+msgstr "A galéria mezőtípus jelentős és esedékes felfrissítésen esett át."
 
 #: admin/views/settings-info.php:147
 msgid "New Settings"
@@ -1149,16 +1151,17 @@ msgid ""
 "placement"
 msgstr ""
 "A mezőcsoport beállításai kiegészültek a mezőfeliratok és útmutatók "
-"elhelyezési lehetőségeivel"
+"elhelyezési lehetőségeivel."
 
 #: admin/views/settings-info.php:152
 msgid "Better Front End Forms"
-msgstr "Jobb felhasználó oldali (front end) űrlapok"
+msgstr "Jobb felhasználó oldali űrlapok"
 
 #: admin/views/settings-info.php:153
 msgid "acf_form() can now create a new post on submission"
 msgstr ""
-"Az acf_form() már képes új bejegyzést létrehozni az űrlap elküldésekor "
+"Az acf_form() már képes új bejegyzést létrehozni egy felhasználó oldali "
+"(front end) űrlap elküldésekor."
 
 #: admin/views/settings-info.php:157
 msgid "Better Validation"
@@ -1167,19 +1170,19 @@ msgstr "Jobb ellenőrzés és érvényesítés"
 #: admin/views/settings-info.php:158
 msgid "Form validation is now done via PHP + AJAX in favour of only JS"
 msgstr ""
-"Az űrlapok érvényesítése már nem kizárólag JS révén, hanem PHP + AJAX "
-"megoldással történik"
+"Az űrlapok érvényesítése már nem kizárólag JS által, hanem PHP + AJAX "
+"megoldással történik."
 
 #: admin/views/settings-info.php:162
 msgid "Relationship Field"
-msgstr "Kapcsolat mező"
+msgstr "Kapcsolat mezőtípus"
 
 #: admin/views/settings-info.php:163
 msgid ""
 "New Relationship field setting for 'Filters' (Search, Post Type, Taxonomy)"
 msgstr ""
-"Új 'Kapcsolat' mezőbeállítás a szűrések számára (keresés, bejegyzéstípus, "
-"osztályozás)"
+"Új mezőbeállítás szűrők számára (keresés, bejegyzéstípus, osztályozás) a "
+"kapcsolat mezőtípusnál."
 
 #: admin/views/settings-info.php:167
 msgid "Moving Fields"
@@ -1190,18 +1193,18 @@ msgid ""
 "New field group functionality allows you to move a field between groups & "
 "parents"
 msgstr ""
-"A mezőcsoportok új szolgáltatásaival a mezők csoportok és szülőmezők között "
-"is mozgathatók"
+"A mezőcsoportok új szolgáltatásaival az egyes mezők csoportok és szülőmezők "
+"között is mozgathatók."
 
 #: admin/views/settings-info.php:172 fields/page_link.php:18
 msgid "Page Link"
-msgstr "Oldalhivatkozás (page link)"
+msgstr "Oldalhivatkozás"
 
 #: admin/views/settings-info.php:173
 msgid "New archives group in page_link field selection"
 msgstr ""
-"Új 'archívumok' csoport az oldalhivatkozás mezőtípus választási "
-"lehetőségeinél"
+"Új 'Archívumok' csoport az oldalhivatkozás mezőtípus választási "
+"lehetőségeinél."
 
 #: admin/views/settings-info.php:177
 msgid "Better Options Pages"
@@ -1212,13 +1215,13 @@ msgid ""
 "New functions for options page allow creation of both parent and child menu "
 "pages"
 msgstr ""
-"A beállítási oldalakhoz kapcsolódó új funkciók révén szülő- és "
-"gyermekoldalak is létrehozhatók"
+"A beállítás oldalakhoz kapcsolódó új funkciók segítségével szülő- és "
+"gyermekoldalak is létrehozhatók."
 
 #: admin/views/settings-info.php:186
 #, php-format
 msgid "We think you'll love the changes in %s."
-msgstr "Úgy gondoljuk, szeretni fogja a változásokat a(z) %s verzióban."
+msgstr "Úgy gondoljuk, tetszeni fognak a változások a(z) %s verzióban."
 
 #: admin/views/update.php:9
 msgid "Data Upgrade"
@@ -1409,7 +1412,7 @@ msgstr "Visszaadott formátum"
 
 #: fields/date_picker.php:180
 msgid "The format returned via template functions"
-msgstr "A sablonfüggvények által visszaadott formátum"
+msgstr "A sablonfunkciók által visszaadott formátum"
 
 #: fields/date_picker.php:195
 msgid "Week Starts On"
@@ -1621,7 +1624,7 @@ msgstr "Üzenet"
 
 #: fields/message.php:67
 msgid "Please note that all text will first be passed through the wp function "
-msgstr "Minden szöveg elsőként áthalad a következő beépített függvényen: "
+msgstr "Minden szöveg elsőként áthalad a következő beépített WP funkción: "
 
 #: fields/number.php:19
 msgid "Number"
@@ -1638,6 +1641,20 @@ msgstr "Maximum érték"
 #: fields/number.php:181
 msgid "Step Size"
 msgstr "Lépésköz"
+
+#: fields/number.php:211
+msgid "Value must be a number"
+msgstr "Az érték nem szám"
+
+#: fields/number.php:232
+#, php-format
+msgid "Value must be equal to or higher than %d"
+msgstr "Az értéknek nagyobbnak vagy egyenlőnek kell lennie, mint %d"
+
+#: fields/number.php:240
+#, php-format
+msgid "Value must be equal to or lower than %d"
+msgstr "Az értéknek kisebbnek vagy egyenlőnek kell lennie, mint %d"
 
 #: fields/oembed.php:19
 msgid "oEmbed"
@@ -2004,7 +2021,7 @@ msgid ""
 "licence key, please see"
 msgstr ""
 "A frissítések engedélyezéséhez adjuk meg a licenckulcsot az alábbi beviteli "
-"mezőben. Ha még nem rendelkezünk licenckulccsal, tájékozódáshoz"
+"mezőben. Ha még nem rendelkezünk licenckulccsal, tájékozódáshoz:"
 
 #: pro/admin/views/settings-updates.php:24
 msgid "details & pricing"
@@ -2236,11 +2253,11 @@ msgstr "Ismétlő csoportmező (repeater)"
 #: pro/fields/repeater.php:29
 msgid "Minimum rows reached ({min} rows)"
 msgstr ""
-"Nem érjük el a sorok minimális számát (legalább {min} sort létre kell hozni)"
+"Nem érjük el a sorok minimális számát (legalább {min} sort hozzá kell adni)"
 
 #: pro/fields/repeater.php:30
 msgid "Maximum rows reached ({max} rows)"
-msgstr "Elértük a sorok maximális számát (legfeljebb {max} sor hozható létre)"
+msgstr "Elértük a sorok maximális számát (legfeljebb {max} sor adható hozzá)"
 
 #: pro/fields/repeater.php:229
 msgid "Drag to reorder"

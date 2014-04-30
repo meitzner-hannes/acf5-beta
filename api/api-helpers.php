@@ -1049,7 +1049,7 @@ function acf_get_image_sizes() {
 		'thumbnail'	=>	__("Thumbnail",'acf'),
 		'medium'	=>	__("Medium",'acf'),
 		'large'		=>	__("Large",'acf'),
-		'full'		=>	__("Full",'acf')
+		'full'		=>	__("Full Size",'acf')
 	);
 
 
@@ -1058,13 +1058,31 @@ function acf_get_image_sizes() {
 	
 	
 	// add extra registered sizes
-	foreach( $all_sizes as $size )
-	{
-		if( !isset($sizes[ $size ]) )
-		{
-			$sizes[ $size ] = ucwords( str_replace('-', ' ', $size) );
+	if( !empty($all_sizes) ) {
+		
+		foreach( $all_sizes as $size ) {
+			
+			// bail early if already in array
+			if( isset($sizes[ $size ]) ) {
+			
+				continue;
+				
+			}
+			
+			
+			// append to array
+			$label = str_replace('-', ' ', $size);
+			$label = ucwords( $label );
+			$sizes[ $size ] = $label;
+			
 		}
+		
 	}
+	
+	
+	
+	// filter for 3rd party customization
+	$sizes = apply_filters( 'image_size_names_choose', $sizes );
 	
 	
 	// return

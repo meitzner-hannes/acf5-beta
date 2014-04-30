@@ -220,8 +220,8 @@ function acf_pro_update_license( $license ) {
 function acf_get_valid_options_page( $page = '' ) {
 	
 	// allow for string
-	if( is_string($page) )
-	{
+	if( is_string($page) ) {
+	
 		$page_title = $page;
 		
 		$page = array(
@@ -243,10 +243,30 @@ function acf_get_valid_options_page( $page = '' ) {
 	));
 	
 	
+	// ACF4 compatibility
+	$migrate = array(
+		'title' 	=> 'page_title',
+		'menu'		=> 'menu_title',
+		'slug'		=> 'menu_slug',
+		'parent'	=> 'parent_slug'
+	);
+	
+	foreach( $migrate as $old => $new ) {
+		
+		if( !empty($page[ $old ]) ) {
+			
+			$page[ $new ] = acf_extract_var( $page, $old );
+			
+		}
+		
+	}
+	
+	
 	// slug
-	if( $page['menu_slug'] == '' )
-	{
+	if( empty($page['menu_slug']) ) {
+	
 		$page['menu_slug'] = 'acf-options-' . sanitize_title( $page['menu_title'] );
+		
 	}
 	
 	

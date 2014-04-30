@@ -2,10 +2,34 @@
 
 class acf_compatibility {
 	
+	/*
+	*  __construct
+	*
+	*  description
+	*
+	*  @type	function
+	*  @date	30/04/2014
+	*  @since	5.0.0
+	*
+	*  @param	$post_id (int)
+	*  @return	$post_id (int)
+	*/
+	
 	function __construct() {
 		
-		add_filter('acf/get_valid_field',			array($this, 'get_valid_field'), 20, 1);
-		add_filter('acf/get_valid_field_group',		array($this, 'get_valid_field_group'), 20, 1);
+		// all field
+		add_filter('acf/get_valid_field',					array($this, 'get_valid_field'), 20, 1);
+		
+		
+		// specific fields
+		add_filter('acf/get_valid_field/type=image',		array($this, 'get_valid_image_field'), 20, 1);
+		add_filter('acf/get_valid_field/type=file',			array($this, 'get_valid_image_field'), 20, 1);
+		add_filter('acf/get_valid_field/type=wysiwyg',		array($this, 'get_valid_wysiwyg_field'), 20, 1);
+		add_filter('acf/get_valid_field/type=date_picker',	array($this, 'get_valid_date_picker_field'), 20, 1);
+		
+		
+		// all field groups
+		add_filter('acf/get_valid_field_group',				array($this, 'get_valid_field_group'), 20, 1);
 		
 	}
 	
@@ -74,92 +98,146 @@ class acf_compatibility {
 		}
 		
 		
-		// image / file settings
-		if( $field['type'] == 'image' || $field['type'] == 'file' ) {
+		// return
+		return $field;
+		
+	}
+	
+	
+	/*
+	*  get_valid_image_field
+	*
+	*  This function will provide compatibility with ACF4 fields
+	*
+	*  @type	function
+	*  @date	23/04/2014
+	*  @since	5.0.0
+	*
+	*  @param	$field (array)
+	*  @return	$field
+	*/
+	
+	function get_valid_image_field( $field ) {
+		
+		// save_format is now return_format
+		if( !empty($field['save_format']) ) {
 			
-			// save_format is now return_format
-			if( !empty($field['save_format']) ) {
-				
-				$field['return_format'] = acf_extract_var( $field, 'save_format' );
-				
-			}
+			$field['return_format'] = acf_extract_var( $field, 'save_format' );
 			
+		}
+		
+		
+		// object is now array
+		if( $field['return_format'] == 'object' ) {
 			
-			// object is now array
-			if( $field['return_format'] == 'object' ) {
-				
-				$field['return_format'] = 'array';
-				
-			}
-			
-		} elseif( $field['type'] == 'wysiwyg' ) {
-			
-			if( $field['media_upload'] === 'yes' ) {
-				
-				$field['media_upload'] = 1;
-				
-			} else {
-				
-				$field['media_upload'] = 0;
-				
-			}
-			
-		} elseif( $field['type'] == 'date_picker' ) {
-			
-			// v4 used date_format
-			if( !empty($field['date_format']) ) {
-				
-				// extract vars
-				$date_format = acf_extract_var( $field, 'date_format' );
-				$display_format = acf_extract_var( $field, 'display_format' );
-				
-				
-				// php_to_js
-				$php_to_js = array(
-					
-					// Year
-					'Y'	=> 'yy',	// Numeric, 4 digits 								1999, 2003
-					'y'	=> 'y',		// Numeric, 2 digits 								99, 03
-					
-					
-					// Month
-					'm'	=> 'mm',	// Numeric, with leading zeros  					01–12
-					'n'	=> 'm',		// Numeric, without leading zeros  					1–12
-					'F'	=> 'MM',	// Textual full   									January – December
-					'M'	=> 'M',		// Textual three letters    						Jan - Dec 
-					
-					
-					// Weekday
-					'l'	=> 'DD',	// Full name  (lowercase 'L') 						Sunday – Saturday
-					'D'	=> 'D',		// Three letter name 	 							Mon – Sun 
-					
-					
-					// Day of Month
-					'd'	=> 'dd',	// Numeric, with leading zeros						01–31
-					'j'	=> 'd',		// Numeric, without leading zeros 					1–31
-					'S'	=> '',		// The English suffix for the day of the month  	st, nd or th in the 1st, 2nd or 15th. 
-				);
-				
-				foreach( $php_to_js as $php => $js ) {
-				
-					$date_format = str_replace($js, $php, $date_format);
-					$display_format = str_replace($js, $php, $display_format);
-					
-				}
-				
-				
-				// append settings
-				$field['return_format'] = $date_format;
-				$field['display_format'] = $display_format;
-				
-			}
+			$field['return_format'] = 'array';
 			
 		}
 		
 		
 		// return
 		return $field;
+	}
+	
+	
+	/*
+	*  get_valid_wysiwyg_field
+	*
+	*  This function will provide compatibility with ACF4 fields
+	*
+	*  @type	function
+	*  @date	23/04/2014
+	*  @since	5.0.0
+	*
+	*  @param	$field (array)
+	*  @return	$field
+	*/
+	
+	function get_valid_wysiwyg_field( $field ) {
 		
+		// media_upload is now numeric
+		if( $field['media_upload'] === 'yes' ) {
+			
+			$field['media_upload'] = 1;
+			
+		} elseif( $field['media_upload'] === 'no' ) {
+			
+			$field['media_upload'] = 0;
+			
+		}
+		
+		
+		// return
+		return $field;
+	}
+	
+	
+	/*
+	*  get_valid_date_picker_field
+	*
+	*  This function will provide compatibility with ACF4 fields
+	*
+	*  @type	function
+	*  @date	23/04/2014
+	*  @since	5.0.0
+	*
+	*  @param	$field (array)
+	*  @return	$field
+	*/
+	
+	function get_valid_date_picker_field( $field ) {
+		
+		// v4 used date_format
+		if( !empty($field['date_format']) ) {
+			
+			// extract vars
+			$date_format = acf_extract_var( $field, 'date_format' );
+			$display_format = acf_extract_var( $field, 'display_format' );
+			
+			
+			// php_to_js
+			$php_to_js = array(
+				
+				// Year
+				'Y'	=> 'yy',	// Numeric, 4 digits 								1999, 2003
+				'y'	=> 'y',		// Numeric, 2 digits 								99, 03
+				
+				
+				// Month
+				'm'	=> 'mm',	// Numeric, with leading zeros  					01–12
+				'n'	=> 'm',		// Numeric, without leading zeros  					1–12
+				'F'	=> 'MM',	// Textual full   									January – December
+				'M'	=> 'M',		// Textual three letters    						Jan - Dec 
+				
+				
+				// Weekday
+				'l'	=> 'DD',	// Full name  (lowercase 'L') 						Sunday – Saturday
+				'D'	=> 'D',		// Three letter name 	 							Mon – Sun 
+				
+				
+				// Day of Month
+				'd'	=> 'dd',	// Numeric, with leading zeros						01–31
+				'j'	=> 'd',		// Numeric, without leading zeros 					1–31
+				'S'	=> '',		// The English suffix for the day of the month  	st, nd or th in the 1st, 2nd or 15th. 
+			);
+			
+			foreach( $php_to_js as $php => $js ) {
+			
+				$date_format = str_replace($js, $php, $date_format);
+				$display_format = str_replace($js, $php, $display_format);
+				
+			}
+			
+			
+			// append settings
+			$field['return_format'] = $date_format;
+			$field['display_format'] = $display_format;
+			
+		}
+		
+		
+		// return
+		return $field;
 	}
 	
 	

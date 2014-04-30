@@ -164,8 +164,8 @@ img.acf-fw {
 
 .acf-icon {
 	display: block;
-	height: 28px;
-	width: 28px;
+	height: 26px;
+	width: 26px;
 	border: #BBB solid 1px;
 	border-radius: 15px;
 	
@@ -173,7 +173,7 @@ img.acf-fw {
 	overflow: hidden;
 	
 	font-size: 13px;
-	line-height: 27px;
+	line-height: 25px;
 	text-align: center;
 	background: #fff;
 }
@@ -187,12 +187,22 @@ img.acf-fw {
 	outline: none;
 }
 
+
+/* sizes */
 .acf-icon.small {
 	width: 18px;
 	height: 18px;
-	line-height: 18px;
+	line-height: 17px;
 }
 
+.acf-icon.large {
+	width: 28px;
+	height: 28px;
+	line-height: 27px;
+}
+
+
+/* sprite */
 .acf-icon [class^="acf-sprite-"] {
 	position: absolute;
 	top: 50%;
@@ -200,6 +210,8 @@ img.acf-fw {
 	margin: -4px 0 0 -4px;
 }
 
+
+/* styles */
 .acf-icon.light {
 	border: 0 none;
 	padding: 1px;
@@ -217,6 +229,8 @@ img.acf-fw {
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
 }
 
+
+/* logo */
 .acf-icon.logo {
 	width: 150px;
 	height: 150px;

@@ -192,6 +192,10 @@
 	display: none !important;
 }
 
+.acf-field-list .field .location-groups {
+	margin-top: 10px;
+}
+
 
 /* field keys */
 .acf-field-list .pre-field_key {
@@ -217,22 +221,19 @@
 #acf-field-group-fields.show-field-keys .li-field_order { width: 24%; }
 #acf-field-group-fields.show-field-keys .li-field_label { width: 26%; }
 
+
 /*---------------------------------------------------------------------------------------------
 *
 * Postbox: Locations
 *
 *---------------------------------------------------------------------------------------------*/
 
-.location-groups .location-groups {
-	padding: 5px 0;
-} 
-
 .location-groups h4 {
 	margin: 15px 0 5px;
 }
 
 .location-groups .location-group {
-	margin: 0 0 15px;
+	margin: 0 0 5px;
 }
 
 .location-groups .location-group h4 {
@@ -252,7 +253,7 @@
 }
 
 .location-groups .location-group td.remove {
-	width: 24px;
+	width: 28px;
 	vertical-align: middle;
 }
 

@@ -43,7 +43,7 @@ $metas = array(
 	
 	<ul class="field-info acf-hl acf-tbody">
 		<li class="li-field_order">
-			<span class="acf-icon"><?php echo ($i + 1); ?></span>
+			<span class="acf-icon large"><?php echo ($i + 1); ?></span>
 			<pre class="pre-field_key"><?php echo $field['key']; ?></pre>
 		</li>
 		<li class="li-field_label">

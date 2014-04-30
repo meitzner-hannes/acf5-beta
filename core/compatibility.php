@@ -178,17 +178,20 @@ class acf_compatibility {
 	
 	function get_valid_field_group( $field_group ) {
 		
+		// bail ealry if field group contains key ( is ACF5 )
+		if( ! empty($field_group['key']) ) {
+			
+			return $field_group;
+			
+		}
+		
+		
 		// global
 		global $wpdb;
 		
 		
 		// add missing key
-		if( empty($field_group['key']) ) {
-			
-			// add in key
-			$field_group['key'] = empty($field_group['id']) ? uniqid('group_') : 'group_' . $field_group['id'];
-			
-		}
+		$field_group['key'] = empty($field_group['id']) ? uniqid('group_') : 'group_' . $field_group['id'];
 		
 		
 		// extract options
@@ -202,7 +205,7 @@ class acf_compatibility {
 		
 		
 		// some location rules have changed
-		if( !empty($field['location']) ) {
+		if( !empty($field_group['location']) ) {
 			
 			// param changes
 		 	$param_replace = array(
@@ -211,8 +214,10 @@ class acf_compatibility {
 		 		'ef_taxonomy'	=> 'taxonomy',
 		 		'ef_user'		=> 'user_role',
 		 	);
+		 	
+		 	
 			
-			foreach( $field['location'] as $group_i => $group ) {
+			foreach( $field_group['location'] as $group_i => $group ) {
 				
 				if( !empty($group) ) {
 					
@@ -220,7 +225,7 @@ class acf_compatibility {
 						
 					 	if( array_key_exists($rule['param'], $param_replace) ) {
 						 	
-						 	$field['location'][ $group_i ][ $rule_i ]['param'] = $param_replace[ $rule['param'] ];
+						 	$field_group['location'][ $group_i ][ $rule_i ]['param'] = $param_replace[ $rule['param'] ];
 						 	
 					 	}
 					 	
@@ -235,7 +240,7 @@ class acf_compatibility {
 							 	$term = get_term( $term_id, $taxonomy );
 							 	
 							 	// update rule value
-							 	$field['location'][ $group_i ][ $rule_i ]['value'] = "{$term->taxonomy}:{$term->slug}";
+							 	$field_group['location'][ $group_i ][ $rule_i ]['value'] = "{$term->taxonomy}:{$term->slug}";
 							 	
 						 	}
 						 	// if

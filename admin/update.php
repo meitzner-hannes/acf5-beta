@@ -79,16 +79,18 @@ class acf_update {
 		
 		
 		// update successful
-		update_option('acf_version', $options['version'] );
+		update_option('acf_db_version', $options['version'] );
 		
 		
-		// check for relevant updates. If none are found, update this to the plugin version
+		/*
+// check for relevant updates. If none are found, update this to the plugin version
 		$updates = $this->get_relevant_updates();
 		
 		if( empty($updates) )
 		{
-			update_option('acf_version', acf_get_setting('version'));
+			update_option('acf_db_version', acf_get_setting('version'));
 		}
+*/
 		
 		
 		// return
@@ -176,7 +178,7 @@ class acf_update {
 		// vars
 		$updates = $this->get_updates();
 		$plugin_version = acf_get_setting('version');
-		$db_version = get_option('acf_version');
+		$db_version = get_option('acf_db_version');
 		
 		
 		// unset irrelevant updates
@@ -219,9 +221,10 @@ class acf_update {
 	function admin_menu() {
 		
 		// bail early if no show_admin
-		if( !acf_get_setting('show_admin') )
-		{
+		if( !acf_get_setting('show_admin') ) {
+			
 			return;
+		
 		}
 		
 		
@@ -231,21 +234,37 @@ class acf_update {
 		
 		// vars
 		$plugin_version = acf_get_setting('version');
-		$db_version = get_option('acf_version');
+		$acf_version = get_option('acf_version');
+		$acf_db_version = get_option('acf_db_version');
 
 		
 		// bail early if a new install
-		if( empty($db_version) )
-		{
+		if( empty($acf_version) ) {
+		
 			update_option('acf_version', $plugin_version );
+			update_option('acf_db_version', $plugin_version );
 			return;
+			
 		}
 		
 		
-		// bail early if versions match
-		if( $plugin_version == $db_version )
-		{
-			return;
+		// introduce new setting for ACF5
+		if( empty($acf_db_version) ) {
+			
+			$acf_db_version = $acf_version;
+			
+			update_option('acf_db_version', $acf_db_version );
+			
+		}
+		
+		
+		// update acf_version if difference is detected
+		if( $acf_version != $plugin_version ) {
+			
+			$acf_version = $plugin_version;
+			
+			update_option('acf_version', $acf_version );
+			
 		}
 		
 		
@@ -254,10 +273,10 @@ class acf_update {
 		
 		
 		// bail early if no updates
-		if( empty($updates) )
-		{
-			update_option('acf_version', $plugin_version );
+		if( empty($updates) ) {
+		
 			return;
+			
 		}
 		
 		

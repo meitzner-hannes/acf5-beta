@@ -292,7 +292,7 @@ var acf = {
 	remove_action		: null,
 	do_action			: null,
 	add_filter			: null,
-	remove_filtern		: null,
+	remove_filter		: null,
 	apply_filters		: null,
 	
 	
@@ -1726,7 +1726,7 @@ var acf = {
 		
 		render_field : function( key ){
 			
-			console.log('render_field %o',key);
+			//console.log('render_field %o',key);
 			// reference
 			var _this = this;
 			

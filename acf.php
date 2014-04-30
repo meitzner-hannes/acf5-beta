@@ -308,7 +308,7 @@ class acf {
 			'capability_type'	=> 'page',
 			'hierarchical'		=> true,
 			'rewrite'			=> false,
-			'query_var'			=> 'acf-field-group',
+			'query_var'			=> false,
 			'supports' 			=> array( 'title' ),
 			'show_in_menu'		=> false,
 		));
@@ -334,7 +334,7 @@ class acf {
 			'capability_type'	=> 'page',
 			'hierarchical'		=> true,
 			'rewrite'			=> false,
-			'query_var'			=> 'acf-field',
+			'query_var'			=> false,
 			'supports' 			=> array( 'title' ),
 			'show_in_menu'		=> false,
 		));

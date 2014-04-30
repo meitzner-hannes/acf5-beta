@@ -26,6 +26,44 @@ class acf_field_group {
 		add_action( 'wp_ajax_acf/field_group/render_location_value',	array( $this, 'ajax_render_location_value') );
 		add_action( 'wp_ajax_acf/field_group/move_field',				array( $this, 'ajax_move_field') );
 		
+		// filters
+		add_filter( 'post_updated_messages',							array( $this, 'post_updated_messages') );
+	}
+	
+	
+	/*
+	*  post_updated_messages
+	*
+	*  This function will customize the message shown when editing a field group
+	*
+	*  @type	function
+	*  @date	30/04/2014
+	*  @since	5.0.0
+	*
+	*  @param	$messages (array)
+	*  @return	$messages
+	*/
+	
+	function post_updated_messages( $messages ) {
+		
+		// append to messages
+		$messages['acf-field-group'] = array(
+			0 => '', // Unused. Messages start at index 1.
+			1 => __('Field group updated.', 'acf'),
+			2 => __('Custom field updated.', 'acf'),
+			3 => __('Custom field deleted.', 'acf'),
+			4 => __('Field group updated.', 'acf'),
+			5 => false, // field group does not support revisions
+			6 => __('Field group published.', 'acf'),
+			7 => __('Field group saved.', 'acf'),
+			8 => __('Field group submitted.', 'acf'),
+			9 => __('Field group scheduled for.', 'acf'),
+			10 => __('Field group draft updated.', 'acf'),
+		);
+		
+		
+		// return
+		return $messages;
 	}
 	
 	

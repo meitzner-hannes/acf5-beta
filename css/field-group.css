@@ -4,10 +4,6 @@
 *
 *---------------------------------------------------------------------------------------------*/
 
-#message p a {
-	display: none;
-}
-
 #adv-settings .show-field-keys label {
 	padding: 0 5px;
 }

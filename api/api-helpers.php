@@ -894,7 +894,8 @@ function acf_get_post_types( $exclude = array(), $include = array() )
 	
 	
 	
-	// get labels
+	/*
+// get labels
 	$ref = array();
 	
 	foreach( $post_types as $k => $v ) {
@@ -929,6 +930,7 @@ function acf_get_post_types( $exclude = array(), $include = array() )
 		}
 		
 	}
+*/
 	
 	
 	// return

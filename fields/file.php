@@ -133,11 +133,11 @@ class acf_field_file extends acf_field
 					<strong data-name="title"><?php echo $o['title']; ?></strong>
 				</p>
 				<p>
-					<strong><?php _e('Name', 'acf'); ?>:</strong>
+					<strong><?php _e('File Name', 'acf'); ?>:</strong>
 					<a data-name="name" href="<?php echo $o['url']; ?>" target="_blank"><?php echo $o['name']; ?></a>
 				</p>
 				<p>
-					<strong><?php _e('Size', 'acf'); ?>:</strong>
+					<strong><?php _e('File Size', 'acf'); ?>:</strong>
 					<span data-name="size"><?php echo $o['size']; ?></span>
 				</p>
 				

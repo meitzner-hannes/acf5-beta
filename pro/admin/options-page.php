@@ -33,7 +33,7 @@ class acf_pro_options_page {
 			'menu_title'	=> __('Options','acf'),
 			'menu_slug' 	=> 'acf-options',
 			'capability'	=> 'edit_posts',
-			'parent_slug'	=> false,
+			'parent_slug'	=> '',
 			'position'		=> false,
 			'icon_url'		=> false,
 		));

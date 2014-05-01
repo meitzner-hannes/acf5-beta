@@ -237,9 +237,10 @@ function acf_get_valid_options_page( $page = '' ) {
 		'menu_title'	=> '',
 		'menu_slug' 	=> '',
 		'capability'	=> 'edit_posts',
-		'parent_slug'	=> false,
+		'parent_slug'	=> '',
 		'position'		=> false,
 		'icon_url'		=> false,
+		'redirect'		=> ''
 	));
 	
 	
@@ -295,18 +296,75 @@ function acf_get_options_pages() {
 	
 	
 	// add parent page
-	if( $default = acf_get_setting('options_page') )
-	{
-		$pages[ $default['menu_slug'] ] = $default;
+	if( $default = acf_get_setting('options_page') ) {
+		
+		$pages[] = $default;
+		
 	}
 	
 	
 	// get pages
-	if( !empty($GLOBALS['acf_options_pages']) )
-	{
-		$pages = array_merge($pages, $GLOBALS['acf_options_pages']);
+	if( !empty($GLOBALS['acf_options_pages']) ) {
+		
+		foreach( $GLOBALS['acf_options_pages'] as $page ) {
+			
+			$pages[] = $page;
+			
+		}
+		
 	}
 	
+	
+	// bail early if empty
+	if( empty($pages) ) {
+		
+		return $pages;
+		
+	}
+	
+	
+	// redirect
+	$redirect = array();
+	
+	foreach( $pages as $page ) {
+		
+		// append redirect
+		if( !empty($page['redirect']) ) {
+			
+			$redirect[ $page['menu_slug'] ] = $page['redirect'];
+			
+		}
+		
+	}
+	
+	
+	// loop through $pages and update redirect slugs
+	if( !empty($redirect) ) {
+		
+		foreach( $pages as $k => $page ) {
+			
+			if( !empty($page['parent_slug']) ) {
+				
+				if( array_key_exists($page['parent_slug'], $redirect) ) {
+					
+					$pages[ $k ]['parent_slug'] = $redirect[ $page['parent_slug'] ];
+					
+				}
+				
+			} else {
+				
+				if( array_key_exists($page['menu_slug'], $redirect) ) {
+					
+					$pages[ $k ]['menu_slug'] = $redirect[ $page['menu_slug'] ];
+					
+				}
+				
+			}
+			
+		}
+		
+	}
+		
 	
 	// return
 	return $pages;
@@ -366,9 +424,10 @@ function acf_add_options_page( $page = '' ) {
 	
 	
 	// instantiate globals
-	if( empty($GLOBALS['acf_options_pages']) )
-	{
+	if( empty($GLOBALS['acf_options_pages']) ) {
+	
 		$GLOBALS['acf_options_pages'] = array();
+		
 	}
 	
 	
@@ -406,6 +465,16 @@ function acf_add_options_sub_page( $page = '' ) {
 		
 		// get parent
 		$parent = acf_get_setting('options_page');
+		
+		
+		// redirect parent to child
+		if( empty($parent['redirect']) ) {
+			
+			acf()->settings['options_page']['redirect'] = $page['menu_slug'];
+			
+			$parent['menu_slug'] = $page['menu_slug'];
+				
+		}
 		
 		
 		// set parent slug

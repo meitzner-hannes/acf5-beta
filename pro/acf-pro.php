@@ -32,6 +32,7 @@ class acf_pro {
 		add_action('init',										array($this, 'wp_init'));
 		add_action('acf/input/admin_enqueue_scripts',			array($this, 'input_admin_enqueue_scripts'));
 		add_action('acf/field_group/admin_enqueue_scripts',		array($this, 'field_group_admin_enqueue_scripts'));
+		add_action('acf/field_group/admin_l10n',				array($this, 'field_group_admin_l10n'));
 		add_action('acf/render_field_settings', 				array($this, 'render_field_settings'));
 		
 		
@@ -168,6 +169,32 @@ class acf_pro {
 			'acf-pro-input',	
 		));
 		
+	}
+	
+	
+	/*
+	*  field_group_admin_l10n
+	*
+	*  description
+	*
+	*  @type	function
+	*  @date	1/05/2014
+	*  @since	5.0.0
+	*
+	*  @param	$post_id (int)
+	*  @return	$post_id (int)
+	*/
+	
+	function field_group_admin_l10n( $l10n ) {
+		
+		// append
+		$l10n['flexible_content'] = array(
+			'layout_warning' => __('Flexible Content requires at least 1 layout','acf')
+		);
+		
+		
+		// return
+		return $l10n;
 	}
 	
 	

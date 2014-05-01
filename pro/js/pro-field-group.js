@@ -511,7 +511,7 @@
 			// validate
 			if( $tr.siblings('tr[data-name="fc_layout"]').length == 0 ) {
 			
-				alert( acf._e('flexible_content','delete') );
+				alert( acf._e('flexible_content','layout_warning') );
 				
 				return false;
 				

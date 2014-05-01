@@ -173,7 +173,7 @@ class acf_field_group {
 		
 		
 		// vars
-		$l10n = array(
+		$l10n = apply_filters( 'acf/field_group/admin_l10n', array(
 			'move_to_trash'			=>	__("Move to trash. Are you sure?",'acf'),
 			'checked'				=>	__("checked",'acf'),
 			'no_fields'				=>	__("No toggle fields available",'acf'),
@@ -186,7 +186,7 @@ class acf_field_group {
 			'hide_show_all'			=>	__("Hide / Show All",'acf'),
 			'move_field'			=>	__("Move Custom Field",'acf'),
 			'move_field_warning'	=>	__("This field cannot be moved until it's changes have been saved",'acf'),
-		);
+		));
 		
 		$o = array(
 			'post_id'				=>	$post->ID,

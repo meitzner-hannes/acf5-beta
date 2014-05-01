@@ -859,8 +859,8 @@ function acf_extract_vars( &$array, $keys )
 *  @return	(array)
 */
 
-function acf_get_post_types( $exclude = array(), $include = array() )
-{
+function acf_get_post_types( $exclude = array(), $include = array() ) {
+	
 	// get all custom post types
 	$post_types = get_post_types();
 	
@@ -893,9 +893,24 @@ function acf_get_post_types( $exclude = array(), $include = array() )
 	}
 	
 	
+	// return
+	return $post_types;
 	
-	/*
-// get labels
+}
+
+
+function acf_get_pretty_post_types( $post_types = array() ) {
+	
+	// get post types
+	if( empty($post_types) ) {
+		
+		// get all custom post types
+		$post_types = acf_get_post_types();
+		
+	}
+	
+	
+	// get labels
 	$ref = array();
 	
 	foreach( $post_types as $k => $v ) {
@@ -930,7 +945,6 @@ function acf_get_post_types( $exclude = array(), $include = array() )
 		}
 		
 	}
-*/
 	
 	
 	// return

@@ -580,12 +580,17 @@ class acf_field_relationship extends acf_field
 			</li>
 			<?php endif; ?>
 			
-			<?php if( $width['post_type'] > 0 ): ?>
+			<?php if( $width['post_type'] > 0 ): 
+				
+				// vars
+				$pretty_post_types = acf_get_pretty_post_types($post_types);
+				
+			?>
 			<li style="width:<?php echo $width['post_type']; ?>%;">
 				<div class="inner">
 				<select class="filter" data-filter="post_type">
 					<option value=""><?php _e('All post types','acf'); ?></option>
-					<?php foreach( $post_types as $k => $v ): ?>
+					<?php foreach( $pretty_post_types as $k => $v ): ?>
 						<option value="<?php echo $k; ?>"><?php echo $v; ?></option>
 					<?php endforeach; ?>
 				</select>
@@ -663,7 +668,7 @@ class acf_field_relationship extends acf_field
 			'instructions'	=> '',
 			'type'			=> 'select',
 			'name'			=> 'post_type',
-			'choices'		=> acf_get_post_types(),
+			'choices'		=> acf_get_pretty_post_types(),
 			'multiple'		=> 1,
 			'ui'			=> 1,
 			'allow_null'	=> 1,

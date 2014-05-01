@@ -379,7 +379,7 @@ class acf_field_post_object extends acf_field
 			'instructions'	=> '',
 			'type'			=> 'select',
 			'name'			=> 'post_type',
-			'choices'		=> acf_get_post_types(),
+			'choices'		=> acf_get_pretty_post_types(),
 			'multiple'		=> 1,
 			'ui'			=> 1,
 			'allow_null'	=> 1,

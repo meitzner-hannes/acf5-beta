@@ -507,6 +507,7 @@ class acf_field_group {
 				// all post types except attachment
 				$exclude = array('attachment');
 				$choices = acf_get_post_types( $exclude );
+				$choices = acf_get_pretty_post_types( $choices );
 
 				break;
 			

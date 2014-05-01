@@ -220,14 +220,12 @@ class acf_field_number extends acf_field
 		
 		
 		
-		// defaults
-		$field['min'] = empty($field['min']) ? 0 : $field['min'];
-		$field['max'] = empty($field['max']) ? 0 : $field['max'];
-		$value = intval($value);
+		// convert
+		$value = floatval($value);
 		
 		
 		// min
-		if( $value < $field['min'] ) {
+		if( is_numeric($field['min']) && $value < floatval($field['min'])) {
 			
 			$valid = sprintf(__('Value must be equal to or higher than %d', 'acf'), $field['min'] );
 			
@@ -235,7 +233,7 @@ class acf_field_number extends acf_field
 		
 		
 		// max
-		if( $value > $field['max'] ) {
+		if( is_numeric($field['max']) && $value > floatval($field['max']) ) {
 			
 			$valid = sprintf(__('Value must be equal to or lower than %d', 'acf'), $field['max'] );
 			
@@ -278,14 +276,7 @@ class acf_field_number extends acf_field
 		$value = str_replace(',', '', $value);
 		
 		
-		// convert to float. This removes any chars
-		$value = floatval( $value );
-		
-		
-		// convert back to string. This alows decimals to save
-		$value = (string) $value;
-		
-		
+		// return
 		return $value;
 	}
 	

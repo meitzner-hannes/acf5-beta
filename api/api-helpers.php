@@ -1575,6 +1575,35 @@ function acf_json_encode( $json ) {
 
 
 /*
+*  acf_str_exists
+*
+*  This function will return true if a sub string is found
+*
+*  @type	function
+*  @date	1/05/2014
+*  @since	5.0.0
+*
+*  @param	$needle (string)
+*  @param	$haystack (string)
+*  @return	(boolean)
+*/
+
+function acf_str_exists( $needle, $haystack ) {
+	
+	// return true if $haystack contains the $needle
+	if( is_string($haystack) && strpos($haystack, $needle) !== false ) {
+		
+		return true;
+		
+	}
+	
+	
+	// return
+	return false;
+}
+
+
+/*
 *  Hacks
 *
 *  description

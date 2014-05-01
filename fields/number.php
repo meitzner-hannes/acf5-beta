@@ -202,6 +202,14 @@ class acf_field_number extends acf_field
 	
 	function validate_value( $valid, $value, $field, $input ){
 		
+		// remove ','
+		if( acf_str_exists(',', $value) ) {
+			
+			$value = str_replace(',', '', $value);
+			
+		}
+				
+		
 		// if value is not numeric...
 		if( !is_numeric($value) ) {
 			
@@ -217,7 +225,6 @@ class acf_field_number extends acf_field
 			return $valid;
 			
 		}
-		
 		
 		
 		// convert
@@ -262,8 +269,8 @@ class acf_field_number extends acf_field
 	*  @return	$value - the modified value
 	*/
 	
-	function update_value( $value, $post_id, $field )
-	{
+	function update_value( $value, $post_id, $field ) {
+		
 		// no formatting needed for empty value
 		if( empty($value) ) {
 			
@@ -273,7 +280,11 @@ class acf_field_number extends acf_field
 		
 		
 		// remove ','
-		$value = str_replace(',', '', $value);
+		if( acf_str_exists(',', $value) ) {
+			
+			$value = str_replace(',', '', $value);
+			
+		}
 		
 		
 		// return

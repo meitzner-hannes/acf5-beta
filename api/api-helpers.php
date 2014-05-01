@@ -870,22 +870,64 @@ function acf_get_post_types( $exclude = array(), $include = array() )
 	
 	
 	// include
-	if( !empty($include) )
-	{
-		foreach( $include as $p )
-		{					
-			if( post_type_exists($p) )
-			{							
+	if( !empty($include) ) {
+	
+		foreach( $include as $p ) {	
+						
+			if( post_type_exists($p) ) {	
+									
 				$post_types[ $p ] = $p;
+				
 			}
+			
 		}
+		
 	}
 	
 	
 	// exclude
-	foreach( $exclude as $p )
-	{
+	foreach( $exclude as $p ) {
+	
 		unset( $post_types[ $p ] );
+		
+	}
+	
+	
+	
+	// get labels
+	$ref = array();
+	
+	foreach( $post_types as $k => $v ) {
+		
+		// vars
+		$obj = get_post_type_object($k);
+		$name = $obj->labels->singular_name;
+		
+		
+		// update label
+		$post_types[ $k ] = $name;
+		
+		
+		// increase counter
+		if( !isset($ref[ $name ]) ) {
+			
+			$ref[ $name ] = 0;
+			
+		}
+		
+		$ref[ $name ]++;
+	}
+	
+	
+	// get slugs
+	foreach( $post_types as $k => $v ) {
+		
+		if( $ref[ $v ] > 1 ) {
+			
+			$post_types[ $k ] .= ' (' . $k . ')';
+			
+		}
+		
 	}
 	
 	

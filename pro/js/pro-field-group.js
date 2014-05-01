@@ -285,7 +285,7 @@
 			
 						
 			// events
-			$(document).on('click', '.acf-fc-add', function( e ){
+			$(document).on('click', '[data-name="acf-fc-add"]', function( e ){
 				
 				e.preventDefault();
 				
@@ -293,7 +293,7 @@
 				
 			});
 			
-			$(document).on('click', '.acf-fc-duplicate', function( e ){
+			$(document).on('click', '[data-name="acf-fc-duplicate"]', function( e ){
 				
 				e.preventDefault();
 				
@@ -301,7 +301,7 @@
 				
 			});
 			
-			$(document).on('click', '.acf-fc-delete', function( e ){
+			$(document).on('click', '[data-name="acf-fc-delete"]', function( e ){
 				
 				e.preventDefault();
 				
@@ -622,7 +622,7 @@
 				// add sortable
 				$tbody.sortable({
 					items					: '> tr[data-name="fc_layout"]',
-					handle					: '.acf-fc-reorder',
+					handle					: '[data-name="acf-fc-reorder"]',
 					forceHelperSize			: true,
 					forcePlaceholderSize	: true,
 					scroll					: true,

@@ -27,16 +27,25 @@ class acf_pro_options_page {
 		);
 		
 		
+		// settings
+		acf_update_setting('show_options_page', true);
+		
+		
 		// add default options page to settings
-		acf_update_setting('options_page', array(
-			'page_title' 	=> __('Options','acf'),
-			'menu_title'	=> __('Options','acf'),
-			'menu_slug' 	=> 'acf-options',
-			'capability'	=> 'edit_posts',
-			'parent_slug'	=> '',
-			'position'		=> false,
-			'icon_url'		=> false,
-		));
+		if( acf_get_setting('show_options_page') ) {
+			
+			acf_add_options_page(array(
+				'page_title' 	=> __('Options','acf'),
+				'menu_title'	=> __('Options','acf'),
+				'menu_slug' 	=> 'acf-options',
+				'capability'	=> 'edit_posts',
+				'parent_slug'	=> '',
+				'position'		=> false,
+				'icon_url'		=> false,
+			));
+			
+		}
+		
 		
 		
 		// actions
@@ -88,15 +97,19 @@ class acf_pro_options_page {
 		$pages = acf_get_options_pages();
 		
 		
-		if( !empty($pages) )
-		{
-			foreach( $pages as $page )
-			{
+		// populate
+		if( !empty($pages) ) {
+		
+			foreach( $pages as $page ) {
+			
 				$choices[ $page['menu_slug'] ] = $page['menu_title'];
+				
 			}
+			
 		}
 		
 		
+		// return
 	    return $choices;
 	}
 	
@@ -176,16 +189,16 @@ class acf_pro_options_page {
 		
 		
 		// create pages
-		if( !empty($pages) )
-		{
-			foreach( $pages as $page )
-			{
+		if( !empty($pages) ) {
+		
+			foreach( $pages as $page ) {
+				
 				// vars
 				$slug = '';
 				
 				
-				if( empty($page['parent_slug']) )
-				{
+				if( empty($page['parent_slug']) ) {
+					
 					// position
 					if( !$page['position']) {
 						
@@ -199,9 +212,8 @@ class acf_pro_options_page {
 					// add page
 					$slug = add_menu_page( $page['page_title'], $page['menu_title'], $page['capability'], $page['menu_slug'], array($this, 'html'), $page['icon_url'], $page['position'] );
 					
-				}
-				else
-				{
+				} else {
+					
 					// add page
 					$slug = add_submenu_page( $page['parent_slug'], $page['page_title'], $page['menu_title'], $page['capability'], $page['menu_slug'], array($this, 'html') );
 					

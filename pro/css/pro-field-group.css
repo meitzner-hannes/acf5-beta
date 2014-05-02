@@ -23,15 +23,14 @@ table.acf-fc-meta tr td:first-child {
 
 .acf-input-wrap.select {
 	border-radius: 0 3px 3px 0 !important;
-	height: 25px;
 	border: #DFDFDF solid 1px;
 }
 
 .acf-input-wrap.select select {
-    margin: 1px 0 0;
+    margin: 0;
     border: 0 none;
     padding: 3px;
-    height: 25px;
+    height: 26px;
 }
 
 .acf-fc-meta-label .acf-input-prepend,

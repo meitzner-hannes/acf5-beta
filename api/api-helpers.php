@@ -1662,6 +1662,65 @@ function acf_str_exists( $needle, $haystack ) {
 
 
 /*
+*  acf_debug
+*
+*  description
+*
+*  @type	function
+*  @date	2/05/2014
+*  @since	5.0.0
+*
+*  @param	$post_id (int)
+*  @return	$post_id (int)
+*/
+
+function acf_debug() {
+	
+	// vars
+	$args = func_get_args();
+	$s = array_shift($args);
+	$o = '';
+	$nl = "\r\n";
+	
+	
+	// start script
+	$o .= '<script type="text/javascript">' . $nl;
+	
+	$o .= 'console.log("' . $s . '"';
+	
+	if( !empty($args) ) {
+		
+		foreach( $args as $arg ) {
+			
+			if( is_object($arg) || is_array($arg) ) {
+				
+				$arg = json_encode($arg);
+				
+			} elseif( is_bool($arg) ) {
+				
+				$arg = $arg ? 'true' : 'false';
+				
+			}
+			
+			$o .= ', ' . $arg;
+			
+		}
+	}
+	
+	$o .= ');' . $nl;
+	
+	
+	// end script
+	$o .= '</script>' . $nl;
+	
+	
+	// echo
+	echo $o;
+}
+
+
+
+/*
 *  Hacks
 *
 *  description

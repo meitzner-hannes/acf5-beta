@@ -2262,7 +2262,7 @@
 		} else {
 			
 			$el.find('.acf-field[data-name="save_other_choice"]').hide();
-			$el.find('.acf-field[data-name="save_other_choice"] input').hide().removeAttr('checked');
+			$el.find('.acf-field[data-name="save_other_choice"] input').removeAttr('checked');
 			
 		}
 			

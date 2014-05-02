@@ -249,6 +249,24 @@ class acf_controller_widget {
 		
 	});
 	
+	$(document).on('click', '.widget-top', function(){
+		
+		var $el = $(this).parent().children('.widget-inside');
+		
+		
+		setTimeout(function(){
+			
+			acf.get_fields( {}, $el ).each(function(){
+				
+				acf.do_action('show_field', $(this));	
+				
+			});
+			
+		}, 250);
+		
+				
+	});
+	
 })(jQuery);	
 </script>
 <?php

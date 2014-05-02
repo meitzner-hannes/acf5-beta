@@ -87,7 +87,7 @@ class acf_field_google_map extends acf_field
 		$atts = array(
 			'id'			=> $field['id'],
 			'class'			=> $field['class'],
-			'data-id'		=> $field['id'], 
+			'data-id'		=> $field['id'] . '-' . uniqid(), 
 			'data-lat'		=> $field['center_lat'],
 			'data-lng'		=> $field['center_lng'],
 			'data-zoom'		=> $field['zoom']

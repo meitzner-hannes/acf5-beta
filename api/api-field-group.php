@@ -106,12 +106,13 @@ function acf_get_field_groups( $args = false ) {
 	
 	// load from DB
 	$posts = get_posts(array(
-		'post_type'			=> 'acf-field-group',
-		'posts_per_page'	=> -1,
-		'orderby' 			=> 'menu_order title',
-		'order' 			=> 'asc',
-		'suppress_filters'	=> false,
-		'post_status'		=> 'publish',
+		'post_type'					=> 'acf-field-group',
+		'posts_per_page'			=> -1,
+		'orderby' 					=> 'menu_order title',
+		'order' 					=> 'asc',
+		'suppress_filters'			=> false,
+		'post_status'				=> 'publish',
+		'update_post_meta_cache'	=> false
 	));
 	
 	

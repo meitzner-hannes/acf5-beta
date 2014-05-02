@@ -241,9 +241,10 @@ function acf_render_field_settings( $field ) {
 function acf_get_fields( $parent = false ) {
 	
 	// allow $parent to be a field group ID
-	if( !is_array($parent) )
-	{
+	if( !is_array($parent) ) {
+		
 		$parent = acf_get_field_group( $parent );
+	
 	}
 	
 	
@@ -259,13 +260,14 @@ function acf_get_fields( $parent = false ) {
 	
 	
 	// try JSON before DB to save query time
-	if( acf_have_local_fields( $parent['key'] ) )
-	{
+	if( acf_have_local_fields( $parent['key'] ) ) {
+		
 		$fields = acf_get_local_fields( $parent['key'] );
-	}
-	else
-	{
+	
+	} else {
+		
 		$fields = acf_get_fields_by_id( $parent['ID'] );
+	
 	}
 	
 	
@@ -302,15 +304,26 @@ function acf_get_fields_by_id( $id = 0 ) {
 	}
 	
 	
+	// cache
+	$found = false;
+	$cache = wp_cache_get( 'fields/parent=' . $id, 'acf', false, $found );
+	
+	if( $found )
+	{
+		return $cache;
+	}
+	
+	
 	// args
 	$args = array(
-		'posts_per_page'	=> -1,
-		'post_type'			=> 'acf-field',
-		'orderby'			=> 'menu_order',
-		'order'				=> 'ASC',
-		'suppress_filters'	=> true, // allows WPML to work
-		'post_parent'		=> $id,
-		'post_status'		=> 'publish, trash' // 'any' won't get trashed fields
+		'posts_per_page'			=> -1,
+		'post_type'					=> 'acf-field',
+		'orderby'					=> 'menu_order',
+		'order'						=> 'ASC',
+		'suppress_filters'			=> true, // allows WPML to work
+		'post_parent'				=> $id,
+		'post_status'				=> 'publish, trash', // 'any' won't get trashed fields
+		'update_post_meta_cache'	=> false
 	);
 		
 	
@@ -324,6 +337,10 @@ function acf_get_fields_by_id( $id = 0 ) {
 			$fields[] = acf_get_field( $post->ID );
 		}	
 	}
+	
+	
+	// set cache
+	wp_cache_set( 'fields/parent=' . $id, $fields, 'acf' );
 		
 	
 	// return

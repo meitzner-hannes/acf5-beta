@@ -216,6 +216,7 @@
 		
 		update_field_meta : function( $el, name, value ){
 			
+			//console.log( 'update_field_meta(%o, %o, %o)', $el, name, value );
 			// vars
 	    	var $input = $el.find('> .acf-hidden > .input-' + name);
 	    	
@@ -231,7 +232,7 @@
 				
 				
 				// reset value
-				$input.val('');
+				$input.val( value );
 				
 				
 				// append
@@ -333,8 +334,20 @@
 			}
 			
 			
+			// bail early if no change
+			if( value == type ) {
+				
+				return;
+				
+			}
+			
+			
 			// update meta
 			this.update_field_meta( $el, 'save', type );
+			
+			
+			// action for 3rd party customization
+			acf.do_action('save_field', $el, type);
 			
 		},
 		
@@ -738,6 +751,14 @@
 			// update key
 			$el.find('> .field-info .pre-field_key').text( new_id );
 			
+			
+			// remove sortable classes
+			$el.find('.ui-sortable').removeClass('ui-sortable');
+			
+			
+			// action for 3rd party customization
+			acf.do_action('wipe_field', $el);
+			
 		},
 		
 		
@@ -778,7 +799,7 @@
 			
 			
 			// append to table
-			$field_list.children('.field[data-key="acfcloneindex"]').before( $el );
+			$field.after( $el );
 			
 			
 			// set select values
@@ -1023,6 +1044,14 @@
 			
 			// vars
 			var id = this.get_field_meta($el, 'ID');
+			
+			
+			// bail early if cloneindex
+			if( id == 'acfcloneindex' ) {
+				
+				return;
+				
+			}
 			
 			
 			// add to remove list

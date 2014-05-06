@@ -21,8 +21,8 @@
 	    	var _this = this;
 	    	
 	    	
-	    	// events
-	    	acf.add_action('open_field change_field_type sortstop', function( $el ){
+	    	// actions
+	    	acf.add_action('open_field sortstop', function( $el ){
 			    
 			    _this.update_field_parent( $el );
 				
@@ -62,6 +62,14 @@
     	
     	update_field_parent : function( $el ){
 	    	
+	    	// bail early if not div.field (flexible content tr)
+	    	if( ! $el.hasClass('field') ) {
+		    	
+		    	return;
+		    	
+	    	}
+	    	
+	    	
 	    	// vars
 	    	var $parent = $el.parent().closest('.field'),
 		    	val = 0;
@@ -95,6 +103,7 @@
 	    	
 	    	// action for 3rd party customization
 			acf.do_action('update_field_parent', $el, $parent);
+			
     	},
     	
     	
@@ -165,7 +174,7 @@
     	
     	delete_field : function( $el ){
 	    	
-	    	$el.find('.field').not('[data-key="acfcloneindex"]').each(function(){
+	    	$el.find('.field').each(function(){
 		    	
 		    	acf.field_group.delete_field( $(this), false );
 		    	
@@ -195,34 +204,21 @@
 			// reference
 			var _this = this;
 			
-						
-			// events
+			
+			// actions
 			acf.add_action('open_field change_field_type', function( $el ){
+			    
+			    _this.render_field( $el );
 				
-				// bail early if not repeater
-				if( $el.attr('data-type') != 'repeater' ) {
-					
-					return;
-					
-				}
-				
-				
-				// add class to input
-				$el.find('.acf-field[data-name="layout"]:first input[type="radio"]').attr('data-name', 'toggle-repeater-layout');
-		
-		
-				// render
-				_this.render_field( $el );
-				
-			});
+		    });
+		    
 			
-			
-			$(document).on('change', '[data-name="toggle-repeater-layout"]', function(){
+			// events	
+			$(document).on('change', '.acf-repeater-layout input', function(){
 				
 				_this.render_field( $(this).closest('.field') );
 				
 			});
-			
 			
 		},
 		
@@ -242,9 +238,19 @@
 		
 		render_field : function( $el ){
 			
+			// bail early if not repeater
+			if( $el.attr('data-type') != 'repeater' ) {
+				
+				return;
+				
+			}
+			
+			
 			// vars
-			var layout = $el.find('tr[data-name="layout"]:first input:checked').val(),
-				$field_list = $el.find('tr[data-name="sub_fields"]:first .acf-field-list:first');
+			var $tbody = $el.find('> .field-settings > table > tbody'),
+				$field_list = $tbody.find('> [data-name="sub_fields"] .acf-field-list:first'),
+				layout = $tbody.find('> [data-name="layout"] input:checked').val();
+				
 			
 			
 			// add class
@@ -283,6 +289,20 @@
 			// reference
 			var _this = this;
 			
+			
+			// actions
+			acf.add_action('open_field change_field_type', function( $el ){
+			    
+			    _this.render_field( $el );
+				
+		    });
+		    
+		    acf.add_action('update_field_parent', function( $el, $parent ){
+			    
+			    _this.update_field_parent( $el, $parent );
+				
+		    });
+			
 						
 			// events
 			$(document).on('click', '[data-name="acf-fc-add"]', function( e ){
@@ -319,30 +339,7 @@
 				
 				_this.render_layout( $(this).closest('.acf-field') );
 				
-			});
-			
-			acf.add_action('open_field change_field_type', function( $el ){
-				
-				// bail early if not flexible_content
-				if( $el.attr('data-type') != 'flexible_content' ) {
-					
-					return;
-					
-				}
-				
-				
-				// render
-				_this.render_field( $el );
-				
-			});
-			
-			
-			acf.add_action('update_field_parent', function( $el, $parent ){
-				
-				_this.update_field_parent( $el );
-				
-			});
-			
+			});	
 			
 		},
 		
@@ -384,6 +381,14 @@
 			
 			// add new tr
 			$tr.after( $new_tr );
+			
+			
+			// make sortbale
+			$new_tr.find('.acf-field-list').each(function(){
+				
+				acf.field_group.sort_fields( $(this) );
+				
+			});
 			
 			
 			// display
@@ -477,6 +482,14 @@
 			
 			// add new tr
 			$tr.after( $new_tr );
+			
+			
+			// make sortbale
+			$new_tr.find('.acf-field-list').each(function(){
+				
+				acf.field_group.sort_fields( $(this) );
+				
+			});
 			
 			
 			// set select values
@@ -608,6 +621,13 @@
 		
 		render_field : function( $el ){
 			
+			// bail early if not flexible_content
+			if( $el.attr('data-type') != 'flexible_content' ) {
+				
+				return;
+				
+			}
+			
 			// reference
 			var _this = this;
 			
@@ -644,21 +664,12 @@
 			
 			
 			// layouts
-			$el.find('tr[data-name="fc_layout"]').each(function(){
+			$tbody.children('tr[data-name="fc_layout"]').each(function(){
 				
 				_this.render_layout( $(this) );
-				
-				// vars
-				var parent_layout = $(this).attr('data-key');
-				
-				
-				$(this).find('.field').each(function(){
-					
-					acf.field_group.update_field_meta( $(this), 'parent_layout', parent_layout );
-					
-				});
 					
 			});
+
 			
 		},
 		
@@ -679,7 +690,7 @@
 		render_layout : function( $tr ){
 			
 			// vars
-			var layout = $tr.find('.acf-fc-meta .acf-fc-meta-display select').val(),
+			var layout = $tr.find('.acf-fc-meta:first .acf-fc-meta-display select').val(),
 				$field_list = $tr.find('.acf-field-list:first');
 			
 			
@@ -693,6 +704,16 @@
 				acf.field_group.sort_fields( $field_list );
 				
 			}
+			
+			
+			// append parent_layout input
+			var layout_key = $tr.attr('data-key');
+			
+			$field_list.children('.field').each(function(){
+				
+				acf.field_group.update_field_meta( $(this), 'parent_layout', layout_key );
+				
+			});
 			
 		},
 		
@@ -710,47 +731,48 @@
 		*  @return	n/a
 		*/
 		
-		update_field_parent : function( $el ){			
-		
+		update_field_parent : function( $el, $parent ){			
+			
+			// remove parent_layout if not a sub field
+			if( !$parent.exists() ) {
+				
+				acf.field_group.delete_field_meta( $el, 'parent_layout' );
+				return;
+				
+			}
+			
+			
 			// vars
-			var $tr = $el.closest('tr.acf-field'),
-				parent_layout = acf.field_group.get_field_meta( $el, 'parent_layout' ),
-				changed = false;
+			var $tr = $el.closest('tr.acf-field');
 			
 			
-			// append hidden flexible content layout (fc_layout)
-			if( $tr.exists() && $tr.attr('data-name') == 'fc_layout' ) {
-			
-				// vars
-				var new_parent_layout = $tr.attr('data-key');
+			// bail early if $tr is not a fc layout
+			if( $tr.attr('data-name') != 'fc_layout' ) {
 				
-				
-				// detect change
-				if( parent_layout != new_parent_layout ) {
-					
-					acf.field_group.update_field_meta( $el, 'parent_layout', new_parent_layout );
-					changed = true;
-					
-				}
-				
-			} else {
-				
-				if( parent_layout ) {
-					
-					acf.field_group.delete_field_meta( $el, 'parent_layout' );
-					changed = true;
-					
-				}
+				return;
 				
 			}
 			
 			
-			if( changed ) {
+			// vars
+			var parent_layout = acf.field_group.get_field_meta( $el, 'parent_layout' ),
+				new_parent_layout = $tr.attr('data-key');
+			
+			
+			// bail early if no change
+			if( parent_layout == new_parent_layout ) {
 				
-				// save
-				acf.field_group.save_field( $el );
+				return;
 				
 			}
+			
+			
+			// update meta
+			acf.field_group.update_field_meta( $el, 'parent_layout', new_parent_layout );
+			
+			
+			// save
+			acf.field_group.save_field( $el );
 			
 		}
 		

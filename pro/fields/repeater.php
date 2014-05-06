@@ -360,6 +360,7 @@ class acf_field_repeater extends acf_field
 		acf_render_field_setting( $field, array(
 			'label'			=> __('Layout','acf'),
 			'instructions'	=> '',
+			'class'			=> 'acf-repeater-layout',
 			'type'			=> 'radio',
 			'name'			=> 'layout',
 			'layout'		=> 'horizontal',

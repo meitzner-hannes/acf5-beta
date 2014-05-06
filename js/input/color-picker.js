@@ -2,9 +2,58 @@
 	
 	acf.fields.color_picker = {
 		
+		timeout : null,
+		
 		init : function( $input ){
 			
-			$input.wpColorPicker();
+			// reference
+			var self = this;
+			
+			
+			// vars
+			var $hidden = $input.clone();
+			
+			
+			// modify hidden
+			$hidden.attr({
+				'type'	: 'hidden',
+				'class' : '',
+				'id'	: '',
+				'value'	: ''
+ 			});
+ 			
+ 			
+ 			// append hidden
+ 			$input.before( $hidden );
+ 			
+ 			
+ 			// iris
+			$input.wpColorPicker({
+				
+				change: function( event, ui ){
+			
+					self.change( $input, $hidden );
+					
+				}
+				
+			});
+			
+		},
+		
+		change : function( $input, $hidden ){
+			
+			if( this.timeout ) {
+				
+				clearTimeout( this.timeout );
+				
+			}
+			
+			
+			this.timeout = setTimeout(function(){
+				
+				$hidden.trigger('change');
+				
+			}, 100);
 			
 		}
 	};

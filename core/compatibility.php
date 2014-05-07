@@ -57,7 +57,7 @@ class acf_compatibility {
 			
 			
 			// disabled
-			if( !empty($logic['rules']) ) {
+			if( !empty($logic['status']) ) {
 				
 				// reset
 				$field['conditional_logic'] = array();
@@ -69,20 +69,24 @@ class acf_compatibility {
 		 		
 		 		
 		 		// loop over rules
-			 	foreach( $logic['rules'] as $rule ) {
+		 		if( !empty($logic['rules']) ) {
 			 		
-				 	// sperate groups?
-				 	if( $all_or_any == 'any' ) {
-				 	
-					 	$group++;
+			 		foreach( $logic['rules'] as $rule ) {
+				 		
+					 	// sperate groups?
+					 	if( $all_or_any == 'any' ) {
 					 	
+						 	$group++;
+						 	
+					 	}
+					 	
+					 	
+					 	// add to group
+					 	$field['conditional_logic'][ $group ][] = $rule;
+			 	
 				 	}
 				 	
-				 	
-				 	// add to group
-				 	$field['conditional_logic'][ $group ][] = $rule;
-		 	
-			 	}
+		 		}
 			 	
 			 	
 			 	// reset keys

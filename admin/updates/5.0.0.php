@@ -203,6 +203,10 @@ function _migrate_field_group_500( $ofg ) {
 
 function _migrate_field_500( $field ) {
 	
+	// orig
+	$orig = $field;
+	
+	
 	// order_no is now menu_order
 	$field['menu_order'] = acf_extract_var( $field, 'order_no' );
 	
@@ -217,46 +221,84 @@ function _migrate_field_500( $field ) {
 	
 	// sub fields
 	if( $field['type'] == 'repeater' ) {
-	
-		$sub_fields = acf_extract_var($field, 'sub_fields');
-		$keys = array_keys($sub_fields);
 		
-		foreach( $keys as $key ) {
+		// get sub fields
+		$sub_fields = acf_extract_var( $orig, 'sub_fields' );
 		
-			$sub_field = acf_extract_var($sub_fields, $key);
-			$sub_field['parent'] = $field['ID'];
-			
-			_migrate_field_500( $sub_field );
-			
-		}
 		
-		// save field again with less sub field data
-		$field = acf_update_field( $field );
-	
-	} elseif( $field['type'] == 'flexible_content' ) {
-	
-		$keys = array_keys($field['layouts']);
+		// save sub fields
+		if( !empty($sub_fields) ) {
+			
+			$keys = array_keys($sub_fields);
 		
-		foreach( $keys as $key ) {
-		
-			$layout_key = uniqid();
+			foreach( $keys as $key ) {
 			
-			$field['layouts'][ $key ]['key'] = $layout_key;
-			
-			$sub_fields = acf_extract_var($field['layouts'][ $key ], 'sub_fields');
-			$keys2 = array_keys($sub_fields);
-			
-			foreach( $keys2 as $key2 ) {
-			
-				$sub_field = acf_extract_var($sub_fields, $key2);
+				$sub_field = acf_extract_var($sub_fields, $key);
 				$sub_field['parent'] = $field['ID'];
-				$sub_field['parent_layout'] = $layout_key;
 				
 				_migrate_field_500( $sub_field );
 				
 			}
 			
 		}
+		
+	
+	} elseif( $field['type'] == 'flexible_content' ) {
+		
+		// get layouts
+		$layouts = acf_extract_var( $orig, 'layouts' );
+		
+		
+		// update layouts
+		$field['layouts'] = array();
+		
+		
+		// save sub fields
+		if( !empty($layouts) ) {
+			
+			foreach( $layouts as $layout ) {
+				
+				// vars
+				$layout_key = uniqid();
+				
+				
+				// append layotu key
+				$layout['key'] = $layout_key;
+				
+				
+				// extract sub fields
+				$sub_fields = acf_extract_var($layout, 'sub_fields');
+				
+				
+				// save sub fields
+				if( !empty($sub_fields) ) {
+					
+					$keys = array_keys($sub_fields);
+					
+					foreach( $keys as $key ) {
+					
+						$sub_field = acf_extract_var($sub_fields, $key);
+						$sub_field['parent'] = $field['ID'];
+						$sub_field['parent_layout'] = $layout_key;
+						
+						_migrate_field_500( $sub_field );
+						
+					}
+					// foreach
+					
+				}
+				// if
+				
+				
+				// append layout
+				$field['layouts'][] = $layout;
+			
+			}
+			// foreach
+			
+		}
+		// if
+		
 		
 		// save field again with less sub field data
 		$field = acf_update_field( $field );

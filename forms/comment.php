@@ -52,13 +52,6 @@ class acf_controller_comment {
 		$post_id = "comment_0";
 
 		
-		// render post data
-		acf_form_data(array( 
-			'post_id'	=> $post_id, 
-			'nonce'		=> 'comment' 
-		));
-		
-		
 		// get field groups
 		$field_groups = acf_get_field_groups(array(
 			'comment' => 'new'
@@ -66,6 +59,13 @@ class acf_controller_comment {
 		
 		
 		if( !empty($field_groups) ):
+			
+			// render post data
+			acf_form_data(array( 
+				'post_id'	=> $post_id, 
+				'nonce'		=> 'comment' 
+			));
+			
 			
 			foreach( $field_groups as $field_group ): 
 				
@@ -171,14 +171,7 @@ class acf_controller_comment {
 		// vars
 		$post_id = "comment_{$comment->comment_ID}";
 
-		
-		// render post data
-		acf_form_data(array( 
-			'post_id'	=> $post_id, 
-			'nonce'		=> 'comment' 
-		));
-		
-		
+
 		// get field groups
 		$field_groups = acf_get_field_groups(array(
 			'comment' => $comment->comment_ID
@@ -187,6 +180,13 @@ class acf_controller_comment {
 		
 		// render
 		if( !empty($field_groups) ):
+		
+			// render post data
+			acf_form_data(array( 
+				'post_id'	=> $post_id, 
+				'nonce'		=> 'comment' 
+			));
+			
 			
 			foreach( $field_groups as $field_group ): 
 				

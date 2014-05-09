@@ -467,11 +467,15 @@ function acf_update_field_group( $field_group = array() ) {
     	'post_type'		=> 'acf-field-group',
     	'post_title'	=> $extract['title'],
     	'post_name'		=> $extract['key'],
+    	'post_excerpt'	=> sanitize_title($extract['title']),
     	'post_content'	=> $data,
     	'menu_order'	=> $extract['menu_order'],
     );
     
     
+    // allow field groups to contain the same name
+	add_filter( 'wp_unique_post_slug', 'acf_update_field_group_wp_unique_post_slug', 5, 6 ); 
+	
     
     // update the field group and update the ID
     if( $field_group['ID'] )
@@ -491,6 +495,17 @@ function acf_update_field_group( $field_group = array() ) {
     // return
     return $field_group;
 	
+}
+
+function acf_update_field_group_wp_unique_post_slug( $slug, $post_ID, $post_status, $post_type, $post_parent, $original_slug ) {
+		
+	if( $post_type == 'acf-field-group' ) {
+	
+		$slug = $original_slug;
+	
+	}
+	
+	return $slug;
 }
 
 

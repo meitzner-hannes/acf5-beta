@@ -19,10 +19,25 @@ class acf_pro {
 	
 	function __construct() {
 		
-		// includes
-		$this->include_api();
-		$this->include_admin();
+		// api
+		acf_include('pro/api/api-pro.php');
+		acf_include('pro/api/api-options-page.php');
+		
+		
+		// admin
+		if( is_admin() ) {
+			
+			// options page
+			acf_include('pro/admin/options-page.php');
+			
+			// connect (update)
+			acf_include('pro/admin/connect.php');
 				
+			// settings
+			acf_include('pro/admin/settings-updates.php');
+			
+		}
+		
 		
 		// includes (admin only)
 		add_action('acf/include_field_types',					array($this, 'include_field_types'));
@@ -48,53 +63,6 @@ class acf_pro {
 	
 	
 	/*
-	*  include_api
-	*
-	*  This function will include all field files
-	*
-	*  @type	function
-	*  @date	28/09/13
-	*  @since	5.0.0
-	*
-	*  @param	N/A
-	*  @return	N/A
-	*/
-	
-	function include_api() {
-		
-		include_once('api-pro.php');
-		
-	}
-	
-	
-	/*
-	*  include_admin
-	*
-	*  This function will include all admin files
-	*
-	*  @type	function
-	*  @date	28/09/13
-	*  @since	5.0.0
-	*
-	*  @param	N/A
-	*  @return	N/A
-	*/
-	
-	function include_admin() {
-		
-		// options page
-		include_once('admin/options-page.php');
-		
-		// connect (update)
-		include_once('admin/connect.php');
-			
-		// settings
-		include_once('admin/settings-updates.php');
-		
-	}
-	
-	
-	/*
 	*  include_field_types
 	*
 	*  This function will include all field files
@@ -109,9 +77,9 @@ class acf_pro {
 	
 	function include_field_types() {
 		
-		include_once('fields/repeater.php');
-		include_once('fields/flexible-content.php');
-		include_once('fields/gallery.php');
+		acf_include('pro/fields/repeater.php');
+		acf_include('pro/fields/flexible-content.php');
+		acf_include('pro/fields/gallery.php');
 		
 	}
 	

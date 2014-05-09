@@ -784,7 +784,7 @@ function acf_update_field( $field = false, $specific = false ) {
     }
     
     
-    // Note: find out why by default, ACF is adding a -2
+    // allow fields to contain the same name
 	add_filter( 'wp_unique_post_slug', 'acf_update_field_wp_unique_post_slug', 5, 6 ); 
 	
 	
@@ -814,9 +814,10 @@ function acf_update_field( $field = false, $specific = false ) {
 
 function acf_update_field_wp_unique_post_slug( $slug, $post_ID, $post_status, $post_type, $post_parent, $original_slug ) {
 		
-	if( $post_type == 'acf-field' )
-	{
+	if( $post_type == 'acf-field' ) {
+	
 		$slug = $original_slug;
+	
 	}
 	
 	return $slug;

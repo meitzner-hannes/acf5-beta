@@ -801,6 +801,7 @@ function acf_update_field( $field = false, $specific = false ) {
     
     // clear cache
 	wp_cache_delete( "load_field/ID={$field['ID']}", 'acf' );
+	wp_cache_delete( "fields/parent={$field['parent']}", 'acf' );
 	
 	
     // update cache

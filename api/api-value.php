@@ -27,95 +27,98 @@ function acf_get_value( $post_id, $field, $format = false, $format_template = fa
 	$found = false;
 	$cache = wp_cache_get( "load_value/post_id={$post_id}/name={$field['name']}", 'acf', false, $found );
 	
-	if( $found )
-	{
-		return $cache;
-	}
-			
+	if( $found ) {
 	
-	// load value depending on the $type
-	if( empty($post_id) ) {
+		$value = $cache;
 		
-		// do nothing
-	
-	} elseif( is_numeric($post_id) ) {
-		
-		$v = get_post_meta( $post_id, $field['name'], false );
-		
-		// value is an array
-		if( isset($v[0]) )
-		{
-		 	$value = $v[0];
-	 	}
-
-	} elseif( strpos($post_id, 'user_') !== false ) {
-		
-		$user_id = str_replace('user_', '', $post_id);
-		$user_id = intval( $user_id );
-		
-		$v = get_user_meta( $user_id, $field['name'], false );
-		
-		// value is an array
-		if( isset($v[0]) )
-		{
-		 	$value = $v[0];
-	 	}
-	 	
-	} elseif( strpos($post_id, 'comment_') !== false ) {
-		
-		$comment_id = str_replace('comment_', '', $post_id);
-		$comment_id = intval( $comment_id );
-		
-		$v = get_comment_meta( $comment_id, $field['name'], false );
-		
-		// value is an array
-		if( isset($v[0]) )
-		{
-		 	$value = $v[0];
-	 	}
-	 	
 	} else {
+			
+		// load value depending on the $type
+		if( empty($post_id) ) {
+			
+			// do nothing
 		
-		$v = get_option( "{$post_id}_{$field['name']}", false );
+		} elseif( is_numeric($post_id) ) {
+			
+			$v = get_post_meta( $post_id, $field['name'], false );
+			
+			// value is an array
+			if( isset($v[0]) )
+			{
+			 	$value = $v[0];
+		 	}
 	
-		if( ! is_null($v) )
-		{
-			$value = $v;
-	 	}
-	}
-	
-	
-	// no value? load default
-	if( $value === null )
-	{
-		if( isset($field['default_value']) )
-		{
-			$value = $field['default_value'];
+		} elseif( strpos($post_id, 'user_') !== false ) {
+			
+			$user_id = str_replace('user_', '', $post_id);
+			$user_id = intval( $user_id );
+			
+			$v = get_user_meta( $user_id, $field['name'], false );
+			
+			// value is an array
+			if( isset($v[0]) )
+			{
+			 	$value = $v[0];
+		 	}
+		 	
+		} elseif( strpos($post_id, 'comment_') !== false ) {
+			
+			$comment_id = str_replace('comment_', '', $post_id);
+			$comment_id = intval( $comment_id );
+			
+			$v = get_comment_meta( $comment_id, $field['name'], false );
+			
+			// value is an array
+			if( isset($v[0]) )
+			{
+			 	$value = $v[0];
+		 	}
+		 	
+		} else {
+			
+			$v = get_option( "{$post_id}_{$field['name']}", false );
+		
+			if( ! is_null($v) )
+			{
+				$value = $v;
+		 	}
 		}
+		
+		
+		// no value? load default
+		if( $value === null )
+		{
+			if( isset($field['default_value']) )
+			{
+				$value = $field['default_value'];
+			}
+		}
+		
+		
+		// if value was duplicated, it may now be a serialized string!
+		$value = maybe_unserialize( $value );
+		
+		
+		// filter for 3rd party customization
+		$value = apply_filters( "acf/load_value", $value, $post_id, $field );
+		$value = apply_filters( "acf/load_value/type={$field['type']}", $value, $post_id, $field );
+		$value = apply_filters( "acf/load_value/name={$field['name']}", $value, $post_id, $field );
+		$value = apply_filters( "acf/load_value/key={$field['key']}", $value, $post_id, $field );
+		
+		
+		//update cache
+		wp_cache_set( "load_value/post_id={$post_id}/name={$field['name']}", $value, 'acf' );
+		
 	}
-	
-	
-	// if value was duplicated, it may now be a serialized string!
-	$value = maybe_unserialize( $value );
-	
-	
-	// filter for 3rd party customization
-	$value = apply_filters( "acf/load_value", $value, $post_id, $field );
-	$value = apply_filters( "acf/load_value/type={$field['type']}", $value, $post_id, $field );
-	$value = apply_filters( "acf/load_value/name={$field['name']}", $value, $post_id, $field );
-	$value = apply_filters( "acf/load_value/key={$field['key']}", $value, $post_id, $field );
 	
 	
 	// format
-	if( $format )
-	{
+	if( $format ) {
+	
 		$value = apply_filters( "acf/format_value", $value, $post_id, $field, $format_template );
 		$value = apply_filters( "acf/format_value/type={$field['type']}", $value, $post_id, $field, $format_template );
+		
 	}
-	
-	
-	//update cache
-	wp_cache_set( "load_value/post_id={$post_id}/name={$field['name']}", $value, 'acf' );
 	
 	
 	// return

@@ -223,6 +223,15 @@ if( ! this.$trigger )
 			});
 			
 			
+			// click preview
+			$(document).on('click', '#post-preview', function(){
+				
+				_this.ignore = 1;
+				_this.$trigger = $(this);
+				
+			});
+			
+			
 			// click publish
 			$(document).on('click', '#submit', function(){
 				

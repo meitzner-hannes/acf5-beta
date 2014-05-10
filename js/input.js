@@ -533,7 +533,7 @@ var acf = {
 			var r = true;
 			
 			
-			// check $el calss
+			// check $el class
 			if( ! $el.hasClass('acf-field') )
 			{
 				r = false;
@@ -962,8 +962,8 @@ var acf = {
 	/*
 	*  Hooks
 	*
-	*  These functions act as wrapper functions for the included event-manajer JS library
-	*  Wrapper functions will ensure that future changes to event-manager do not distrupt
+	*  These functions act as wrapper functions for the included event-manager JS library
+	*  Wrapper functions will ensure that future changes to event-manager do not disrupt
 	*  any custom actions / filter code written by users
 	*
 	*  @type	functions
@@ -1123,7 +1123,7 @@ var acf = {
 			
 			// defaults
 			args = $.extend({}, {
-				title		: '',		// Uploade Image
+				title		: '',		// Upload Image
 				type		: '',		// image
 				query		: {},		// library query
 				uploadedTo	: 0,		// restrict browsing to post_id
@@ -1523,7 +1523,7 @@ var acf = {
 				}, 50);
 
 				
-				// return based on the origional render function
+				// return based on the original render function
 				return this;
 			};
 			
@@ -1714,7 +1714,7 @@ var acf = {
 			// does this field trigger any actions
 			if( acf.isset(_this, 'triggers', key) )
 			{
-				// update visibiliy
+				// update visibility
 				$.each(_this.triggers[ key ], function( i, target ){
 					
 					_this.render_field( target );
@@ -2099,7 +2099,7 @@ else if( acf.isset(_this, 'triggers', key) )
 			});
 			
 			
-			// revert postision css
+			// revert position css
 			$item.css('position', 'absolute');
 			
 			
@@ -2336,11 +2336,11 @@ else if( acf.isset(_this, 'triggers', key) )
 			});
 			
 			
-			// post taxonmy
+			// post taxonomy
 			$(document).on('change', '.categorychecklist input, .acf-taxonomy-field input, .acf-taxonomy-field select', function(){
 				
 				// a taxonomy field may trigger this change event, however, the value selected is not
-				// actually a term relatinoship, it is meta data
+				// actually a term relationship, it is meta data
 				if( $(this).closest('.acf-taxonomy-field').exists() )
 				{
 					if( $(this).closest('.acf-taxonomy-field').attr('data-save') == '0' )
@@ -2350,7 +2350,7 @@ else if( acf.isset(_this, 'triggers', key) )
 				}
 				
 				
-				// this may be triggered from editing an imgae in a popup. Popup does not support correct metaboxes so ignore this
+				// this may be triggered from editing an image in a popup. Popup does not support correct metaboxes so ignore this
 				if( $(this).closest('.media-frame').exists() )
 				{
 					return;
@@ -2945,7 +2945,7 @@ else if( acf.isset(_this, 'triggers', key) )
 			    }
 			    else
 			    {
-				    // client hit enter, manulaly get the place
+				    // client hit enter, manually get the place
 				    _this.geocoder.geocode({ 'address' : address }, function( results, status ){
 				    	
 				    	// validate
@@ -4352,7 +4352,7 @@ acf.add_action('ready append', function( $el ){
 					cache		: true,
 					data		: function (term, page) {
 						
-						// Alow for dynamic action becuase post_object and user fields use this JS
+						// Allow for dynamic action because post_object and user fields use this JS
 						var action = 'acf/fields/' + acf.get_data($field, 'type') + '/query';
 						
 						
@@ -4404,7 +4404,7 @@ acf.add_action('ready append', function( $el ){
 			$input.select2( args );
 
 			
-			// reoreder DOM
+			// reorder DOM
 			$input.select2('container').before( $input );
 			
 			
@@ -4545,7 +4545,7 @@ acf.add_action('ready append', function( $el ){
 				label 	= $tab.text();
 				
 				
-			// create tab group if it doesnt exist
+			// create tab group if it doesn't exist
 			if( ! $wrap.children('.acf-tab-wrap').exists() )
 			{
 				this.add_group( $wrap );
@@ -4823,7 +4823,7 @@ acf.add_action('ready append', function( $el ){
 			}
 			
 			
-			// field is within a tab group, and hte tab is already showing
+			// field is within a tab group, and the tab is already showing
 			// end loop
 			return false;
 			
@@ -5322,7 +5322,7 @@ if( ! this.$trigger )
 				wpActiveEditor = null;
 				
 				// update the hidden textarea
-				// - This fixes a but when adding a taxonomy term as the form is not posted and the hidden tetarea is never populated!
+				// - This fixes a but when adding a taxonomy term as the form is not posted and the hidden textarea is never populated!
 
 				// save to textarea	
 				editor.save();
@@ -5342,7 +5342,7 @@ if( ! this.$trigger )
 				command = 'mceRemoveControl';
 			
 			
-			// Remove tinymcy functionality.
+			// Remove tinymce functionality.
 			// Due to the media popup destroying and creating the field within such a short amount of time,
 			// a JS error will be thrown when launching the edit window twice in a row.
 			try {
@@ -5470,7 +5470,7 @@ if( ! this.$trigger )
 			
 			setTimeout(function(){
 				
-				// trigger click on hidden wysiwyg (to get in HTML mode)
+				// trigger click on hidden WYSIWYG (to get in HTML mode)
 				if( wp_acf_settings && mode == 'html' )
 				{
 					$('#acf_settings-tmce').trigger('click');
@@ -5485,7 +5485,7 @@ if( ! this.$trigger )
 				var $fields = acf.get_fields({ type : 'wysiwyg'}, $el);
 				
 				
-				// Destory all WYSIWYG fields
+				// Destroy all WYSIWYG fields
 				// This hack will fix a problem when the WP popup is created and hidden, then the ACF popup (image/file field) is opened
 				$fields.each(function(){
 					
@@ -5510,7 +5510,7 @@ if( ! this.$trigger )
 			
 			setTimeout(function(){
 				
-				// trigger html mode for people who want to stay in HTML mode
+				// trigger HTML mode for people who want to stay in HTML mode
 				if( wp_acf_settings && mode == 'html' )
 				{
 					$('#acf_settings-html').trigger('click');
@@ -5534,7 +5534,7 @@ if( ! this.$trigger )
 	/*
 	*  Full screen
 	*
-	*  @description: this hack will hide the 'image upload' button in the wysiwyg full screen mode if the field has disabled image uploads!
+	*  @description: this hack will hide the 'image upload' button in the WYSIWYG full screen mode if the field has disabled image uploads!
 	*  @since: 3.6
 	*  @created: 26/02/13
 	*/

@@ -217,11 +217,11 @@
 			});
 			
 			
-			// post taxonmy
+			// post taxonomy
 			$(document).on('change', '.categorychecklist input, .acf-taxonomy-field input, .acf-taxonomy-field select', function(){
 				
 				// a taxonomy field may trigger this change event, however, the value selected is not
-				// actually a term relatinoship, it is meta data
+				// actually a term relationship, it is meta data
 				if( $(this).closest('.acf-taxonomy-field').exists() )
 				{
 					if( $(this).closest('.acf-taxonomy-field').attr('data-save') == '0' )
@@ -231,7 +231,7 @@
 				}
 				
 				
-				// this may be triggered from editing an imgae in a popup. Popup does not support correct metaboxes so ignore this
+				// this may be triggered from editing an image in a popup. Popup does not support correct metaboxes so ignore this
 				if( $(this).closest('.media-frame').exists() )
 				{
 					return;

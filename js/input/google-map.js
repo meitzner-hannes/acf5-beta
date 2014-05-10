@@ -138,7 +138,7 @@
 			    }
 			    else
 			    {
-				    // client hit enter, manulaly get the place
+				    // client hit enter, manually get the place
 				    _this.geocoder.geocode({ 'address' : address }, function( results, status ){
 				    	
 				    	// validate

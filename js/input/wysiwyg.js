@@ -175,7 +175,7 @@
 				wpActiveEditor = null;
 				
 				// update the hidden textarea
-				// - This fixes a but when adding a taxonomy term as the form is not posted and the hidden tetarea is never populated!
+				// - This fixes a but when adding a taxonomy term as the form is not posted and the hidden textarea is never populated!
 
 				// save to textarea	
 				editor.save();
@@ -195,7 +195,7 @@
 				command = 'mceRemoveControl';
 			
 			
-			// Remove tinymcy functionality.
+			// Remove tinymce functionality.
 			// Due to the media popup destroying and creating the field within such a short amount of time,
 			// a JS error will be thrown when launching the edit window twice in a row.
 			try {
@@ -323,7 +323,7 @@
 			
 			setTimeout(function(){
 				
-				// trigger click on hidden wysiwyg (to get in HTML mode)
+				// trigger click on hidden WYSIWYG (to get in HTML mode)
 				if( wp_acf_settings && mode == 'html' )
 				{
 					$('#acf_settings-tmce').trigger('click');
@@ -338,7 +338,7 @@
 				var $fields = acf.get_fields({ type : 'wysiwyg'}, $el);
 				
 				
-				// Destory all WYSIWYG fields
+				// Destroy all WYSIWYG fields
 				// This hack will fix a problem when the WP popup is created and hidden, then the ACF popup (image/file field) is opened
 				$fields.each(function(){
 					
@@ -363,7 +363,7 @@
 			
 			setTimeout(function(){
 				
-				// trigger html mode for people who want to stay in HTML mode
+				// trigger HTML mode for people who want to stay in HTML mode
 				if( wp_acf_settings && mode == 'html' )
 				{
 					$('#acf_settings-html').trigger('click');
@@ -387,7 +387,7 @@
 	/*
 	*  Full screen
 	*
-	*  @description: this hack will hide the 'image upload' button in the wysiwyg full screen mode if the field has disabled image uploads!
+	*  @description: this hack will hide the 'image upload' button in the WYSIWYG full screen mode if the field has disabled image uploads!
 	*  @since: 3.6
 	*  @created: 26/02/13
 	*/

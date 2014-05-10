@@ -432,7 +432,7 @@
 				}
 				
 				
-				// remove unneccessay inputs
+				// remove unnecessary inputs
 				if( save == 'settings' ) {
 					
 					// do nothing
@@ -2193,7 +2193,7 @@
 	/*
 	*  ready
 	*
-	*  This function is riggered on document ready and will initialize the fiedl group object
+	*  This function is triggered on document ready and will initialize the field group object
 	*
 	*  @type	function
 	*  @date	8/04/2014
@@ -2213,7 +2213,7 @@
 	/*
 	*  Select
 	*
-	*  This field type requies some extra logic for it's settings
+	*  This field type requires some extra logic for its settings
 	*
 	*  @type	function
 	*  @date	24/10/13
@@ -2269,7 +2269,7 @@
 	/*
 	*  Radio
 	*
-	*  This field type requies some extra logic for it's settings
+	*  This field type requires some extra logic for its settings
 	*
 	*  @type	function
 	*  @date	24/10/13
@@ -2326,7 +2326,7 @@
 	/*
 	*  Google Map
 	*
-	*  This field type requies some extra logic for it's settings
+	*  This field type requires some extra logic for its settings
 	*
 	*  @type	function
 	*  @date	24/10/13
@@ -2378,7 +2378,7 @@
 	/*
 	*  oEmbed
 	*
-	*  This field type requies some extra logic for it's settings
+	*  This field type requires some extra logic for its settings
 	*
 	*  @type	function
 	*  @date	24/10/13
@@ -2430,7 +2430,7 @@
 	/*
 	*  Date Picker
 	*
-	*  This field type requies some extra logic for it's settings
+	*  This field type requires some extra logic for its settings
 	*
 	*  @type	function
 	*  @date	24/10/13

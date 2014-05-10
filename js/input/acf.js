@@ -273,7 +273,7 @@ var acf = {
 			var r = true;
 			
 			
-			// check $el calss
+			// check $el class
 			if( ! $el.hasClass('acf-field') )
 			{
 				r = false;
@@ -702,8 +702,8 @@ var acf = {
 	/*
 	*  Hooks
 	*
-	*  These functions act as wrapper functions for the included event-manajer JS library
-	*  Wrapper functions will ensure that future changes to event-manager do not distrupt
+	*  These functions act as wrapper functions for the included event-manager JS library
+	*  Wrapper functions will ensure that future changes to event-manager do not disrupt
 	*  any custom actions / filter code written by users
 	*
 	*  @type	functions
@@ -863,7 +863,7 @@ var acf = {
 			
 			// defaults
 			args = $.extend({}, {
-				title		: '',		// Uploade Image
+				title		: '',		// Upload Image
 				type		: '',		// image
 				query		: {},		// library query
 				uploadedTo	: 0,		// restrict browsing to post_id
@@ -1263,7 +1263,7 @@ var acf = {
 				}, 50);
 
 				
-				// return based on the origional render function
+				// return based on the original render function
 				return this;
 			};
 			
@@ -1454,7 +1454,7 @@ var acf = {
 			// does this field trigger any actions
 			if( acf.isset(_this, 'triggers', key) )
 			{
-				// update visibiliy
+				// update visibility
 				$.each(_this.triggers[ key ], function( i, target ){
 					
 					_this.render_field( target );
@@ -1839,7 +1839,7 @@ else if( acf.isset(_this, 'triggers', key) )
 			});
 			
 			
-			// revert postision css
+			// revert position css
 			$item.css('position', 'absolute');
 			
 			

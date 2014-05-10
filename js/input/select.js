@@ -139,7 +139,7 @@
 					cache		: true,
 					data		: function (term, page) {
 						
-						// Alow for dynamic action becuase post_object and user fields use this JS
+						// Allow for dynamic action because post_object and user fields use this JS
 						var action = 'acf/fields/' + acf.get_data($field, 'type') + '/query';
 						
 						
@@ -191,7 +191,7 @@
 			$input.select2( args );
 
 			
-			// reoreder DOM
+			// reorder DOM
 			$input.select2('container').before( $input );
 			
 			

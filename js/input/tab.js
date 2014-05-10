@@ -34,7 +34,7 @@
 				label 	= $tab.text();
 				
 				
-			// create tab group if it doesnt exist
+			// create tab group if it doesn't exist
 			if( ! $wrap.children('.acf-tab-wrap').exists() )
 			{
 				this.add_group( $wrap );
@@ -312,7 +312,7 @@
 			}
 			
 			
-			// field is within a tab group, and hte tab is already showing
+			// field is within a tab group, and the tab is already showing
 			// end loop
 			return false;
 			

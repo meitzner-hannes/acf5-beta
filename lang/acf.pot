@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Custom Fields\n"
-"POT-Creation-Date: 2014-04-27 01:45+0100\n"
-"PO-Revision-Date: 2014-04-27 01:46+0100\n"
+"POT-Creation-Date: 2014-05-01 12:52+0100\n"
+"PO-Revision-Date: 2014-05-01 12:52+0100\n"
 "Last-Translator: Elliot Condon <e@elliotcondon.com>\n"
 "Language-Team: Elliot Condon <e@elliotcondon.com>\n"
 "MIME-Version: 1.0\n"
@@ -38,7 +38,7 @@ msgstr ""
 msgid "Field Group"
 msgstr ""
 
-#: acf.php:296 acf.php:322 pro/fields/flexible-content.php:246
+#: acf.php:296 acf.php:322 pro/fields/flexible-content.php:244
 msgid "Add New"
 msgstr ""
 
@@ -70,8 +70,8 @@ msgstr ""
 msgid "No Field Groups found in Trash"
 msgstr ""
 
-#: acf.php:320 admin/field-group.php:145 admin/field-group.php:173
-#: admin/field-group.php:208 admin/field-groups.php:307
+#: acf.php:320 admin/field-group.php:183 admin/field-group.php:211
+#: admin/field-group.php:246 admin/field-groups.php:307
 msgid "Fields"
 msgstr ""
 
@@ -112,27 +112,59 @@ msgstr ""
 msgid "Custom Fields"
 msgstr ""
 
-#: admin/field-group.php:139
+#: admin/field-group.php:52 admin/field-group.php:55
+msgid "Field group updated."
+msgstr ""
+
+#: admin/field-group.php:53
+msgid "Custom field updated."
+msgstr ""
+
+#: admin/field-group.php:54
+msgid "Custom field deleted."
+msgstr ""
+
+#: admin/field-group.php:57
+msgid "Field group published."
+msgstr ""
+
+#: admin/field-group.php:58
+msgid "Field group saved."
+msgstr ""
+
+#: admin/field-group.php:59
+msgid "Field group submitted."
+msgstr ""
+
+#: admin/field-group.php:60
+msgid "Field group scheduled for."
+msgstr ""
+
+#: admin/field-group.php:61
+msgid "Field group draft updated."
+msgstr ""
+
+#: admin/field-group.php:177
 msgid "Move to trash. Are you sure?"
 msgstr ""
 
-#: admin/field-group.php:140
+#: admin/field-group.php:178
 msgid "checked"
 msgstr ""
 
-#: admin/field-group.php:141
+#: admin/field-group.php:179
 msgid "No toggle fields available"
 msgstr ""
 
-#: admin/field-group.php:142
+#: admin/field-group.php:180
 msgid "Field group title is required"
 msgstr ""
 
-#: admin/field-group.php:143 api/api-field-group.php:534
+#: admin/field-group.php:181 api/api-field-group.php:534
 msgid "copy"
 msgstr ""
 
-#: admin/field-group.php:144
+#: admin/field-group.php:182
 #: admin/views/field-group-field-conditional-logic.php:69
 #: admin/views/field-group-field-conditional-logic.php:156
 #: admin/views/field-group-locations.php:53
@@ -140,40 +172,40 @@ msgstr ""
 msgid "or"
 msgstr ""
 
-#: admin/field-group.php:146
+#: admin/field-group.php:184
 msgid "Parent fields"
 msgstr ""
 
-#: admin/field-group.php:147
+#: admin/field-group.php:185
 msgid "Sibling fields"
 msgstr ""
 
-#: admin/field-group.php:148
+#: admin/field-group.php:186
 msgid "Hide / Show All"
 msgstr ""
 
-#: admin/field-group.php:149
+#: admin/field-group.php:187
 msgid "Move Custom Field"
 msgstr ""
 
-#: admin/field-group.php:150
+#: admin/field-group.php:188
 msgid "This field cannot be moved until it's changes have been saved"
 msgstr ""
 
-#: admin/field-group.php:174
+#: admin/field-group.php:212
 msgid "Location"
 msgstr ""
 
-#: admin/field-group.php:175 pro/admin/options-page.php:32
-#: pro/admin/options-page.php:33
+#: admin/field-group.php:213 pro/admin/options-page.php:38
+#: pro/admin/options-page.php:39
 msgid "Options"
 msgstr ""
 
-#: admin/field-group.php:212
+#: admin/field-group.php:250
 msgid "Show Field Keys"
 msgstr ""
 
-#: admin/field-group.php:213
+#: admin/field-group.php:251
 #: admin/views/field-group-field-conditional-logic.php:42
 #: admin/views/field-group-field.php:132 fields/page_link.php:441
 #: fields/page_link.php:455 fields/post_object.php:411
@@ -184,7 +216,7 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-#: admin/field-group.php:214
+#: admin/field-group.php:252
 #: admin/views/field-group-field-conditional-logic.php:43
 #: admin/views/field-group-field.php:133 fields/page_link.php:442
 #: fields/page_link.php:456 fields/post_object.php:412
@@ -195,95 +227,95 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: admin/field-group.php:484
+#: admin/field-group.php:523
 msgid "Super Admin"
 msgstr ""
 
-#: admin/field-group.php:537 pro/admin/views/options-page.php:50
+#: admin/field-group.php:576 pro/admin/views/options-page.php:50
 msgid "Publish"
 msgstr ""
 
-#: admin/field-group.php:538
+#: admin/field-group.php:577
 msgid "Pending Review"
 msgstr ""
 
-#: admin/field-group.php:539
+#: admin/field-group.php:578
 msgid "Draft"
 msgstr ""
 
-#: admin/field-group.php:540
+#: admin/field-group.php:579
 msgid "Future"
 msgstr ""
 
-#: admin/field-group.php:541
+#: admin/field-group.php:580
 msgid "Private"
 msgstr ""
 
-#: admin/field-group.php:542
+#: admin/field-group.php:581
 msgid "Revision"
 msgstr ""
 
-#: admin/field-group.php:543
+#: admin/field-group.php:582
 msgid "Trash"
 msgstr ""
 
-#: admin/field-group.php:578
+#: admin/field-group.php:617
 msgid "Front Page"
 msgstr ""
 
-#: admin/field-group.php:579
+#: admin/field-group.php:618
 msgid "Posts Page"
 msgstr ""
 
-#: admin/field-group.php:580
+#: admin/field-group.php:619
 msgid "Top Level Page (parent of 0)"
 msgstr ""
 
-#: admin/field-group.php:581
+#: admin/field-group.php:620
 msgid "Parent Page (has children)"
 msgstr ""
 
-#: admin/field-group.php:582
+#: admin/field-group.php:621
 msgid "Child Page (has parent)"
 msgstr ""
 
-#: admin/field-group.php:598
+#: admin/field-group.php:637
 msgid "Default Template"
 msgstr ""
 
-#: admin/field-group.php:619 admin/field-group.php:627
-#: admin/field-group.php:641 admin/field-group.php:648
-#: admin/field-group.php:662 admin/field-group.php:672 fields/file.php:200
+#: admin/field-group.php:658 admin/field-group.php:666
+#: admin/field-group.php:680 admin/field-group.php:687
+#: admin/field-group.php:701 admin/field-group.php:711 fields/file.php:200
 #: fields/image.php:187 pro/fields/gallery.php:511
 msgid "All"
 msgstr ""
 
-#: admin/field-group.php:628
+#: admin/field-group.php:667
 msgid "Add / Edit"
 msgstr ""
 
-#: admin/field-group.php:629
+#: admin/field-group.php:668
 msgid "Register"
 msgstr ""
 
-#: admin/field-group.php:850
+#: admin/field-group.php:889
 msgid "Move Complete."
 msgstr ""
 
-#: admin/field-group.php:851
+#: admin/field-group.php:890
 #, php-format
 msgid "The %s field can now be found in the %s field group"
 msgstr ""
 
-#: admin/field-group.php:853
+#: admin/field-group.php:892
 msgid "Close Window"
 msgstr ""
 
-#: admin/field-group.php:884
+#: admin/field-group.php:923
 msgid "Please select the destination for this field"
 msgstr ""
 
-#: admin/field-group.php:891
+#: admin/field-group.php:930
 msgid "Move Field"
 msgstr ""
 
@@ -329,7 +361,7 @@ msgstr ""
 msgid "Actions"
 msgstr ""
 
-#: admin/field-groups.php:364 fields/relationship.php:690
+#: admin/field-groups.php:364 fields/relationship.php:695
 msgid "Filters"
 msgstr ""
 
@@ -346,7 +378,7 @@ msgid "Created by"
 msgstr ""
 
 #: admin/field-groups.php:406 admin/views/field-group-field.php:55
-#: pro/fields/flexible-content.php:247
+#: pro/fields/flexible-content.php:243
 msgid "Duplicate"
 msgstr ""
 
@@ -407,24 +439,24 @@ msgstr ""
 msgid "What's New"
 msgstr ""
 
-#: admin/update.php:229
+#: admin/update.php:232
 msgid "Upgrade"
 msgstr ""
 
-#: admin/update.php:266
+#: admin/update.php:285
 msgid "Data Upgrade Required"
 msgstr ""
 
-#: admin/update.php:267
+#: admin/update.php:286
 #, php-format
 msgid "%s %s requires some updates to the database"
 msgstr ""
 
-#: admin/update.php:268
+#: admin/update.php:287
 msgid "Run the updater"
 msgstr ""
 
-#: admin/update.php:285
+#: admin/update.php:304
 msgid ""
 "It is strongly recommended that you backup your database before proceeding. "
 "Are you sure you wish to run the updater now?"
@@ -534,11 +566,11 @@ msgstr ""
 msgid "Order"
 msgstr ""
 
-#: admin/views/field-group-fields.php:29 pro/fields/flexible-content.php:273
+#: admin/views/field-group-fields.php:29 pro/fields/flexible-content.php:270
 msgid "Label"
 msgstr ""
 
-#: admin/views/field-group-fields.php:30 pro/fields/flexible-content.php:288
+#: admin/views/field-group-fields.php:30 pro/fields/flexible-content.php:285
 msgid "Name"
 msgstr ""
 
@@ -578,7 +610,7 @@ msgstr ""
 msgid "Basic"
 msgstr ""
 
-#: admin/views/field-group-locations.php:72 fields/relationship.php:696
+#: admin/views/field-group-locations.php:72 fields/relationship.php:701
 msgid "Post Type"
 msgstr ""
 
@@ -636,7 +668,7 @@ msgstr ""
 msgid "User Role"
 msgstr ""
 
-#: admin/views/field-group-locations.php:92 pro/admin/options-page.php:67
+#: admin/views/field-group-locations.php:92 pro/admin/options-page.php:76
 msgid "Forms"
 msgstr ""
 
@@ -766,7 +798,7 @@ msgstr ""
 msgid "Format"
 msgstr ""
 
-#: admin/views/field-group-options.php:117 fields/relationship.php:709
+#: admin/views/field-group-options.php:117 fields/relationship.php:714
 msgid "Featured Image"
 msgstr ""
 
@@ -1153,20 +1185,20 @@ msgstr ""
 msgid "Data is at the latest version."
 msgstr ""
 
-#: api/api-helpers.php:1049
+#: api/api-helpers.php:1107
 msgid "Thumbnail"
 msgstr ""
 
-#: api/api-helpers.php:1050
+#: api/api-helpers.php:1108
 msgid "Medium"
 msgstr ""
 
-#: api/api-helpers.php:1051
+#: api/api-helpers.php:1109
 msgid "Large"
 msgstr ""
 
-#: api/api-helpers.php:1052
-msgid "Full"
+#: api/api-helpers.php:1110
+msgid "Full Size"
 msgstr ""
 
 #: api/api-template.php:1125 pro/fields/gallery.php:437
@@ -1381,11 +1413,11 @@ msgid "uploaded to this post"
 msgstr ""
 
 #: fields/file.php:136
-msgid "File name"
+msgid "File Name"
 msgstr ""
 
 #: fields/file.php:140
-msgid "File size"
+msgid "File Size"
 msgstr ""
 
 #: fields/file.php:155
@@ -1544,6 +1576,20 @@ msgstr ""
 msgid "Step Size"
 msgstr ""
 
+#: fields/number.php:219
+msgid "Value must be a number"
+msgstr ""
+
+#: fields/number.php:237
+#, php-format
+msgid "Value must be equal to or higher than %d"
+msgstr ""
+
+#: fields/number.php:245
+#, php-format
+msgid "Value must be equal to or lower than %d"
+msgstr ""
+
 #: fields/oembed.php:19
 msgid "oEmbed"
 msgstr ""
@@ -1565,22 +1611,22 @@ msgid "Archives"
 msgstr ""
 
 #: fields/page_link.php:408 fields/post_object.php:378
-#: fields/relationship.php:662
+#: fields/relationship.php:667
 msgid "Filter by Post Type"
 msgstr ""
 
 #: fields/page_link.php:416 fields/post_object.php:386
-#: fields/relationship.php:587 fields/relationship.php:670
+#: fields/relationship.php:592 fields/relationship.php:675
 msgid "All post types"
 msgstr ""
 
 #: fields/page_link.php:422 fields/post_object.php:392
-#: fields/relationship.php:676
+#: fields/relationship.php:681
 msgid "Filter by Taxonomy"
 msgstr ""
 
 #: fields/page_link.php:430 fields/post_object.php:400
-#: fields/relationship.php:684
+#: fields/relationship.php:689
 msgid "No taxonomy filter"
 msgstr ""
 
@@ -1599,15 +1645,15 @@ msgid "Password"
 msgstr ""
 
 #: fields/post_object.php:18 fields/post_object.php:439
-#: fields/relationship.php:735
+#: fields/relationship.php:740
 msgid "Post Object"
 msgstr ""
 
-#: fields/post_object.php:434 fields/relationship.php:730
+#: fields/post_object.php:434 fields/relationship.php:735
 msgid "Return Format"
 msgstr ""
 
-#: fields/post_object.php:440 fields/relationship.php:736
+#: fields/post_object.php:440 fields/relationship.php:741
 msgid "Post ID"
 msgstr ""
 
@@ -1651,27 +1697,27 @@ msgstr ""
 msgid "Search..."
 msgstr ""
 
-#: fields/relationship.php:600
+#: fields/relationship.php:605
 msgid "All taxonomies"
 msgstr ""
 
-#: fields/relationship.php:695
+#: fields/relationship.php:700
 msgid "Search"
 msgstr ""
 
-#: fields/relationship.php:697 fields/taxonomy.php:18 fields/taxonomy.php:511
+#: fields/relationship.php:702 fields/taxonomy.php:18 fields/taxonomy.php:511
 msgid "Taxonomy"
 msgstr ""
 
-#: fields/relationship.php:704
+#: fields/relationship.php:709
 msgid "Elements"
 msgstr ""
 
-#: fields/relationship.php:705
+#: fields/relationship.php:710
 msgid "Selected elements will be displayed in each result"
 msgstr ""
 
-#: fields/relationship.php:721
+#: fields/relationship.php:726
 msgid "Maximum posts"
 msgstr ""
 
@@ -1831,11 +1877,15 @@ msgstr ""
 msgid "Show Media Upload Buttons?"
 msgstr ""
 
-#: pro/acf-pro.php:398
+#: pro/acf-pro.php:192
+msgid "Flexible Content requires at least 1 layout"
+msgstr ""
+
+#: pro/acf-pro.php:425
 msgid "Column Width"
 msgstr ""
 
-#: pro/acf-pro.php:416
+#: pro/acf-pro.php:443
 msgid "Advanced Custom Fields PRO"
 msgstr ""
 
@@ -1847,19 +1897,19 @@ msgid ""
 "\">details & pricing</a>"
 msgstr ""
 
-#: pro/admin/options-page.php:67
+#: pro/admin/options-page.php:76
 msgid "Options Page"
 msgstr ""
 
-#: pro/admin/options-page.php:305
+#: pro/admin/options-page.php:317
 msgid "Options Updated"
 msgstr ""
 
-#: pro/admin/options-page.php:312
+#: pro/admin/options-page.php:324
 msgid "No Custom Field Groups found for this options page"
 msgstr ""
 
-#: pro/admin/options-page.php:312
+#: pro/admin/options-page.php:324
 msgid "Create a Custom Field Group"
 msgstr ""
 
@@ -1998,51 +2048,51 @@ msgstr ""
 msgid "Delete Layout"
 msgstr ""
 
-#: pro/fields/flexible-content.php:246
-msgid "Add New Layout"
-msgstr ""
-
-#: pro/fields/flexible-content.php:247
+#: pro/fields/flexible-content.php:243
 msgid "Duplicate Layout"
 msgstr ""
 
-#: pro/fields/flexible-content.php:297
+#: pro/fields/flexible-content.php:244
+msgid "Add New Layout"
+msgstr ""
+
+#: pro/fields/flexible-content.php:294
 msgid "Display"
 msgstr ""
 
-#: pro/fields/flexible-content.php:308 pro/fields/repeater.php:368
+#: pro/fields/flexible-content.php:305 pro/fields/repeater.php:368
 msgid "Block"
 msgstr ""
 
-#: pro/fields/flexible-content.php:309 pro/fields/repeater.php:367
+#: pro/fields/flexible-content.php:306 pro/fields/repeater.php:367
 msgid "Table"
 msgstr ""
 
-#: pro/fields/flexible-content.php:324
+#: pro/fields/flexible-content.php:321
 msgid "Min"
 msgstr ""
 
-#: pro/fields/flexible-content.php:337
+#: pro/fields/flexible-content.php:334
 msgid "Max"
 msgstr ""
 
-#: pro/fields/flexible-content.php:366 pro/fields/repeater.php:375
+#: pro/fields/flexible-content.php:363 pro/fields/repeater.php:375
 msgid "Button Label"
 msgstr ""
 
-#: pro/fields/flexible-content.php:375
+#: pro/fields/flexible-content.php:372
 msgid "Minimum Layouts"
 msgstr ""
 
-#: pro/fields/flexible-content.php:384
+#: pro/fields/flexible-content.php:381
 msgid "Maximum Layouts"
 msgstr ""
 
-#: pro/fields/flexible-content.php:969
+#: pro/fields/flexible-content.php:966
 msgid "Add layout"
 msgstr ""
 
-#: pro/fields/flexible-content.php:972
+#: pro/fields/flexible-content.php:969
 msgid "Remove layout"
 msgstr ""
 

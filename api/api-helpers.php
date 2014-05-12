@@ -1719,6 +1719,93 @@ function acf_debug() {
 }
 
 
+/*
+*  acf_get_updates
+*
+*  This function will reutrn all or relevant updates for ACF
+*
+*  @type	function
+*  @date	12/05/2014
+*  @since	5.0.0
+*
+*  @param	$post_id (int)
+*  @return	$post_id (int)
+*/
+
+function acf_get_updates() {
+	
+	// cache
+	$found = false;
+	$cache = wp_cache_get( 'acf_get_updates', 'acf', false, $found );
+	
+	if( $found ) {
+	
+		return $cache;
+		
+	}
+	
+	
+	// vars
+	$updates = array();
+	$plugin_version = acf_get_setting('version');
+	$acf_version = get_option('acf_version');
+	$path = acf_get_path('admin/updates');
+	
+	
+	// check that path exists
+	if( !file_exists( $path ) ) {
+	
+		return false;
+		
+	}
+	
+	
+	$dir = opendir( $path );
+
+    while(false !== ( $file = readdir($dir)) ) {
+    
+    	// only php files
+    	if( substr($file, -4) !== '.php' ) {
+    	
+	    	continue;
+	    	
+    	}
+    	
+    	
+    	// get version number
+    	$update_version = substr($file, 0, -4);
+    	
+    	
+    	// ignore if update is for a future version. May exist for testing
+		if( version_compare( $update_version, $plugin_version, '>') ) {
+		
+			continue;
+			
+		}
+		
+		// ignore if update has already been run
+		if( version_compare( $update_version, $acf_version, '<=') ) {
+		
+			continue;
+			
+		}
+		
+		
+    	// append
+        $updates[] = $update_version;
+        
+    }
+    
+    
+    // set cache
+	wp_cache_set( 'acf_get_updates', $updates, 'acf' );
+	
+    
+    // return
+    return $updates;
+	
+}
+
 
 /*
 *  Hacks

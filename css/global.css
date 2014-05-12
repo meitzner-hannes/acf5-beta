@@ -324,12 +324,12 @@ img.acf-fw {
 /* acf */
 .acf-sprite-logo {
 	background-position: -100px -150px;
-	width: 120px;
-	height: 55px;
+	width: 100px;
+	height: 46px;
 }
 
 .acf-icon .acf-sprite-logo {
-	margin: -28px 0 0 -61px;
+	margin: -23px 0 0 -50px;
 }
 
 /*--------------------------------------------------------------------------------------------
@@ -1194,30 +1194,36 @@ img.acf-fw {
 
 /*--------------------------------------------------------------------------------------------
 *
-*	admin notice
+*	upgrade notice
 *
 *--------------------------------------------------------------------------------------------*/
 
-.updated.acf-update-notice {
-	border-left-color: #3a93b2;
-	background: #52ACCC;
-	color: #fff;
+#acf-upgrade-notice {
+	margin-left: -20px;
+	background: #fff;
+	border-bottom: #E5E5E5 solid 1px;
 }
 
-.updated.acf-update-notice h4 {
-	line-height: 1.4em;
-	padding: 0;
-	margin: 1em 0 0.5em;
+#acf-upgrade-notice .inner {
+	padding: 20px;
 }
 
-.updated.acf-update-notice p {
-	line-height: 1.4em;
-	padding: 0;
-	margin: 0.5em 0 0.75em;
+#acf-upgrade-notice .logo {
+	position: relative;
+	float: left;
 }
 
-.updated.acf-update-notice .acf-button {
-	margin-left: 10px;
+#acf-upgrade-notice .content {
+	margin-left: 170px;
+	max-width: 600px;
+}
+
+#acf-upgrade-notice h2 {
+	
+}
+
+#acf-upgrade-notice p {
+	font-size: 14px;
 }
 
 /*---------------------------------------------------------------------------------------------

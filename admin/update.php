@@ -39,8 +39,8 @@ class acf_update {
 	*  @return	$post_id (int)
 	*/
 	
-	function ajax_upgrade()
-   	{
+	function ajax_upgrade() {
+		
    		// options
    		$options = acf_parse_args( $_POST, array(
 			'version'	=>	'',
@@ -49,9 +49,10 @@ class acf_update {
 		
 		
 		// validate
-		if( ! wp_verify_nonce($options['nonce'], 'acf_nonce') )
-		{
+		if( ! wp_verify_nonce($options['nonce'], 'acf_nonce') ) {
+		
 			wp_send_json_error();
+			
 		}
 		
 		
@@ -60,9 +61,10 @@ class acf_update {
 		
 		
 		// load version
-		if( !file_exists( $path ) )
-		{
+		if( !file_exists( $path ) ) {
+		
 			wp_send_json_error();
+			
 		}
 		
 		
@@ -79,129 +81,22 @@ class acf_update {
 		
 		
 		// update successful
-		update_option('acf_db_version', $options['version'] );
+		update_option('acf_version', $options['version'] );
 		
 		
-		/*
-// check for relevant updates. If none are found, update this to the plugin version
-		$updates = $this->get_relevant_updates();
+		// check for relevant updates. If none are found, update this to the plugin version
+		$updates = acf_get_updates();
+		if( empty($updates) ) {
 		
-		if( empty($updates) )
-		{
-			update_option('acf_db_version', acf_get_setting('version'));
+			update_option('acf_version', acf_get_setting('version'));
+			
 		}
-*/
 		
 		
 		// return
 		wp_send_json_success(array(
 			'feedback' => $feedback
 		));			
-	}
-	
-	
-	/*
-	*  get_updates
-	*
-	*  description
-	*
-	*  @type	function
-	*  @date	19/02/2014
-	*  @since	5.0.0
-	*
-	*  @param	$post_id (int)
-	*  @return	$post_id (int)
-	*/
-	
-	function get_updates() {
-		
-		// vars
-		$versions = array();
-		
-		
-		// add default
-		$path = acf_get_path('admin/updates');
-		
-		
-		// check that path exists
-		if( !file_exists( $path ) )
-		{
-			return false;
-		}
-		
-		
-		$dir = opendir( $path );
-    
-	    while(false !== ( $file = readdir($dir)) )
-	    {
-	    	// only php files
-	    	if( substr($file, -4) !== '.php' )
-	    	{
-		    	continue;
-	    	}
-	    	
-	    	
-	    	// read json
-	    	$version = substr($file, 0, -4);
-	    	
-	    	
-	    	// append to versions
-	        $versions[] = $version;
-	    }
-	    
-	    
-	    // reverse
-	    //$versions = array_reverse($versions);
-	    
-	    
-	    // return
-	    return $versions;
-		
-	}
-	
-	
-	/*
-	*  get_valid_updates
-	*
-	*  description
-	*
-	*  @type	function
-	*  @date	19/02/2014
-	*  @since	5.0.0
-	*
-	*  @param	$post_id (int)
-	*  @return	$post_id (int)
-	*/
-	
-	function get_relevant_updates() {
-		
-		// vars
-		$updates = $this->get_updates();
-		$plugin_version = acf_get_setting('version');
-		$db_version = get_option('acf_db_version');
-		
-		
-		// unset irrelevant updates
-		foreach( $updates as $i => $update_version )
-		{
-			// unset if update is for a future version. May exist for testing
-			if( version_compare( $update_version, $plugin_version, '>') )
-			{
-				unset($updates[ $i ]);
-			}
-			
-			// unset if update has already been run
-			if( version_compare( $update_version, $db_version, '<=') )
-			{
-				unset($updates[ $i ]);
-			}
-			
-		}
-		
-		
-		// return
-		return $updates;
-		
 	}
 	
 	
@@ -235,50 +130,41 @@ class acf_update {
 		// vars
 		$plugin_version = acf_get_setting('version');
 		$acf_version = get_option('acf_version');
-		$acf_db_version = get_option('acf_db_version');
 
 		
 		// bail early if a new install
 		if( empty($acf_version) ) {
 		
 			update_option('acf_version', $plugin_version );
-			update_option('acf_db_version', $plugin_version );
 			return;
 			
 		}
 		
 		
-		// introduce new setting for ACF5
-		if( empty($acf_db_version) ) {
-			
-			$acf_db_version = $acf_version;
-			
-			update_option('acf_db_version', $acf_db_version );
+		// bail early if $acf_version is >= $plugin_version
+		if( version_compare( $acf_version, $plugin_version, '>=') ) {
+		
+			return;
 			
 		}
 		
 		
-		// update acf_version if difference is detected
-		if( $acf_version != $plugin_version ) {
-			
-			$acf_version = $plugin_version;
-			
-			update_option('acf_version', $acf_version );
-			
-		}
-		
-		
-		// get updates
-		$updates = $this->get_relevant_updates();
-		
-		
-		// bail early if no updates
+		// bail early if no updates available
+		$updates = acf_get_updates();
 		if( empty($updates) ) {
-		
+			
+			update_option('acf_version', $plugin_version );
 			return;
 			
 		}
 		
+		
+		// actions
+		add_action( 'admin_notices', array( $this, 'admin_notices') );
+		
+		
+		
+		/*
 		
 		// vars
 		$l10n = array(
@@ -288,7 +174,8 @@ class acf_update {
 		);
 		
 		
-		// add notice
+		
+// add notice
 		$message = '
 		<h4>' . $l10n['h4'] . '</h4>
 		<p>' . $l10n['p'] . '
@@ -310,7 +197,60 @@ class acf_update {
 		</script>';
 		
 		acf_add_admin_notice( $message, 'acf-update-notice', '' );
+*/
 		
+		
+	}
+	
+	
+	/*
+	*  admin_notices
+	*
+	*  This function will render any admin notices
+	*
+	*  @type	function
+	*  @date	17/10/13
+	*  @since	5.0.0
+	*
+	*  @param	n/a
+	*  @return	n/a
+	*/
+	
+	function admin_notices() {
+		
+		// view
+		$view = array(
+			'updates'	=> acf_get_updates(),
+			'version'	=> acf_get_setting('version'),
+			'pro'		=> acf_get_setting('pro'),
+			'addons'	=> array()
+		);
+		
+		
+		// add-ons
+		$addons = array(
+			'acf-flexible-content'	=> 'Flexible Content Field',
+			'acf-gallery'			=> 'Gallery Field',
+			'acf-options-page'		=> 'Options Page',
+			'acf-repeater'			=> 'Repeater Field',
+		);
+		
+		
+		// get active plugins
+		$plugins = implode(' ', get_option('active_plugins'));
+		
+		foreach( $addons as $k  => $v ) {
+			
+			if( strpos($plugins, $k) !== false ) {
+				
+				$view['addons'][] = $v;
+			}
+			
+		}
+		
+		
+		// load view
+		acf_get_view('update-notice', $view);
 		
 	}
 	
@@ -332,7 +272,7 @@ class acf_update {
 		
 		// view
 		$view = array(
-			'updates' => $this->get_relevant_updates()
+			'updates' => acf_get_updates()
 		);
 		
 		

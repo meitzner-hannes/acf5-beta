@@ -102,8 +102,6 @@ class acf_admin {
 					$close = "</{$notice['wrap']}>";
 				}
 				
-				
-				if( substr($notice['text'], 0, 1) == '<' )
 				?>
 			    <div class="<?php echo $notice['class']; ?>">
 			        <?php echo $open . $notice['text'] . $close; ?>

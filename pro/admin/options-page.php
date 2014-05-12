@@ -321,7 +321,7 @@ class acf_pro_options_page {
 		{
 			$this->view['have_fields'] = 0;
 			
-			acf_add_admin_notice('<p>' . __("No Custom Field Groups found for this options page",'acf') . '. <a href="' . admin_url() . 'post-new.php?post_type=acf-field-group">' . __("Create a Custom Field Group",'acf') . '</a></p>', 'error', '');
+			acf_add_admin_notice(__("No Custom Field Groups found for this options page",'acf') . '. <a href="' . admin_url() . 'post-new.php?post_type=acf-field-group">' . __("Create a Custom Field Group",'acf') . '</a>', 'error');
 		}
 		else
 		{

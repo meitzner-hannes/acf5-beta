@@ -3,7 +3,7 @@ ACF5 Beta
 
 Welcome to the Advanced Custom Fields v5 beta repository. This repository will provide an effective workflow for issue tracking during the final stages of this build process.
 
-V5 is a brand new ACF plugin which has been completely re-written from the ground up to solve many of the limitations that V4 suffered (due to it's growth over a 2 year period). There are lots of new features including new fields, settings, designs and functionality! All of which focus on creating a cleaner and more powerful interface for WordPress websites.
+V5 is a brand new ACF plugin which has been completely re-written from the ground up to solve many of the limitations that V4 suffered (due to its growth over a 2 year period). There are lots of new features including new fields, settings, designs and functionality! All of which focus on creating a cleaner and more powerful interface for WordPress websites.
 
 Rules
 -----

@@ -55,47 +55,87 @@
 		
 		popup : function( $a ) {
 			
+			// el
+			var $el				= $a.closest('.acf-file-uploader'),
+				$field			= acf.get_the_field( $el ),
+				$repeater		= acf.get_the_field( $field );
+			
+			
 			// vars
-			var $el = $a.closest('.acf-file-uploader'),
-				library = acf.get_data( $el, 'library' );
+			var library 		= acf.get_data( $el, 'library' ),
+				multiple		= false;
+				
+				
+			// get parent
+			if( $repeater.exists() && acf.is_field($repeater, {type : 'repeater'}) ) {
+				
+				multiple = true;
+				
+			}
 			
 			
 			// popup
 			var frame = acf.media.upload_popup({
 				title		: acf._e('file', 'select'),
 				type		: '',
-				multiple	: ( $el.closest('.repeater').exists() ) ? 1 : 0,
+				multiple	: multiple,
 				uploadedTo	: ( library == 'uploadedTo' ) ? acf.get('post_id') : 0,
 				select		: function( attachment, i ) {
 					
-					// select / add another file field?
-			    	if( i > 1 )
-					{
+					// select / add another image field?
+			    	if( i > 0 ) {
+			    		
 						// vars
-						var $td			=	$el.closest('td'),
-							$tr 		=	$td.closest('.row'),
-							$repeater 	=	$tr.closest('.repeater'),
-							key 		=	$td.attr('data-field_key'),
-							selector	=	'td .acf-file-uploader:first';
+						var $tr 	= $field.parent(),
+							$next	= false,
+							key 	= acf.get_data( $field, 'key' );
 							
 						
-						// key only exists for repeater v1.0.1 +
-						if( key )
-						{
-							selector = 'td[data-field_key="' + key + '"] .acf-file-uploader';
+						// find next image field
+						$tr.nextAll('.acf-row').not('.clone').each(function(){
+							
+							// get next $field
+							$next = acf.get_field( key, $(this) );
+							
+							
+							// bail early if $next was not found
+							if( !$next ) {
+								
+								return;
+								
+							}
+							
+							
+							// bail early if next file uploader has value
+							if( $next.find('.acf-file-uploader.has-value').exists() ) {
+								
+								$next = false;
+								return;
+								
+							}
+								
+								
+							// end loop if $next is found
+							return false;
+							
+						});
+						
+						
+						
+						// add extra row if next is not found
+						if( !$next ) {
+							
+							$tr = acf.fields.repeater.set( $repeater ).add();
+							
+							
+							// get next $field
+							$next = acf.get_field( key, $tr );
+							
 						}
 						
 						
-						// add row?
-						if( ! $tr.next('.row').exists() )
-						{
-							$repeater.find('.add-row-end').trigger('click');
-							
-						}
-						
-						
-						// update current div
-						$el = $tr.next('.row').find( selector );
+						// update $el
+						$el = $next.find('.acf-file-uploader');
 						
 					}
 											

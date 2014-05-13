@@ -180,6 +180,12 @@ var acf = {
 			
 		},
 		
+		get_the_field : function( $el ){
+			
+			return $el.parent().closest('.acf-field');
+			
+		},
+		
 		get_field_wrap : function( $el ){
 			
 			return $el.closest('.acf-field');
@@ -296,14 +302,37 @@ var acf = {
 			
 		},
 		
-		is_sub_field : function( $field ) {
+		is_sub_field : function( $field, args ) {
 			
-			if( $field.closest('.acf-field').exists() )
-			{
-				return true;
+			// defaults
+			args = args || false;
+			
+			
+			// var
+			var r = false;
+			
+			
+			// find parent
+			$parent = $field.parent().closest('.acf-field');
+			
+			
+			if( $parent.exists() ) {
+			
+				r = true;
+				
+				
+				// check args (data attributes)
+				if( args ) {
+					
+					r = this.is_field( $parent, args );
+					
+				}
+				
 			}
 			
-			return false;
+			
+			// return
+			return r;
 			
 		},
 		
@@ -987,11 +1016,15 @@ var acf = {
 			// select callback
 			frame.on( 'select', function() {
 				
+				// reference
+				var self = this;
+				
 				
 				// validate
-				if( typeof args.select !== 'function' )
-				{
+				if( typeof args.select !== 'function' ) {
+				
 					return false;
+					
 				}
 				
 				
@@ -1000,15 +1033,15 @@ var acf = {
 				
 				
 				// loop over selection
-				if( selection )
-				{
+				if( selection ) {
+				
 					var i = -1;
 					
 					selection.each(function( attachment ){
 						
 						i++;
 						
-						args.select.apply( this, [ attachment, i] );
+						args.select.apply( self, [ attachment, i] );
 						
 					});
 				}

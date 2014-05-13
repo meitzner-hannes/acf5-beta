@@ -190,6 +190,10 @@
 		
 		add : function( $before ){
 			
+			// defaults
+			$before = $before || false;
+			
+			
 			// vars
 			var $field = this.$field;
 			
@@ -221,7 +225,7 @@
 			
 			
 			// add row
-			if( !$before.exists() )
+			if( !$before || !$before.exists() )
 			{
 				$before = this.$clone;
 			}
@@ -243,6 +247,10 @@
 			
 			// setup fields
 			acf.do_action('append', $html);
+			
+			
+			// return
+			return $html;
 			
 		},
 		
@@ -323,12 +331,13 @@
 		// vars
 		var $a		= $(this),
 			$field	= acf.get_field_wrap( $a ),
-			$before	= $();
+			$before	= false;
 			
 		
-		if( $a.is('.acf-icon') )
-		{
+		if( $a.is('.acf-icon') ) {
+		
 			$before	= $a.closest('.acf-row');
+			
 		}
 		
 		

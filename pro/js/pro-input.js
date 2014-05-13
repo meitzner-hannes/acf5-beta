@@ -1790,6 +1790,15 @@
 			$field	= acf.get_field_wrap( $a );
 			
 		
+		
+		// bail early if already active
+		if( $a.hasClass('active') ) {
+			
+			return;
+			
+		}
+		
+		
 		// select
 		acf.fields.gallery.set( $field ).select( $a );
 		

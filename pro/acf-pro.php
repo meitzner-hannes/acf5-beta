@@ -408,7 +408,7 @@ new acf_pro();
 
 // update setting
 acf_update_setting( 'pro', true );
-acf_update_setting( __('Advanced Custom Fields PRO', 'acf'), true );
+acf_update_setting( 'name', __('Advanced Custom Fields PRO', 'acf') );
 
 
 // end class

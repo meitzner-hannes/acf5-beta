@@ -226,7 +226,9 @@ class acf_update {
 		$view = array(
 			'updates'	=> acf_get_updates(),
 			'version'	=> acf_get_setting('version'),
+			'rollback'	=> get_option('acf_version'),
 			'pro'		=> acf_get_setting('pro'),
+			'basename'	=> acf_get_setting('basename'),
 			'addons'	=> array()
 		);
 		

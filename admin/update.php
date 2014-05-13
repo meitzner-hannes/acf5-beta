@@ -20,6 +20,10 @@ class acf_update {
 		add_action('admin_menu', array($this,'admin_menu'), 20);
 		
 		
+		// insert our update info into the update array maintained by WP
+		add_filter('site_transient_update_plugins', array($this, 'inject_downgrade'));
+		
+		
 		// ajax
 		add_action('wp_ajax_acf/admin/data_upgrade',	array($this, 'ajax_upgrade'));
 	}
@@ -279,6 +283,66 @@ class acf_update {
 		// load view
 		acf_get_view('update', $view);
 		
+	}
+	
+	
+	/*
+	*  inject_downgrade
+	*
+	*  description
+	*
+	*  @type	function
+	*  @date	16/01/2014
+	*  @since	5.0.0
+	*
+	*  @param	$post_id (int)
+	*  @return	$post_id (int)
+	*/
+	
+	function inject_downgrade( $transient ) {
+		
+		// bail early if no plugins are being checked
+	    if( empty($transient->checked) )  {
+	    
+            return $transient;
+            
+        }
+		
+		
+		// bail early if no nonce
+		if( empty($_GET['_acfrollback']) ) {
+			
+			return $transient;
+			
+		}
+		
+		
+		// vars
+		$rollback = get_option('acf_version');
+		
+		
+		// bail early if nonce is not correct
+		if( !wp_verify_nonce( $_GET['_acfrollback'], 'rollback-acf_' . $rollback ) ) {
+			
+			return $transient;
+			
+		}
+		
+		
+		// create new object for update
+        $obj = new stdClass();
+        $obj->slug = $_GET['plugin'];
+        $obj->new_version = $rollback;
+        $obj->url = 'https://wordpress.org/plugins/advanced-custom-fields';
+        $obj->package = 'http://downloads.wordpress.org/plugin/advanced-custom-fields.' . $rollback . '.zip';;
+        
+        
+        // add to transient
+        $transient->response[ $_GET['plugin'] ] = $obj;
+        
+		
+		// return 
+        return $transient;
 	}
 			
 }

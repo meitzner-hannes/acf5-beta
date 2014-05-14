@@ -1036,9 +1036,16 @@ function acf_render_flexible_content_layout( $field, $layout, $i, $value ) {
 					
 					
 					// add value
-					if( !empty($value[ $sub_field['key'] ]) )
-					{
+					if( isset($value[ $sub_field['key'] ]) ) {
+						
+						// this is a normal value
 						$sub_field['value'] = $value[ $sub_field['key'] ];
+						
+					} elseif( isset($sub_field['default_value']) ) {
+						
+						// no value, but this sub field has a default value
+						$sub_field['value'] = $sub_field['default_value'];
+						
 					}
 					
 					

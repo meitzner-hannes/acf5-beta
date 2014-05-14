@@ -244,9 +244,16 @@ class acf_field_repeater extends acf_field
 							
 							
 							// add value
-							if( !empty($row[ $sub_field['key'] ]) )
-							{
+							if( isset($row[ $sub_field['key'] ]) ) {
+								
+								// this is a normal value
 								$sub_field['value'] = $row[ $sub_field['key'] ];
+								
+							} elseif( isset($sub_field['default_value']) ) {
+								
+								// no value, but this sub field has a default value
+								$sub_field['value'] = $sub_field['default_value'];
+								
 							}
 							
 							

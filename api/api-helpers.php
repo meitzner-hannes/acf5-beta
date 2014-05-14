@@ -1700,6 +1700,10 @@ function acf_debug() {
 				
 				$arg = $arg ? 'true' : 'false';
 				
+			}elseif( is_string($arg) ) {
+				
+				$arg = '"' . $arg . '"';
+				
 			}
 			
 			$o .= ', ' . $arg;

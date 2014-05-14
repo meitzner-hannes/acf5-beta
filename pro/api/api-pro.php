@@ -80,10 +80,12 @@ function acf_pro_get_remote_response( $action = '', $post = array() ) {
 		'body' => $post
 	));
 	
-
-    if( !is_wp_error($request) || wp_remote_retrieve_response_code($request) === 200)
-    {
+	
+	// return body
+    if( !is_wp_error($request) || wp_remote_retrieve_response_code($request) === 200) {
+    	
         return $request['body'];
+    
     }
     
     
@@ -92,52 +94,122 @@ function acf_pro_get_remote_response( $action = '', $post = array() ) {
 }
 
 
+/*
+*  acf_pro_is_update_available
+*
+*  This function will return true if an update is available
+*
+*  @type	function
+*  @date	14/05/2014
+*  @since	5.0.0
+*
+*  @param	n/a
+*  @return	(boolean)
+*/
+
+function acf_pro_is_update_available() {
+	
+	// vars
+	$info = acf_pro_get_remote_info();
+	$version = acf_get_setting('version');
+	 
+	
+	// return false if no info
+	if( empty($info['version']) ) {
+		
+		return false;
+		
+	}
+	
+    
+    // return false if the external version is '<=' the current version
+	if( version_compare($info['version'], $version, '<=') ) {
+		
+    	return false;
+    
+    }
+    
+	
+	// return
+	return true;
+	
+}
+
 
 /*
-*  get_info
+*  acf_pro_get_remote_info
 *
-*  description
+*  This function will return remote plugin data
 *
 *  @type	function
 *  @date	16/01/2014
 *  @since	5.0.0
 *
-*  @param	$post_id (int)
-*  @return	$post_id (int)
+*  @param	n/a
+*  @return	(mixed)
 */
 
 function acf_pro_get_remote_info() {
 	
-	// check for transient
-	$transient = get_transient( 'acf_pro_get_remote_info' );
+	// clear transient if force check is enabled
+	if( !empty($_GET['force-check']) ) {
+		
+		// only allow transient to be deleted once per page load
+		if( empty($_GET['acf-ignore-force-check']) ) {
+			
+			delete_transient( 'acf_pro_get_remote_info' );
+			
+		}
+		
+		
+		// update $_GET
+		$_GET['acf-ignore-force-check'] = true;
+		
+	}
 	
-	if( !empty($transient) )
-	{
+	
+	// get transient
+	$transient = get_transient( 'acf_pro_get_remote_info' );
+
+	if( $transient !== false ) {
+	
 		return $transient;
+	
 	}
 
 	
 	// vars
 	$info = acf_pro_get_remote_response('get-info');
+	$timeout = 12 * HOUR_IN_SECONDS;
 	
 	
-    // validate
-    if( empty($info) )
-    {
-        return false;
+    // decode
+    if( !empty($info) ) {
+    	
+		$info = json_decode($info, true);
+		
+		// fake info version
+        //$info['version'] = '5.0.1';
+        
+    } else {
+	    
+	    $info = 0; // allow transient to be returned, but empty to validate
+	    $timeout = 2 * HOUR_IN_SECONDS;
+	    
     }
     
-	
-	// decode and return
-	$info = json_decode($info, true);
-	
-	
+    
+    
+        
+        
 	// update transient
-	set_transient('acf_pro_get_remote_info', $info, 1 * HOUR_IN_SECONDS );
+	set_transient('acf_pro_get_remote_info', $info, $timeout );
 	
 	
+	// return
 	return $info;
 }
+
 
 function acf_pro_is_license_active() {
 	

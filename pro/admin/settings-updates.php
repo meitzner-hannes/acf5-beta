@@ -73,13 +73,14 @@ class acf_settings_updates {
 	function load() {
 		
 		// $_POST
-		if( acf_verify_nonce('activate_pro_licence') )
-		{
+		if( acf_verify_nonce('activate_pro_licence') ) {
+		
 			$this->activate_pro_licence();
-		}
-		elseif( acf_verify_nonce('deactivate_pro_licence') )
-		{
+			
+		} elseif( acf_verify_nonce('deactivate_pro_licence') ) {
+		
 			$this->deactivate_pro_licence();
+			
 		}
 		
 		
@@ -96,17 +97,11 @@ class acf_settings_updates {
 		
 		
 		// license
-		if( acf_pro_is_license_active() )
-		{
+		if( acf_pro_is_license_active() ) {
+		
 			$this->view['license'] = acf_pro_get_license();
 			$this->view['active'] = 1;
-		}
-		
-		
-		// force recheck?
-		if( !empty($_GET['force-check']) )
-		{
-			delete_transient( 'acf_pro_get_remote_info' );
+			
 		}
 		
 		
@@ -115,10 +110,11 @@ class acf_settings_updates {
 		
 		
 		// validate
-        if( !$info )
-        {
+        if( empty($info) ) {
+        
         	acf_add_admin_notice( __('<b>Error</b>. Could not connect to update server', 'acf'), 'error');
         	return;
+        	
         }
         
         
@@ -127,7 +123,7 @@ class acf_settings_updates {
         
         
         // add changelog if the remote version is '>' than the current version
-		if( version_compare($this->view['remote_version'], $this->view['current_version'], '>') )
+		if( acf_pro_is_update_available() )
         {
         	$this->view['update_available'] = true;
         	 

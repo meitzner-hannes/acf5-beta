@@ -75,7 +75,7 @@ class acf_pro_connect {
     	}
     	
     	
-    	        
+    	// return        
         return $res;
         
 	}
@@ -96,39 +96,27 @@ class acf_pro_connect {
 	
 	function inject_update( $transient ) {
 		
-		// bail early if no plugins are being checked
-	    if( empty($transient->checked) )
-	    {
-            return $transient;
-        }
+		// bail early if not admin
+		if( !is_admin() ) {
+			
+			return $transient;
+			
+		}
 		
 		
+		// bail early if no update available
+		if( !acf_pro_is_update_available() ) {
+			
+			return $transient;
+			
+		}
+		
+		 
         // vars
         $info = acf_pro_get_remote_info();
-        
-        
-        // fake info version
-        //$info['version'] = '5.0.1';
-        
-        // bail early if no info
-        if( !$info )
-        {
-	        return $transient;
-        }
-       
-        
-        // vars
-        $version = acf_get_setting('version');
         $basename = acf_get_setting('basename');
         $slug = acf_get_setting('slug');
-        
-        
-        // bail early if the external version is '<=' the current version
-		if( version_compare($info['version'], $version, '<=') )
-        {
-        	return $transient;
-        }
-		
+
 		
         // create new object for update
         $obj = new stdClass();
@@ -139,9 +127,10 @@ class acf_pro_connect {
         
         
         // license
-		if( acf_pro_is_license_active() )
-		{
+		if( acf_pro_is_license_active() ) {
+			
 			$obj->package = acf_pro_get_remote_url( 'download', array( 'k' => acf_pro_get_license() ) );
+		
 		}
 		
         

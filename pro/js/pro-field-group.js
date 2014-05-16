@@ -453,12 +453,8 @@
 		
 		duplicate_layout : function( $tr ){
 			
-			// save select values
-			$tr.find('select').each(function(){
-			
-				$(this).attr( 'data-val', $(this).val() );
-				
-			});
+			// allow acf to modify DOM
+			acf.do_action('before_duplicate', $tr);
 			
 			
 			// vars
@@ -484,21 +480,17 @@
 			$tr.after( $new_tr );
 			
 			
+			// allow acf to modify DOM
+			acf.do_action('after_duplicate', $tr, $new_tr);
+			
+			
 			// make sortbale
 			$new_tr.find('.acf-field-list').each(function(){
 				
 				acf.field_group.sort_fields( $(this) );
 				
 			});
-			
-			
-			// set select values
-			$new_tr.find('select').each(function(){
-			
-				$(this).val( $(this).attr('data-val') ).trigger('change');
 				
-			});
-			
 			
 			// focus on new label
 			$new_tr.find('.acf-fc-meta-label input').focus();

@@ -777,12 +777,8 @@
 		
 		duplicate_field : function( $field ){
 			
-			// save select values
-			$field.find('select').each(function(){
-			
-				$(this).attr( 'data-val', $(this).val() );
-				
-			});
+			// allow acf to modify DOM
+			acf.do_action('before_duplicate', $field);
 			
 			
 			// vars
@@ -802,16 +798,11 @@
 			$field.after( $el );
 			
 			
-			// set select values
-			$el.find('select').each(function(){
-			
-				$(this).val( $(this).attr('data-val') ).removeAttr('data-val');
-				
-			});
+			// allow acf to modify DOM
+			acf.do_action('after_duplicate', $field, $el);
 			
 			
 			// focus after form has dropped down
-			// - this prevents a strange rendering bug in Firefox
 			setTimeout(function(){
 			
 	        	$el.find('.field_form input[type="text"]:first').focus();
@@ -1492,7 +1483,7 @@
 		update_select : function( $select, choices ){
 			
 			// vars
-			var val = $select.val();
+			var value = $select.val();
 			
 			
 			// clear choices
@@ -1523,9 +1514,10 @@
 			
 			
 			// reset val
-			if( $select.find('option[value="' + val + '"]').exists() )
-			{
-				$select.val( val );
+			if( $select.find('option[value="' + value + '"]').exists() ) {
+			
+				$select.val( value );
+				
 			}
 			
 		},

@@ -2144,6 +2144,54 @@ else if( acf.isset(_this, 'triggers', key) )
 	
 	
 	
+	/*
+	*  before & after duplicate
+	*
+	*  This function will modify the DOM before it is cloned. Primarily fixes a cloning issue with select elements
+	*
+	*  @type	function
+	*  @date	16/05/2014
+	*  @since	5.0.0
+	*
+	*  @param	$post_id (int)
+	*  @return	$post_id (int)
+	*/
+	
+	acf.add_action('before_duplicate', function( $orig ){
+		
+		// save select values
+		$orig.find('select').each(function(){
+			
+			$(this).find(':selected').addClass('selected');
+			
+		});
+		
+	});
+	
+	acf.add_action('after_duplicate', function( $orig, $duplicate ){
+		
+		// restore select values
+		$orig.find('select').each(function(){
+			
+			$(this).find('.selected').removeClass('selected');
+			
+		});
+		
+		
+		// set select values
+		$duplicate.find('select').each(function(){
+			
+			var $selected = $(this).find('.selected');
+			
+			$(this).val( $selected.attr('value') );
+			
+			$selected.removeClass('selected');
+			
+		});
+		
+	});
+	
+	
 })(jQuery);
 
 /* **********************************************

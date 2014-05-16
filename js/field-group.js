@@ -1688,9 +1688,7 @@
 			}
 			else if( type == "select" || type == "checkbox" || type == "radio" )
 			{
-				var field_choices = $trigger.find('tr[data-name="choices"] textarea').val().split("\n"),
-					allow_null = parseInt( $trigger.find('tr[data-name="allow_null"] input:checked').val() );
-				
+				var field_choices = $trigger.find('tr[data-name="choices"] textarea').val().split("\n");				
 				if( field_choices )
 				{
 					for( var i = 0; i < field_choices.length; i++ )
@@ -1711,13 +1709,23 @@
 					}
 				}
 				
-				if( allow_null )
-				{
-					choices.unshift({
-						'value' : '',
-						'label' : 'NULL'
-					});
+				
+				// allow null
+				$allow_null = $trigger.find('tr[data-name="allow_null"]');
+				
+				if( $allow_null.exists() ) {
+					
+					if( $allow_null.find('input:checked').val() == '1' ) {
+						
+						choices.unshift({
+							'value' : '',
+							'label' : 'NULL'
+						});
+						
+					}
+					
 				}
+				
 				
 			}
 			

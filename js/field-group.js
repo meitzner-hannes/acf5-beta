@@ -1719,7 +1719,7 @@
 						
 						choices.unshift({
 							'value' : '',
-							'label' : 'NULL'
+							'label' : acf._e('null')
 						});
 						
 					}

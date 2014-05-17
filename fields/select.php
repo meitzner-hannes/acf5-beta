@@ -89,7 +89,7 @@ class acf_field_select extends acf_field
 				// search
 				if( $options['s'] )
 				{
-					if( strpos($v, $options['s']) === false )
+					if( stripos($v, $options['s']) === false )
 					{
 						continue;
 					}

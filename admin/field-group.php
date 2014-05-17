@@ -791,11 +791,13 @@ class acf_field_group {
 		
 		// vars
 		$options = array(
-			'post_id'	=> 0,
-			'nonce'		=> '',
-			'prefix'	=> '',
-			'type'		=> '',
+			'nonce'			=> '',
+			'parent'		=> 0,
+			'field_group'	=> 0,
+			'prefix'		=> '',
+			'type'			=> '',
 		);
+		
 		
 		// load post options
 		$options = wp_parse_args($_POST, $options);
@@ -817,9 +819,11 @@ class acf_field_group {
 				
 		// render options
 		$field = acf_get_valid_field(array(
-			'type'		=> $options['type'],
-			'name'		=> 'temp',
-			'prefix'	=> $options['prefix'],
+			'type'			=> $options['type'],
+			'name'			=> 'temp',
+			'prefix'		=> $options['prefix'],
+			'parent'		=> $options['parent'],
+			'field_group'	=> $options['field_group'],
 		));
 		
 		

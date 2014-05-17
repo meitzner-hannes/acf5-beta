@@ -1204,6 +1204,7 @@
 			// vars
 			var $tbody		= $select.closest('tbody'),
 				$el			= $tbody.closest('.field'),
+				$parent		= $el.parent().closest('.field'),
 				
 				old_type	= $el.attr('data-type'),
 				new_type	= $select.val();
@@ -1257,11 +1258,22 @@
 			var ajax_data = {
 				action		: 'acf/field_group/render_field_settings',
 				nonce		: acf.o.nonce,
-				post_id		: acf.o.post_id,
+				parent		: acf.o.post_id,
+				field_group	: acf.o.post_id,
 				prefix		: $select.attr('name').replace('[type]', ''),
 				type		: new_type,
 			};
 			
+			
+			// parent
+			if( $parent.exists() ) {
+				
+				ajax_data.parent = this.get_field_meta( $parent, 'ID' );
+				
+			}
+			
+			
+			// ajax
 			$.ajax({
 				url: acf.o.ajaxurl,
 				data: ajax_data,

@@ -4,7 +4,13 @@
 // Note: $args is always passed to this view from above
 $fields = array();
 $layout = false;
-$parent = 0;
+$clone = array(
+	'ID'		=> 'acfcloneindex',
+	'key'		=> 'acfcloneindex',
+	'label'		=> __('New Field','acf'),
+	'name'		=> 'new_field',
+	'type'		=> 'text',
+);
 
 
 // use fields if passed in
@@ -12,14 +18,7 @@ extract( $args );
 
 
 // add clone
-$fields[] = acf_get_valid_field(array(
-	'ID'		=> 'acfcloneindex',
-	'key'		=> 'acfcloneindex',
-	'label'		=> __('New Field','acf'),
-	'name'		=> 'new_field',
-	'type'		=> 'text',
-	'parent'	=> $parent
-));
+$fields[] = acf_get_valid_field($clone);
 
 ?>
 <div class="acf-field-list-wrap">

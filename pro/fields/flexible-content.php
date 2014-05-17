@@ -346,7 +346,15 @@ class acf_field_flexible_content extends acf_field
 		$args = array(
 			'fields'	=> $layout['sub_fields'],
 			'layout'	=> $layout['display'],
-			'parent'	=> $field['ID']
+			'clone'		=> array(
+				'ID'			=> 'acfcloneindex',
+				'key'			=> 'acfcloneindex',
+				'label'			=> __('New Field','acf'),
+				'name'			=> 'new_field',
+				'type'			=> 'text',
+				'parent'		=> $field['key'],
+				'field_group'	=> $field['field_group'],
+			)
 		);
 		
 		acf_get_view('field-group-fields', $args);

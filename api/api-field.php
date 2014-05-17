@@ -166,6 +166,26 @@ function acf_prepare_field( $field ) {
 
 
 /*
+*  acf_is_sub_field
+*
+*  This function will return true if the field is a sub field
+*
+*  @type	function
+*  @date	17/05/2014
+*  @since	5.0.0
+*
+*  @param	$field (array)
+*  @return	(boolean)
+*/
+
+function acf_is_sub_field( $field ) {
+	
+	return ( $field['parent'] === $field['field_group'] ) ? 0 : 1;
+	
+}
+
+
+/*
 *  acf_render_field
 *
 *  This function will render a field input

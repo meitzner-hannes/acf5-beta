@@ -381,7 +381,7 @@ class acf_pro {
 	function render_field_settings( $field ) {
 		
 		// bail early if not a sub field
-		if( $field['parent'] == $field['field_group'] ) {
+		if( ! acf_is_sub_field($field) ) {
 			
 			return;
 			

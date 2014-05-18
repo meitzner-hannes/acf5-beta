@@ -252,27 +252,26 @@ class acf_field_radio extends acf_field
 	*  @return	$value - the modified value
 	*/
 	
-	function update_value( $value, $post_id, $field )
-	{
-		// validate
-		if( $field['save_other_choice'] )
-		{
+	function update_value( $value, $post_id, $field ) {
+		
+		// save_other_choice
+		if( $field['save_other_choice'] ) {
+			
 			// value isn't in choices yet
-			if( !isset($field['choices'][ $value ]) )
-			{
+			if( !isset($field['choices'][ $value ]) ) {
+				
 				// update $field
 				$field['choices'][ $value ] = $value;
 				
 				
-				// can save
-				if( isset($field['field_group']) )
-				{
-					do_action('acf/update_field', $field, $field['field_group']);
-				}
+				// save
+				acf_update_field( $field );
 				
 			}
 		}		
 		
+		
+		// return
 		return $value;
 	}
 	

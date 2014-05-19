@@ -31,6 +31,33 @@ class acf_compatibility {
 		// all field groups
 		add_filter('acf/get_valid_field_group',				array($this, 'get_valid_field_group'), 20, 1);
 		
+		
+		// settings
+		add_action('after_setup_theme',						array($this, 'after_setup_theme'), 20);
+	}
+	
+	
+	/*
+	*  after_setup_theme
+	*
+	*  description
+	*
+	*  @type	function
+	*  @date	19/05/2014
+	*  @since	5.0.0
+	*
+	*  @param	$post_id (int)
+	*  @return	$post_id (int)
+	*/
+	
+	function after_setup_theme() {
+		
+		if( defined('ACF_LITE') && ACF_LITE ) {
+			
+			acf_update_setting('show_admin', false);
+			
+		}
+			
 	}
 	
 	

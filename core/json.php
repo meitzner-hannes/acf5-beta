@@ -4,13 +4,17 @@ class acf_json {
 	
 	function __construct() {
 		
+		// update setting
+		acf_update_setting('save_json', get_template_directory() . '/acf-json');
+		acf_append_setting('load_json', get_template_directory() . '/acf-json');
+		
+		
+		// actions
 		add_action('acf/update_field_group',		array($this, 'update_field_group'), 10, 1);
 		add_action('acf/duplicate_field_group',		array($this, 'update_field_group'), 10, 1);
 		add_action('acf/untrash_field_group',		array($this, 'update_field_group'), 10, 1);
-		
 		add_action('acf/trash_field_group',			array($this, 'delete_field_group'), 10, 1);
 		add_action('acf/delete_field_group',		array($this, 'delete_field_group'), 10, 1);
-		
 		add_action('acf/include_fields', 			array($this, 'include_fields'), 10, 1);
 		
 	}
@@ -36,18 +40,16 @@ class acf_json {
 		$file = $field_group['key'] . '.json';
 		
 		
-		// default
-		if( !$path )
-		{
-			$path = get_template_directory() . '/acf-json';
-		}
+		// remove trailing slash
+		$path = untrailingslashit( $path );
 		
 		
 		// bail early if dir does not exist
-		if( !is_writable($path) )
-		{
+		if( !is_writable($path) ) {
+		
 			//error_log( 'ACF failed to save field group to .json file. Path does not exist: ' . $path );
 			return;
+			
 		}
 		
 		
@@ -66,7 +68,7 @@ class acf_json {
 		// extract field group ID
 		$id = acf_extract_var( $field_group, 'ID' );
 		
-				
+		
 		// write file
 		$f = fopen("{$path}/{$file}", 'w');
 		fwrite($f, acf_json_encode( $field_group ));
@@ -95,12 +97,8 @@ class acf_json {
 		$file = $field_group['key'] . '.json';
 		
 		
-		// default
-		if( !$path ) {
-			
-			$path = get_template_directory() . '/acf-json';
-			
-		}
+		// remove trailing slash
+		$path = untrailingslashit( $path );
 		
 		
 		// bail early if file does not exist
@@ -134,9 +132,10 @@ class acf_json {
 	function include_fields() {
 		
 		// validate
-		if( !acf_get_setting('json') )
-		{
+		if( !acf_get_setting('json') ) {
+		
 			return;
+			
 		}
 		
 		
@@ -144,28 +143,30 @@ class acf_json {
 		$paths = acf_get_setting('load_json');
 		
 		
-		// add default
-		$paths[] = get_template_directory() . '/acf-json';
-		
-		
 		// loop through and add to cache
-		foreach( $paths as $path )
-		{
+		foreach( $paths as $path ) {
+			
+			// remove trailing slash
+			$path = untrailingslashit( $path );
+		
+		
 			// check that path exists
-			if( !file_exists( $path ) )
-			{
+			if( !file_exists( $path ) ) {
+			
 				continue;
+				
 			}
 			
 			
 			$dir = opendir( $path );
 	    
-		    while(false !== ( $file = readdir($dir)) )
-		    {
+		    while(false !== ( $file = readdir($dir)) ) {
+		    
 		    	// only json files
-		    	if( strpos($file, '.json') === false )
-		    	{
+		    	if( strpos($file, '.json') === false ) {
+		    	
 			    	continue;
+			    	
 		    	}
 		    	
 		    	

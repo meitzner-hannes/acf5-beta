@@ -198,8 +198,9 @@ class acf_field_gallery extends acf_field
 	
 	function ajax_get_sort_order() {
 		
-		// options
+		// vars
 		$r = array();
+		$order = 'DESC';
    		$args = acf_parse_args( $_REQUEST, array(
 			'ids'			=>	0,
 			'sort'			=>	'date',
@@ -224,13 +225,20 @@ class acf_field_gallery extends acf_field
 		}
 		
 		
+		if( $args['sort'] == 'title' ) {
+			
+			$order = 'ASC';
+			
+		}
+		
+		
 		// find attachments (DISTINCT POSTS)
 		$ids = get_posts(array(
 			'post_type'		=> 'attachment',
 			'numberposts'	=> -1,
 			'post_status'	=> 'any',
 			'post__in'		=> $args['ids'],
-			'order'			=> 'DESC',
+			'order'			=> $order,
 			'orderby'		=> $args['sort'],
 			'fields'		=> 'ids'		
 		));

@@ -547,7 +547,14 @@ function acf_duplicate_field_group( $selector = 0, $new_post_id = 0 ) {
 	// update ID
 	$field_group['ID'] = $new_post_id;
 	$field_group['key'] = uniqid('group_');
-	$field_group['title'] .= ' (' . __("copy", 'acf') . ')';
+	
+	
+	// add (copy)
+	if( !$new_post_id ) {
+		
+		$field_group['title'] .= ' (' . __("copy", 'acf') . ')';
+		
+	}
 	
 	
 	// save

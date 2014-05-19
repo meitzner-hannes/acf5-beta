@@ -316,15 +316,7 @@ class acf_field_repeater extends acf_field
 		$args = array(
 			'fields'	=> $field['sub_fields'],
 			'layout'	=> $field['layout'],
-			'clone'		=> array(
-				'ID'			=> 'acfcloneindex',
-				'key'			=> 'acfcloneindex',
-				'label'			=> __('New Field','acf'),
-				'name'			=> 'new_field',
-				'type'			=> 'text',
-				'parent'		=> $field['key'],
-				'field_group'	=> $field['field_group'],
-			)
+			'parent'	=> $field['ID']
 		);
 		
 		

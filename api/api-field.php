@@ -80,8 +80,8 @@ function acf_get_valid_field( $field = false ) {
 		'class'				=> '',
 		'conditional_logic'	=> 0,
 		'parent'			=> 0,
-		'ancestors'			=> array(),
-		'field_group'		=> 0,
+		//'ancestors'			=> array(),
+		//'field_group'		=> 0,
 		'_name'				=> '',
 		'_input'			=> '',
 		'_valid'			=> 0,
@@ -180,7 +180,24 @@ function acf_prepare_field( $field ) {
 
 function acf_is_sub_field( $field ) {
 	
-	return ( $field['parent'] === $field['field_group'] ) ? 0 : 1;
+	// local field uses a field instead of ID
+	if( acf_is_field_key($field['parent']) ) {
+		
+		return true;
+		
+	}
+	
+	
+	// attempt to load parent field
+	if( acf_get_field($field['parent']) ) {
+		
+		return true;
+		
+	}
+	
+	
+	// return
+	return false;
 	
 }
 
@@ -518,8 +535,8 @@ function _acf_get_field_by_id( $post_id = 0 ) {
 	$field['name'] = $post->post_excerpt;
 	$field['menu_order'] = $post->menu_order;
 	$field['parent'] = $post->post_parent;
-	$field['ancestors'] = get_post_ancestors( $post );
-	$field['field_group'] = end( $field['ancestors'] );
+	//$field['ancestors'] = get_post_ancestors( $post );
+	//$field['field_group'] = end( $field['ancestors'] );
 
 
 	// override with JSON
@@ -529,8 +546,8 @@ function _acf_get_field_by_id( $post_id = 0 ) {
 		$backup = acf_extract_vars($field, array(
 			'ID',
 			'parent',
-			'ancestors',
-			'field_group',
+			//'ancestors',
+			//'field_group',
 		));
 		
 
@@ -699,13 +716,6 @@ function acf_update_field( $field = false, $specific = false ) {
 	$field = wp_unslash( $field );
 	
 	
-	// configure parent / field_group
-	if( !$field['parent'] )
-	{
-		$field['parent'] = $field['field_group'];
-	}
-	
-	
 	// clean up conditional logic keys
 	if( !empty($field['conditional_logic']) ) {
 		
@@ -754,8 +764,8 @@ function acf_update_field( $field = false, $specific = false ) {
 		'id',
 		'class',
 		'parent',
-		'ancestors',
-		'field_group',
+		//'ancestors',
+		//'field_group',
 		'_name',
 		'_input',
 		'_valid',
@@ -1083,8 +1093,8 @@ function acf_prepare_field_for_export( $field ) {
 		'id',
 		'class',
 		'parent',
-		'ancestors',
-		'field_group',
+		//'ancestors',
+		//'field_group',
 		'_name',
 		'_input',
 		'_valid',

@@ -305,7 +305,7 @@ class acf_settings_export {
 				
 				
 				// add field group reference
-				$field['field_group'] = $field_group['key'];
+				//$field['field_group'] = $field_group['key'];
 				
 				
 				// add field menu_order

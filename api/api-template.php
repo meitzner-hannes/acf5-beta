@@ -455,7 +455,7 @@ function get_field_objects( $post_id = false, $format_value = true, $load_value 
 			
 			
 			// ignore sub fields
-			if( count($field['ancestors']) > 1 ) {
+			if( acf_is_sub_field($field) ) {
 			
 				continue;
 				

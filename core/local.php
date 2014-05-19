@@ -146,7 +146,7 @@ class acf_local {
 			
 			
 			// add field group reference
-			$field['field_group'] = $field_group['key'];
+			//$field['field_group'] = $field_group['key'];
 			
 			
 			// add field
@@ -197,18 +197,18 @@ class acf_local {
 		
 		
 		// find ancestors
-		$field['ancestors'] = array();
+		//$field['ancestors'] = array();
 		
 		
 		while( acf_is_local_field($parent) )
 		{
-			$field['ancestors'][] = $parent;
+			//$field['ancestors'][] = $parent;
 			
 			$parent = acf_get_local_field( $parent );
 			$parent = $parent['parent'];
 		}
 		
-		$field['ancestors'][] = $field['field_group'];
+		//$field['ancestors'][] = $field['field_group'];
 
 		
 		// add field

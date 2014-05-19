@@ -101,6 +101,20 @@
 			acf.field_group.update_field_meta( $el, 'parent', val );
 	    	
 	    	
+	    	// show / hide column width setting
+	    	$column_width = $el.find('> .field-settings > table > tbody > tr[data-name="column_width"]');
+	    	
+	    	if( $parent.exists() ) {
+	    	
+	    		$column_width.find('input').removeAttr('disabled');
+	    		
+	    	} else {
+		    	
+		    	$column_width.find('input').attr('disabled', 'disabled');
+		    	
+	    	}
+			
+	    	
 	    	// action for 3rd party customization
 			acf.do_action('update_field_parent', $el, $parent);
 			

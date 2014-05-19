@@ -211,14 +211,16 @@ class acf_pro {
 	function update_field( $field ) {
 		
 		// don't use acf_get_field. Instead, keep a global record of ID from each update_field and use this to get the parent ID => key 
-		if( $field['parent'] )
-		{
-			if( strpos($field['parent'], 'field_') === 0 )
-			{
+		if( $field['parent'] ) {
+		
+			if( acf_is_field_key($field['parent']) ) {
+			
 				$parent = acf_get_field( $field['parent'] );
 				
 				$field['parent'] = $parent['ID'];
+				
 			}
+			
 		}
 		
 		return $field;
@@ -379,23 +381,26 @@ class acf_pro {
 	*/
 	
 	function render_field_settings( $field ) {
+
+		// vars
+		$setting = array(
+			'label'		=> __('Column Width','acf'),
+			'type'		=> 'number',
+			'name'		=> 'column_width',
+			'append'	=> '%',
+		);
 		
-		// bail early if not a sub field
-		if( ! acf_is_sub_field($field) ) {
-			
-			return;
-			
+		
+		// set disabled
+		if( ! isset($field['column_width']) ) {
+		
+			$setting['disabled'] = 1;
+		
 		}
 		
 		
-		// add column width
-		acf_render_field_setting( $field, array(
-			'label'			=> __('Column Width','acf'),
-			'type'			=> 'number',
-			'name'			=> 'column_width',
-			'append'		=> '%'
-		));
-		
+		// add setting
+		acf_render_field_setting( $field, $setting );
 		
 	}
 	 

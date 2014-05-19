@@ -247,6 +247,35 @@ function acf_parse_args( $args, $defaults = array() ) {
 
 
 /*
+*  acf_require_arg
+*
+*  description
+*
+*  @type	function
+*  @date	19/05/2014
+*  @since	5.0.0
+*
+*  @param	$post_id (int)
+*  @return	$post_id (int)
+*/
+
+function acf_require_arg( $array, $arg, $value = false ) {
+	
+	// isset
+	if( !isset($array[ $arg ]) ) {
+		
+		$array[ $arg ] = $value;
+		
+	}
+	
+	
+	// return
+	return $array;
+	
+} 
+
+
+/*
 *  acf_parse_types
 *
 *  This function will convert any numeric values to int and trim strings

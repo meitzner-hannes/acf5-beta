@@ -16,7 +16,15 @@
 function acf_get_valid_options_page( $page = '' ) {
 	
 	// allow for string
-	if( is_string($page) ) {
+	if( empty($page) ) {
+		
+		$page = array(
+			'page_title' 	=> __('Options','acf'),
+			'menu_title'	=> __('Options','acf'),
+			'menu_slug' 	=> 'acf-options',
+		);
+			
+	} elseif( is_string($page) ) {
 	
 		$page_title = $page;
 		
@@ -36,7 +44,7 @@ function acf_get_valid_options_page( $page = '' ) {
 		'parent_slug'	=> '',
 		'position'		=> false,
 		'icon_url'		=> false,
-		'redirect'		=> ''
+		'redirect'		=> true
 	));
 	
 	
@@ -99,7 +107,7 @@ function acf_get_options_page( $slug ) {
 	// vars
 	$page = $GLOBALS['acf_options_pages'][ $slug ];
 	
-	
+					
 	// filter for 3rd party customization
 	$page = apply_filters('acf/get_options_page', $page, $slug);
 	
@@ -125,6 +133,10 @@ function acf_get_options_page( $slug ) {
 
 function acf_get_options_pages() {
 	
+	// global
+	global $_wp_last_utility_menu;
+		
+		
 	// bail early if empty
 	if( empty($GLOBALS['acf_options_pages']) ) {
 		
@@ -135,61 +147,81 @@ function acf_get_options_pages() {
 	
 	// vars
 	$pages = array();
-	$redirect = array();
+	$redirects = array();
 	$slugs = array_keys($GLOBALS['acf_options_pages']);
 	
 	
 	// get pages
 	foreach( $slugs as $slug ) {
-		
+	
+		// append
 		$pages[] = acf_get_options_page( $slug );
 		
 	}
 	
 	
-	// get redirects
-	if( !empty($pages) ) {
-		
-		foreach( $pages as $page ) {
+	foreach( $pages as $i => $page ) {
 			
-			// append redirect
-			if( !empty($page['redirect']) ) {
-				
-				$redirect[ $page['menu_slug'] ] = $page['redirect'];
-				
-			}
+		// bail early if is child
+		if( !empty($page['parent_slug']) ) {
+			
+			continue;
 			
 		}
 		
-	}
-	
-	
-	// loop through $pages and update redirect slugs
-	if( !empty($redirect) ) {
 		
-		foreach( $pages as $k => $page ) {
+		// add missing position
+		if( !$page['position']) {
 			
-			if( !empty($page['parent_slug']) ) {
-				
-				if( array_key_exists($page['parent_slug'], $redirect) ) {
-					
-					$pages[ $k ]['parent_slug'] = $redirect[ $page['parent_slug'] ];
-					
-				}
-				
-			} else {
-				
-				if( array_key_exists($page['menu_slug'], $redirect) ) {
-					
-					$pages[ $k ]['menu_slug'] = $redirect[ $page['menu_slug'] ];
-					
-				}
-				
-			}
+			$_wp_last_utility_menu++;
+			
+			$pages[ $i ]['position'] = $_wp_last_utility_menu;
+			
+		}
+	
+		
+		// bail early if no redirect
+		if( empty($page['redirect']) ) {
+			
+			continue;
 			
 		}
 		
-	}
+		
+		// vars
+		$parent = $page['menu_slug'];
+		$child = '';
+		
+		
+		// update children
+		foreach( $pages as $j => $sub_page ) {
+			
+			// bail early if not child
+			if( $sub_page['parent_slug'] !== $parent ) {
+				
+				continue;
+				
+			}
+			
+			
+			// update $child if empt
+			if( empty($child) ) {
+				
+				$child = $sub_page['menu_slug'];
+				
+			}
+			
+			
+			// update parent_slug
+			$pages[ $j ]['parent_slug'] = $child;
+			
+		}
+		
+		
+		// finally update parent menu_slug
+		$pages[ $i ]['menu_slug'] = $child;
+		
+	}	
 		
 	
 	// return
@@ -326,23 +358,25 @@ function acf_add_options_sub_page( $page = '' ) {
 		// set parent slug
 		$page['parent_slug'] = 'acf-options';
 		
-		
-		// get parent
-		$parent = acf_get_options_page($page['parent_slug']);
-		
-		
-		// redirect parent to child
-		if( empty($parent['redirect']) ) {
-			
-			// update parent
-			$parent = acf_update_options_page(array(
-				'menu_slug'	=> $page['parent_slug'],
-				'redirect'	=> $page['menu_slug']
-			));
-				
-		}
-		
 	}
+	
+	
+	/*
+// get parent
+	$parent = acf_get_options_page($page['parent_slug']);
+	
+	
+	// redirect parent to child
+	if( empty($parent['redirect']) ) {
+		
+		// update parent
+		$parent = acf_update_options_page(array(
+			'menu_slug'	=> $page['parent_slug'],
+			'redirect'	=> $page['menu_slug']
+		));
+			
+	}
+*/
 	
 	
 	// return

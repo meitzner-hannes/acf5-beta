@@ -27,27 +27,6 @@ class acf_pro_options_page {
 		);
 		
 		
-		// settings
-		acf_update_setting('show_options_page', true);
-		
-		
-		// add default options page to settings
-		if( acf_get_setting('show_options_page') ) {
-			
-			acf_add_options_page(array(
-				'page_title' 	=> __('Options','acf'),
-				'menu_title'	=> __('Options','acf'),
-				'menu_slug' 	=> 'acf-options',
-				'capability'	=> 'edit_posts',
-				'parent_slug'	=> '',
-				'position'		=> false,
-				'icon_url'		=> false,
-			));
-			
-		}
-		
-		
-		
 		// actions
 		add_action('admin_menu', array($this,'admin_menu'), 99, 0);
 		
@@ -134,28 +113,31 @@ class acf_pro_options_page {
 		
 		
 		// $options does not contain a default for "options_page"
-		if( isset($options['options_page']) )
-		{
+		if( isset($options['options_page']) ) {
+		
 			$options_page = $options['options_page'];
+			
 		}
 		
 
-		if( !$options_page )
-		{
+		if( !$options_page ) {
+		
 			global $plugin_page;
 			
 			$options_page = $plugin_page;
+			
 		}
 		
 		
 		// match
-		if( $rule['operator'] == "==" )
-        {
+		if( $rule['operator'] == "==" ) {
+		
         	$match = ( $options_page === $rule['value'] );
-        }
-        elseif( $rule['operator'] == "!=" )
-        {
+        	
+        } elseif( $rule['operator'] == "!=" ) {
+        
         	$match = ( $options_page !== $rule['value'] );
+        	
         }
         
         
@@ -180,10 +162,6 @@ class acf_pro_options_page {
 	
 	function admin_menu() {
 		
-		// global
-		global $_wp_last_utility_menu;
-		
-		
 		// vars
 		$pages = acf_get_options_pages();
 		
@@ -198,16 +176,6 @@ class acf_pro_options_page {
 				
 				
 				if( empty($page['parent_slug']) ) {
-					
-					// position
-					if( !$page['position']) {
-						
-						$_wp_last_utility_menu++;
-						
-						$page['position'] = $_wp_last_utility_menu;
-						
-					}
-					
 					
 					// add page
 					$slug = add_menu_page( $page['page_title'], $page['menu_title'], $page['capability'], $page['menu_slug'], array($this, 'html'), $page['icon_url'], $page['position'] );
@@ -246,17 +214,18 @@ class acf_pro_options_page {
 		
 		
 		// verify and remove nonce
-		if( acf_verify_nonce('options') )
-		{
+		if( acf_verify_nonce('options') ) {
+		
 			// save data
-		    if( acf_validate_save_post(true) )
-			{
+		    if( acf_validate_save_post(true) ) {
+		    
 				acf_save_post( "options" );
 				
 				// redirect
 				wp_redirect( admin_url("admin.php?page={$plugin_page}&message=1") );
 				exit;
 			}
+			
 		}
 		
 		
@@ -312,21 +281,22 @@ class acf_pro_options_page {
 		
 		
 		// notices
-		if( !empty($_GET['message']) && $_GET['message'] == '1' )
-		{
+		if( !empty($_GET['message']) && $_GET['message'] == '1' ) {
+		
 			acf_add_admin_notice( __("Options Updated",'acf') );
+			
 		}
 		
-		if( empty($field_groups) )
-		{
+		if( empty($field_groups) ) {
+		
 			$this->view['have_fields'] = 0;
 			
 			acf_add_admin_notice(__("No Custom Field Groups found for this options page",'acf') . '. <a href="' . admin_url() . 'post-new.php?post_type=acf-field-group">' . __("Create a Custom Field Group",'acf') . '</a>', 'error');
-		}
-		else
-		{
-			foreach( $field_groups as $i => $field_group )
-			{
+		
+		} else {
+			
+			foreach( $field_groups as $i => $field_group ) {
+			
 				// vars
 				$id = "acf-{$field_group['key']}";
 				$title = $field_group['title'];
@@ -336,9 +306,10 @@ class acf_pro_options_page {
 				
 				
 				// tweaks to vars
-				if( $context == 'side' )
-				{
+				if( $context == 'side' ) {
+				
 					$priority = 'core';
+					
 				}
 				
 				
@@ -351,9 +322,11 @@ class acf_pro_options_page {
 				
 				
 			}
-			// foreach($acfs as $acf)
+			// foreach
+			
 		}
-		// if($acfs)
+		// if
+		
 	}
 	
 	
@@ -387,8 +360,8 @@ class acf_pro_options_page {
 		
 		
 		// render
-		if( $field_group['label_placement'] == 'left' )
-		{
+		if( $field_group['label_placement'] == 'left' ) {
+		
 			?>
 			<table class="acf-table">
 				<tbody>
@@ -396,16 +369,17 @@ class acf_pro_options_page {
 				</tbody>
 			</table>
 			<?php
-		}
-		else
-		{
+		
+		} else {
+		
 			acf_render_fields( 'options', $fields, 'div', $field_group['instruction_placement'] );
+			
 		}
 		
 		
 		// inline script
-		echo '<div class="acf-hidden">';
-			?>
+		?>
+		<div class="acf-hidden">
 			<script type="text/javascript">
 			(function($) {
 				
@@ -414,8 +388,8 @@ class acf_pro_options_page {
 				
 			})(jQuery);	
 			</script>
-			<?php
-		echo '</div>';
+		</div>
+		<?php
 		
 	}
 	

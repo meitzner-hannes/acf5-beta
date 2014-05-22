@@ -358,7 +358,18 @@ class acf_field_relationship extends acf_field
 		{
 			if( in_array('featured_image', $field['elements']) )
 			{
-				$image = get_the_post_thumbnail( $post->ID, array(17, 17) );
+				$image = '';
+				
+				if( $post->post_type == 'attachment' ) {
+					
+					$image = wp_get_attachment_image( $post->ID, array(17, 17) );
+					
+				} else {
+					
+					$image = get_the_post_thumbnail( $post->ID, array(17, 17) );
+					
+				}
+				
 				
 				$title .= '<div class="thumbnail">' . $image . '</div>';
 			}

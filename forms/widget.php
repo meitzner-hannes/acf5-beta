@@ -224,35 +224,9 @@ class acf_controller_widget {
 		
 	});
 	
-	acf.add_action('load', function(){
-		
-		$('div.widgets-sortables').on('sortstop', function(e, ui){
-			
-			// vars
-			var add_new = ui.item.find('.add_new').val();
-			
-			
-			if( add_new == 'multi' )
-			{
-				console.log( 'div.widgets-sortables %o ', ui.item );
-				
-				
-				setTimeout(function(){
-					
-					// this is a newly dragged in widget
-					acf.do_action('append', ui.item );
-					
-				}, 250);
-			}
-
-		});
-		
-	});
-	
 	$(document).on('click', '.widget-top', function(){
 		
 		var $el = $(this).parent().children('.widget-inside');
-		
 		
 		setTimeout(function(){
 			
@@ -265,6 +239,13 @@ class acf_controller_widget {
 		}, 250);
 		
 				
+	});
+	
+	$(document).on('widget-added', function( e, $widget ){
+			
+		// this is a newly added widget
+		acf.do_action('append', $widget );
+		
 	});
 	
 })(jQuery);	

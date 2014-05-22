@@ -235,16 +235,20 @@ class acf_field_page_link extends acf_field
 			{
 				// title
 				$title = '';
-				$ancestors = get_ancestors( $post->ID, $post->post_type );
 				$search_weight = 0;
 				
 				
-				if( !empty($ancestors) )
-				{
-					foreach( $ancestors as $a )
-					{
-						$title .= '- ';
+				// ancestors
+				if( $post_type != 'attachment' ) {
+					
+					$ancestors = get_ancestors( $post->ID, $post->post_type );
+					
+					if( !empty($ancestors) ) {
+					
+						$title .= str_repeat('- ', count($ancestors));
+						
 					}
+					
 				}
 				
 				

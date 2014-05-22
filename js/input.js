@@ -5194,16 +5194,20 @@ if( ! this.$trigger )
 			
 			
 			// show field error messages
-			$.each( json.errors, function( k, item ){
+			if( json.errors ) {
 			
-				var $input = $form.find('[name="' + item.input + '"]').first(),
-					$field = acf.get_field_wrap( $input );
+				$.each( json.errors, function( k, item ){
 				
-				
-				// add error
-				_this.add_error( $field, item.message );
-				
-			});
+					var $input = $form.find('[name="' + item.input + '"]').first(),
+						$field = acf.get_field_wrap( $input );
+					
+					
+					// add error
+					_this.add_error( $field, item.message );
+					
+				});
+			
+			}
 			
 		},
 		

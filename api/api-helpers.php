@@ -451,6 +451,7 @@ function acf_render_field_wrap( $field, $el = 'div', $instruction = 'label', $at
 		$show_label = false;
 	}
 	
+	$show_label = apply_filters('acf/render_field_wrap/show_label', $show_label, $field, $el);
 	
 	?><<?php echo $el; ?> <?php echo acf_esc_attr($atts); ?>>
 		<?php if( $show_label ): ?>
